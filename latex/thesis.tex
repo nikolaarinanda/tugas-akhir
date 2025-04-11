@@ -1,0 +1,145 @@
+% !TeX root = thesis.tex
+%--------------------------------------------------------------------%
+%
+% Template TA LaTeX Teknik Informatika ITERA.
+% Editor: Radhinka Bagaskara, Martin C.T. Manullang, iwawiwi
+% Version 2024.1
+%
+% Berdasarkan "Templat LaTeX Tesis Informatika ITB" oleh Petra Barus & Peb Ruswono Aryan
+% https://github.com/petrabarus/if-itb-latex
+%--------------------------------------------------------------------%
+%
+% Berkas ini berisi struktur utama dokumen LaTeX yang akan dibuat.
+%
+%--------------------------------------------------------------------%
+
+% Set jenis dokumen Tugas Akhir
+\documentclass[12pt, a4paper, onecolumn, oneside, final]{report}
+
+\input{config/config.sty}
+
+\bibliography{references}
+
+\begin{document}
+% 	\pagestyle{plain}
+% 	\fancyhf{}
+% 	\rfoot{Halaman \thepage}%
+
+    %----------------------------------------------------------------%
+    % Konfigurasi Informasi Tugas Akhir
+    %----------------------------------------------------------------%
+    
+    % Judul Tugas Akhir
+    \title{Deteksi Cyberbullying Pada Sosial Media Menggunakan Metode Long Short-Term Memory} 	
+    % DITULIS DALAM HURUF KAPITAL; Font size 16 pt; Bold; Tidak melebihi 4 baris
+    \titleEN{Judul Tugas Akhir (Inggris)}      % Judul Tugas Akhir dalam Bahasa Inggris
+    
+    % Informasi Mahasiswa
+    \author{Nikola Arinanda}		% Nama Mahasiswa
+	\nim{121140202}			% NIM Mahasiswa
+	
+	%Informasi Dosen Pembimbing
+	\dosbingA%
+		{Martin Clinton Tosima Manullang, Ph.D. }%	% Nama Dosen Pembimbing 1
+		{NIP. 199301092019031017 }				% NIP Dosen Pembimbing 1
+	\dosbingB%
+		{Leslie Anggraini, S.Kom., M.Cs.}%	% Nama Dosen Pembimbing 2
+		{NRK. 1997081720242294 }				% NIP Dosen Pembimbing 2
+		
+	%Informasi Dosen Penguji
+	\pengujiA%
+		{Nama dan Gelar Penguji I}%	% Nama Dosen Penguji 1
+		{NIP. 123456789}				% NIP Dosen Penguji 1
+	\pengujiB%
+		{Nama dan Gelar Penguji II}%	% Nama Dosen Penguji 2
+		{NIP. 123456789}				% NIP Dosen Penguji 2
+
+	\sloppy % mencegah text overflow. (Jose)
+    \pagenumbering{roman}
+    \setcounter{page}{1} % Nomor halaman dimulai dengan "ii" di hal. Pengesahan
+
+    \input{chapters/cover-hard} % Hardcover
+    \input{chapters/approval} % Lembar Pengesahan
+    \input{chapters/statement} % Halaman Pernyataan Orisinalitas
+    \input{chapters/publication} % Halaman Persetujuan Publikasi
+    \input{chapters/forewords} % Kata Pengantar
+    
+    \input{chapters/summary} % Ringkasan
+    \input{chapters/abstract-id} % Abstrak (Indonesia)
+    \input{chapters/abstract-en} % Abstrak (Inggris)
+%    \input{chapters/motto}
+%    \input{chapters/dedicated}
+
+	% Daftar Isi
+	\phantomsection% 
+	\addcontentsline{toc}{chapter}{Daftar Isi}
+    \tableofcontents
+    \pagebreak
+    % Daftar tabel
+    \phantomsection% 
+    \addcontentsline{toc}{chapter}{Daftar Tabel}
+    \listoftables
+    \pagebreak
+    % Daftar gambar
+    \phantomsection% 
+    \addcontentsline{toc}{chapter}{Daftar Gambar}
+    \listoffigures
+    \pagebreak
+    % Daftar persamaan
+    \phantomsection% 
+    \addcontentsline{toc}{chapter}{Daftar Persamaan}
+    \listofmyequations
+    \pagebreak
+%    \input{chapters/symbols}
+
+    %----------------------------------------------------------------%
+    % Konfigurasi Bab
+    %----------------------------------------------------------------%
+    \renewcommand{\chaptername}{BAB}
+    % Bab: Arabic
+    \renewcommand{\thechapter}{\Roman{chapter}}
+    % Sub-bab: Roman
+    \renewcommand\thesection{\arabic{chapter}.\arabic{section}}
+    
+    % Setting supaya nomor halaman pertama dengan "chapter"
+    % berada di tengah bawah, tapi selanjut2nya di kanan atas
+    \fancypagestyle{plain}{%
+    	\fancyhf{}%
+    	\renewcommand{\headrulewidth}{0pt}
+    	\fancyhead[]{}
+    	\fancyfoot[C]{\thepage}
+    }
+    % Reset penomoran halaman menjadi 1
+    \setcounter{page}{1}
+    \pagenumbering{arabic}
+    
+    %----------------------------------------------------------------%
+
+    %----------------------------------------------------------------%
+    % Daftar Bab
+    % Untuk menambahkan daftar bab, buat berkas bab misalnya `chapter-6` di direktori `chapters`, dan masukkan ke sini.
+    %----------------------------------------------------------------%
+    \justifying
+    \input{chapters/chapter-1}
+    \input{chapters/chapter-2}
+    \input{chapters/chapter-3}
+    \input{chapters/chapter-4}
+    \input{chapters/chapter-5}
+    %----------------------------------------------------------------%
+
+    % Daftar Pustaka
+    \newpage
+    \phantomsection% 
+    \addcontentsline{toc}{chapter}{Daftar Pustaka}
+    \printbibliography[title={Daftar Pustaka}]
+
+    % Lampiran
+    % TODO: Tabel Lampiran
+    \newpage
+    \appendix
+    \addcontentsline{toc}{chapter}{Lampiran}
+    \chapter*{Lampiran}
+    \renewcommand\thesection{\Alph{section}}
+    \input{chapters/appendix}
+
+\end{document}

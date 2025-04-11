@@ -1,0 +1,54 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{knuth2001art}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=c7986b8f9a74e8a99dd8346c98b35f3e}{%
+           family={Knuth},
+           familyi={K\bibinitperiod},
+           given={D.E.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley}%
+      }
+      \strng{namehash}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \strng{fullhash}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \strng{fullhashraw}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \strng{bibnamehash}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \strng{authorbibnamehash}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \strng{authornamehash}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \strng{authorfullhash}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \strng{authorfullhashraw}{c7986b8f9a74e8a99dd8346c98b35f3e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780201896831}
+      \field{number}{v. 1}
+      \field{series}{The Art of Computer Programming: Fundamental Algorithms}
+      \field{title}{The Art of Computer Programming: Fundamental Algorithms}
+      \field{year}{2001}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
