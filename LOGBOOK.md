@@ -4,7 +4,7 @@
 
 ### 2025-02-18 to 2025-03-06
 
-- Learning python from CS50P harvard course
+- Learning CS50P from introduction to lecture 6
 
 ## March
 
@@ -12,3 +12,14 @@
 
 - Created a development environment, such as Miniconda
 - learning AI and ML fundamental from Dicoding
+
+### 2025-03-15 to 2025-03-27
+
+- Learning CS50p lecture 7
+- Learning data reader file
+
+## April
+
+### 2025-03-28 to 2025-04-11
+
+- Lebaran dan cuti ke kampung halaman
