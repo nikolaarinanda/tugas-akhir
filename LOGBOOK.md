@@ -1,21 +1,14 @@
 # Research Logbook
 
-## August
+## February
 
-### 2024-08-30
-- Developing the new feature
-- Fixing the bug
-    ```
-    def test():
-        pass
-    ```
+### 2025-02-18 to 2025-03-06
 
-## July
+- Learning python from CS50P harvard course
 
-### 2024-07-15
-- Researching the new feature
-- Updating the documentation
-    ```
-    def test():
-        pass
-    ```
+## March
+
+### 2025-03-07 to 2025-03-14
+
+- Created a development environment, such as Miniconda
+- learning AI and ML fundamental from Dicoding
