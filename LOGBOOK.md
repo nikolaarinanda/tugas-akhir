@@ -23,3 +23,11 @@
 ### 2025-03-28 to 2025-04-11
 
 - Lebaran dan cuti ke kampung halaman
+
+### 2025-04-12 to 2025-04-18
+
+- Membuat program preprocessing
+
+### 2025-04-19 to 2025-04-25
+
+- Memperbaiki program preprocessing
