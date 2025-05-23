@@ -1,0 +1,181 @@
+{
+  "replace_phrases": {
+    "damage nya": [
+      "dampak nya",
+      "efek nya",
+      "pengaruh nya",
+      "akibat nya",
+      "konsekuensi nya",
+      "resiko nya"
+    ],
+    "terima kasih": [
+      "makasih",
+      "trims",
+      "terimakasih banyak",
+      "makasih ya",
+      "thx",
+      "thank you",
+      "tanks",
+      "tq",
+      "tengkyuu",
+      "nuhun",
+      "matur nuwun",
+      "suwun"
+    ],
+    "gak tau": [
+      "gatau",
+      "ngatau",
+      "ga tau",
+      "tidak tahu",
+      "tak tau",
+      "ndak tau",
+      "gak paham",
+      "kurang tau"
+    ],
+    "tidak bisa": [
+      "gabisa",
+      "ga bisa",
+      "gak bisa",
+      "tak bisa",
+      "tidak dapat",
+      "ndak bisa",
+      "gak mampu",
+      "ga mampu"
+    ],
+    "tidak ada": [
+      "gada",
+      "ga ada",
+      "gak ada",
+      "tak ada",
+      "ndak ada",
+      "kosong",
+      "nihil"
+    ],
+    "bagaimana": [
+      "gimana",
+      "gmn",
+      "bagaimane",
+      "macam mana",
+      "cemana",
+      "kepiye"
+    ],
+    "sedang apa": [
+      "lagi apa",
+      "lagi ngapain",
+      "lg ngapain",
+      "lagi apa nich",
+      "lagi pada ngapain"
+    ],
+    "sebentar": [
+      "bentar",
+      "sebentar ya",
+      "tunggu",
+      "wait",
+      "nanti dulu",
+      "sabar"
+    ],
+    "sama sama": [
+      "sami sami",
+      "sama2",
+      "you're welcome",
+      "ur welcome",
+      "welcome"
+    ],
+    "iya betul": [
+      "yoi",
+      "iyoi",
+      "yup",
+      "yap",
+      "bener banget",
+      "betul sekali",
+      "iya bener"
+    ]
+  },
+  "synonyms": {
+    "bedehhh": ["bedeh", "beudh", "beudh", "beud", "beudhh", "beudh", "beudhh"],
+    "goblok": [
+      "tolol",
+      "bego",
+      "bodoh",
+      "idiot",
+      "dungu",
+      "bebal",
+      "koplo",
+      "geblek"
+    ],
+    "marah": [
+      "emosi",
+      "kesal",
+      "gedek",
+      "geram",
+      "murka",
+      "jengkel",
+      "sewot",
+      "mangkel",
+      "berang"
+    ],
+    "pergi": [
+      "cabut",
+      "kabur",
+      "minggat",
+      "lari",
+      "melanglang",
+      "angkat kaki",
+      "menghilang",
+      "menyingkir"
+    ],
+    "cakep": [
+      "ganteng",
+      "cantik",
+      "tampan",
+      "rupawan",
+      "menawan",
+      "elok",
+      "necis",
+      "kece"
+    ],
+    "kotor": [
+      "jorok",
+      "dekil",
+      "daki",
+      "kumuh",
+      "berdaki",
+      "najis",
+      "kerak",
+      "comberan"
+    ],
+    "aneh": [
+      "ganjil",
+      "ajaib",
+      "gak jelas",
+      "ga wajar",
+      "absurd",
+      "nyeleneh",
+      "janggal",
+      "ambiguous"
+    ],
+    "lelah": ["capek", "penat", "letih", "lesu", "lungkrah", "payah", "keok"],
+    "senang": [
+      "bahagia",
+      "gembira",
+      "riang",
+      "ceria",
+      "girang",
+      "sumringah",
+      "happy"
+    ],
+    "lapar": ["laper", "kelaperan", "keroncongan", "ngiler", "kelaparan"],
+    "tidur": ["bobok", "molor", "turu", "merem", "rebahan", "istirahat"],
+    "uang": ["duit", "fulus", "dana", "pundi", "modal", "kaching"],
+    "bingung": ["pusing", "galau", "kuwur", "linglung", "bimbang", "ragu"],
+    "hebat": ["keren", "mantap", "joss", "dahsyat", "amazing", "spektakuler"],
+    "jelek": [
+      "buruk",
+      "ancur",
+      "parah",
+      "amburadul",
+      "berantakan",
+      "acak-acakan"
+    ]
+  }
+}

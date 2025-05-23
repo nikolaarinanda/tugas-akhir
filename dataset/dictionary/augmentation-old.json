@@ -1,0 +1,373 @@
+{
+  "replace_phrases": {
+    "terima kasih": [
+      "makasih",
+      "trims",
+      "terimakasih banyak",
+      "makasih ya",
+      "thx",
+      "thank you",
+      "tanks"
+    ],
+    "sangat baik": [
+      "bagus sekali",
+      "luar biasa",
+      "hebat",
+      "mantap banget",
+      "keren abis",
+      "oke punya",
+      "istimewa"
+    ],
+    "tidak masalah": [
+      "nggak apa-apa",
+      "gak masalah",
+      "oke saja",
+      "santai aja",
+      "gpp",
+      "tidak apa",
+      "gak papa"
+    ],
+    "sampai jumpa": [
+      "dadah",
+      "see you",
+      "bye",
+      "sampai ketemu lagi",
+      "jumpa lagi",
+      "selamat tinggal",
+      "babay"
+    ],
+    "maaf sekali": [
+      "mohon maaf",
+      "ampun",
+      "minta maaf banget",
+      "sorry banget",
+      "maaf ya",
+      "maafkan saya",
+      "maaf beribu maaf"
+    ],
+    "selamat pagi": [
+      "pagi",
+      "met pagi",
+      "morning",
+      "pagi semua",
+      "selamat dini hari"
+    ],
+    "selamat siang": [
+      "siang",
+      "met siang",
+      "halo siang",
+      "selamat tengah hari"
+    ],
+    "selamat malam": ["malam", "met malam", "night", "selamat istirahat"],
+    "apa kabar": [
+      "gimana kabarnya",
+      "how are you",
+      "bagaimana kabar",
+      "sehat?",
+      "gimana?"
+    ],
+    "saya suka": [
+      "aku suka",
+      "gue suka",
+      "saya sangat menyukai",
+      "aku doyan",
+      "gw demen"
+    ],
+    "saya tidak suka": [
+      "aku gak suka",
+      "gue benci",
+      "saya kurang suka",
+      "aku nggak doyan",
+      "gw gak demen"
+    ],
+    "menurut saya": [
+      "menurutku",
+      "pendapat saya",
+      "opini saya",
+      "kata gw sih",
+      "menurut aku",
+      "bagi saya"
+    ],
+    "sangat menarik": [
+      "menarik banget",
+      "bikin penasaran",
+      "sungguh memikat",
+      "keren abis",
+      "bikin kepo"
+    ],
+    "benar sekali": [
+      "bener banget",
+      "tepat sekali",
+      "100% benar",
+      "sangat tepat",
+      "iya bener",
+      "betul sekali"
+    ],
+    "jangan lupa": [
+      "inget ya",
+      "tolong diingat",
+      "jgn lupa",
+      "jangan sampai lupa",
+      "ingat terus"
+    ]
+  },
+  "synonyms": {
+    "murah": [
+      "terjangkau",
+      "ekonomis",
+      "hemat",
+      "miring",
+      "bersahabat",
+      "tidak mahal",
+      "budget friendly"
+    ],
+    "mahal": [
+      "premium",
+      "berkualitas tinggi",
+      "eksklusif",
+      "high-end",
+      "mewah",
+      "berbiaya tinggi",
+      "harga selangit"
+    ],
+    "bagus": [
+      "baik",
+      "hebat",
+      "keren",
+      "mantap",
+      "oke",
+      "unggul",
+      "ciamik",
+      "top",
+      "mantul"
+    ],
+    "cepat": [
+      "kilat",
+      "segera",
+      "ngebut",
+      "ekspres",
+      "instan",
+      "langsung",
+      "gesit",
+      "seketika"
+    ],
+    "lambat": [
+      "pelan",
+      "lelet",
+      "lemot",
+      "lamban",
+      "santai",
+      "perlahan",
+      "tidak buru-buru",
+      "ngadat"
+    ],
+    "senang": [
+      "bahagia",
+      "gembira",
+      "suka",
+      "ceria",
+      "riang",
+      "girang",
+      "hati berbunga",
+      "hepi"
+    ],
+    "marah": [
+      "kesal",
+      "emosi",
+      "geram",
+      "jengkel",
+      "sewot",
+      "murka",
+      "dongkol",
+      "naik pitam",
+      "gondok"
+    ],
+    "lelah": [
+      "capek",
+      "letih",
+      "lesu",
+      "loyo",
+      "lemas",
+      "kelelahan",
+      "jenuh",
+      "lunglai",
+      "penat"
+    ],
+    "besar": [
+      "gede",
+      "raksasa",
+      "jumbo",
+      "luas",
+      "lapang",
+      "bongsor",
+      "akbar",
+      "mega"
+    ],
+    "kecil": [
+      "mungil",
+      "mini",
+      "sedikit",
+      "imut",
+      "micit",
+      "minim",
+      "mini",
+      "remeh"
+    ],
+    "cantik": [
+      "indah",
+      "rupawan",
+      "menawan",
+      "elok",
+      "ayu",
+      "jelita",
+      "molek",
+      "cakep"
+    ],
+    "tampan": [
+      "ganteng",
+      "cakep",
+      "kece",
+      "rupawan",
+      "gagah",
+      "menawan",
+      "good looking"
+    ],
+    "pintar": [
+      "cerdas",
+      "jenius",
+      "pandai",
+      "brilian",
+      "berilmu",
+      "berbakat",
+      "cekatan",
+      "pinter"
+    ],
+    "bodoh": [
+      "goblok",
+      "tolol",
+      "bego",
+      "telmi",
+      "lemot",
+      "kurang paham",
+      "tidak ngerti"
+    ],
+    "baru": [
+      "anyar",
+      "fresh",
+      "terbaru",
+      "mutakhir",
+      "update",
+      "modern",
+      "up-to-date"
+    ],
+    "lama": [
+      "tua",
+      "usang",
+      "kuno",
+      "jadul",
+      "lawas",
+      "ketinggalan jaman",
+      "antik"
+    ],
+    "baik": [
+      "tulus",
+      "ramah",
+      "sopan",
+      "santun",
+      "berbudi",
+      "berakhlak",
+      "mulia"
+    ],
+    "buruk": [
+      "jelek",
+      "rusak",
+      "tidak baik",
+      "cacat",
+      "busuk",
+      "abal-abal",
+      "ampas"
+    ],
+    "banyak": [
+      "melimpah",
+      "berlimpah",
+      "segudang",
+      "berjibun",
+      "tidak terhitung",
+      "buanyak"
+    ],
+    "sedikit": [
+      "dikit",
+      "secuil",
+      "sejumput",
+      "tidak banyak",
+      "cuma dikit",
+      "tipis"
+    ],
+    "penting": [
+      "krusial",
+      "vital",
+      "utama",
+      "esensial",
+      "prioritas",
+      "urgen",
+      "genting"
+    ],
+    "enak": [
+      "lezat",
+      "sedap",
+      "nikmat",
+      "mantap",
+      "gurih",
+      "yummy",
+      "delicious",
+      "nyaman"
+    ],
+    "sulit": [
+      "susah",
+      "rumit",
+      "kompleks",
+      "berat",
+      "ribet",
+      "mumet",
+      "mbulet"
+    ],
+    "mudah": [
+      "gampang",
+      "simple",
+      "sederhana",
+      "enteng",
+      "ringan",
+      "tidak sulit",
+      "tidak ribet"
+    ],
+    "cinta": ["sayang", "kasih", "suka", "tresno", "asmara", "love", "kangen"],
+    "sedih": [
+      "murung",
+      "galau",
+      "pilu",
+      "nelangsa",
+      "duka",
+      "mellow",
+      "baper",
+      "merana"
+    ],
+    "takut": [
+      "khawatir",
+      "cemas",
+      "ngeri",
+      "wedi",
+      "ketakutan",
+      "ciut",
+      "paranoid"
+    ],
+    "berani": [
+      "pemberani",
+      "jagoan",
+      "petarung",
+      "perkasa",
+      "heroik",
+      "tangguh",
+      "garang"
+    ]
+  }
+}
