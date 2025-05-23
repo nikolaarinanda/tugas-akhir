@@ -17,7 +17,7 @@ from datetime import datetime
 # Import local modules
 from data_reader import CyberbullyingDataset
 from model import CNNSentimentClassifier, BERTSentimentClassifier, TextCNN
-from utils import get_device, to_device, prepare_model, prepare_batch, get_gpu_memory
+from utils import check_set_gpu
 
 # =====KONSTANTA=====
 DATASET_PATH = '../dataset/Dataset-Research.csv'
@@ -30,7 +30,7 @@ MAX_LENGTH = 128 # Panjang maksimum kata dalam dataset
 VOCAB_SIZE = 40000 # Ukuran kosakata
 DROPUOUT_RATE = 0.1 # Tingkat dropout
 BATCH_SIZE = 16 # Ukuran batch
-EPOCHS = 3 # Jumlah epoch
+EPOCHS = 30 # Jumlah epoch
 LEARNING_RATE = 1e-3 # Tingkat pembelajaran
 EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
 TOKENIZER_NAME = 'indobenchmark/indobert-base-p1' # Nama tokenizer BERT
@@ -144,26 +144,30 @@ def get_dataloaders_for_fold(args):
     
     return train_loader, val_loader
 
-def cnn_train_fold(args, output_dir="none"):
+def cnn_train_fold(args, device, output_dir="none"):
     print(f"\n{'='*5} Fold {args.n_folds+1} {'='*5}")
-    
-    # Setup device
-    device = get_device()
     
     train_loader, val_loader = get_dataloaders_for_fold(args)
 
-    # Initialize model and move to device
-    model = CNNSentimentClassifier(
+    # Inisialisasi model CNN saya
+    # model = CNNSentimentClassifier(
+    #     vocab_size=args.vocab_size,
+    #     embed_dim=args.embed_dim,
+    #     num_classes=args.num_classes,
+    #     kernel_sizes=args.kernel_sizes,
+    #     num_filters=args.num_filters,
+    # )
+
+    # Inisialisasi model CNN dari repo
+    model = TextCNN(
         vocab_size=args.vocab_size,
         embed_dim=args.embed_dim,
         num_classes=args.num_classes,
-        kernel_sizes=args.kernel_sizes,
-        num_filters=args.num_filters,
     )
-    model = prepare_model(model, device)
 
+    model.to(device)
     optimizer = AdamW(model.parameters(), lr=args.lr) 
-    criterion = torch.nn.CrossEntropyLoss().to(device)
+    criterion = torch.nn.CrossEntropyLoss() 
     
     for epoch in range(args.epochs):
         model.train()
@@ -171,76 +175,148 @@ def cnn_train_fold(args, output_dir="none"):
         train_correct = 0
         train_total = 0
         
-        # Training loop
         for batch in tqdm(train_loader, desc=f"Training Epoch {epoch+1}", leave=False):
-            # Move batch to device
-            batch = prepare_batch(batch, device)
-            
+            inputs, labels = batch['input_ids'].to(device), batch['labels'].to(device) # Untuk CNN
             optimizer.zero_grad()
-            outputs = model(batch['input_ids'])
+
+            # outputs = model(batch['input_ids'], batch['attention_mask']) # Untuk BERT
+            outputs = model(inputs) # Untuk CNN
             loss = criterion(outputs, batch['labels'])
-            
-            # Calculate accuracy
+            train_loss += loss.item()
+
+            # Hitung akurasi training
             _, predicted = torch.max(outputs.data, 1)
-            train_total += batch['labels'].size(0)
-            train_correct += (predicted == batch['labels']).sum().item()
-            
+            train_total += labels.size(0)
+            train_correct += (predicted == labels).sum().item()
+
             loss.backward()
             optimizer.step()
-            train_loss += loss.item()
             
-        # Validation loop
+        # Average training loss and training accuracy
+        avg_train_loss = train_loss / len(train_loader)
+        train_accuracy = 100 * train_correct / train_total
+
+        # Validation phase
         model.eval()
         val_loss = 0
-        val_correct = 0
+        val_correct = 0 
         val_total = 0
         
         with torch.no_grad():
             for batch in tqdm(val_loader, desc="Validating", leave=False):
-                # Move batch to device
-                batch = prepare_batch(batch, device)
-                
-                outputs = model(batch['input_ids'])
-                loss = criterion(outputs, batch['labels'])
-                
-                # Calculate accuracy
-                _, predicted = torch.max(outputs.data, 1)
-                val_total += batch['labels'].size(0)
-                val_correct += (predicted == batch['labels']).sum().item()
+                # batch = {key: val.to(device) for key, val in batch.items()} # Untuk BERT
+                inputs, labels = batch['input_ids'].to(device), batch['labels'].to(device) # Untuk CNN
+
+                # outputs = model(batch['input_ids'], batch['attention_mask']) # Untuk BERT
+                outputs = model(inputs) # Untuk CNN
+                loss = criterion(outputs, labels)
                 val_loss += loss.item()
 
-        # Print GPU memory usage if available
-        if torch.cuda.is_available():
-            memory_info = get_gpu_memory()
-            print(f"GPU Memory Usage - Allocated: {memory_info['allocated']}, Cached: {memory_info['cached']}")
-        
-        # Calculate metrics
-        avg_train_loss = train_loss / len(train_loader)
-        train_accuracy = 100 * train_correct / train_total
+                # Hitung akurasi validasi
+                _, predicted = torch.max(outputs.data, 1)
+                val_total += labels.size(0)
+                val_correct += (predicted == labels).sum().item()
+
+        # Average validation loss and validation accuracy
         avg_val_loss = val_loss / len(val_loader)
         val_accuracy = 100 * val_correct / val_total
-        
-        # Log metrics
+            
+        # Log metrics to wandb
         if args.use_wandb:
             wandb.log({
-                "train_loss": avg_train_loss,
-                "train_accuracy": train_accuracy,
-                "val_loss": avg_val_loss,
-                "val_accuracy": val_accuracy,
-                "epoch": epoch + 1
+                f"train_loss": avg_train_loss,
+                f"train_accuracy": train_accuracy,
+                f"val_loss": avg_val_loss,
+                f"val_accuracy": val_accuracy,
             })
-        
-        # Print results
+
+        # Print epoch results
         print(f"Epoch {epoch+1}/{args.epochs}")
-        print(f"Train Loss: {avg_train_loss:.4f}, Accuracy: {train_accuracy:.2f}%")
-        print(f"Val Loss: {avg_val_loss:.4f}, Accuracy: {val_accuracy:.2f}%")
-    
-    # Save model if required
+        print(f"Train Loss: {train_loss/len(train_loader):.4f}, Accuracy: {train_accuracy:.4f}")
+        print(f"Validation Loss: {val_loss/len(val_loader):.4f}, Accuracy: {val_accuracy:.2f}")
+
+    # Saving model
     if args.output_model:
         model_save_path = os.path.join(output_dir, f"fold_{args.fold+1}_model.pth")
         torch.save(model.state_dict(), model_save_path)
 
-    return model
+def bert_train_fold(args, device, output_dir="none"):
+    print(f"\n{'='*5} Fold {args.fold + 1} {'='*5}")
+    
+    train_loader, val_loader = get_dataloaders_for_fold(args, args.fold)
+    
+    # Inisialisasi model BERT
+    model = BERTSentimentClassifier(
+        model_name=args.model_name,
+        dropout_rate=args.dropout
+    )
+
+    model.to(device)
+    
+    optimizer = AdamW(model.parameters(), lr=args.lr)
+    criterion = torch.nn.CrossEntropyLoss()
+    
+    for epoch in range(args.epochs):
+        model.train()
+        train_loss = 0
+        train_correct = 0
+        train_total = 0
+        
+        for batch in tqdm(train_loader, desc=f"Training Epoch {epoch+1}", leave=False):
+            batch = {key: val.to(device) for key, val in batch.items()}
+            optimizer.zero_grad()
+            
+            outputs = model(batch['input_ids'], batch['attention_mask'])
+            labels = batch['labels'] # Mendefinisikan labels
+
+            loss = criterion(outputs, labels)
+            train_loss += loss.item()
+
+            # Hitung akurasi training
+            _, predicted = torch.max(outputs.data, 1)
+            train_total += labels.size(0)
+            train_correct += (predicted == labels).sum().item()
+
+            loss.backward()
+            optimizer.step()
+            
+        # Average training loss and training accuracy
+        avg_train_loss = train_loss / len(train_loader)
+        train_accuracy = 100 * train_correct / train_total
+
+        # Validation phase
+        model.eval()
+        val_loss = 0
+        val_correct = 0 
+        val_total = 0
+        
+        with torch.no_grad():
+            for batch in tqdm(val_loader, desc="Validating", leave=False):
+                batch = {key: val.to(device) for key, val in batch.items()}
+                outputs = model(batch['input_ids'], batch['attention_mask'])
+                labels = batch['labels']
+                
+                loss = criterion(outputs, labels)
+                val_loss += loss.item()
+
+                # Hitung akurasi validasi
+                _, predicted = torch.max(outputs.data, 1)
+                val_total += labels.size(0)
+                val_correct += (predicted == labels).sum().item()
+
+        # Average validation loss and validation accuracy
+        avg_val_loss = val_loss / len(val_loader)
+        val_accuracy = 100 * val_correct / val_total
+        
+        # Print epoch results
+        print(f"Epoch {epoch+1}/{args.epochs}")
+        print(f"Train Loss: {avg_train_loss:.4f}, Accuracy: {train_accuracy:.4f}")
+        print(f"Validation Loss: {avg_val_loss:.4f}, Accuracy: {val_accuracy:.2f}")
+    
+    # Saving model
+    if args.output_model:
+        model_save_path = os.path.join(output_dir, f"fold_{args.fold + 1}_model.pth")
+        torch.save(model.state_dict(), model_save_path)
 
 def main():
     args = parse_args()
@@ -253,18 +329,31 @@ def main():
             project="my-awesome-project",
             name=f"exp_{timestamp}",
             # Track hyperparameters and metadata
-            config=vars(args),
-            # config={
-            #     "learning_rate": 0.01,
-            #     "epochs": 10,
-            # },
+            # config=vars(args),
+            config={
+                "max_length": args.max_length,
+                "batch_size": args.batch_size,
+                "vocab_size": args.vocab_size,
+                "learning_rate": 0.01,
+                "epochs": 10,
+            },
         )
+    
+    device = check_set_gpu()
+
+    # Train untuk semua fold
+    # for fold in range(5):
+    #     if args.output_model:
+    #         output_dir = create_output_dir(args.output_dir)
+    #         cnn_train_fold(args, device, output_dir)
+    #     cnn_train_fold(args, device)
 
     # Train untuk 1 fold
     if args.output_model:
         output_dir = create_output_dir(args.output_dir)
-        cnn_train_fold(args, output_dir)
-    cnn_train_fold(args)
+        cnn_train_fold(args, device, output_dir)
+    else:
+        cnn_train_fold(args, device)
         
     if args.use_wandb:
         wandb.finish()
