@@ -1,6 +1,6 @@
-PWD c:\Users\nikol\OneDrive\Documents\Tugas Akhir\latex
+PWD c:\Users\nikol\OneDrive\Tugas Akhir\latex
 INPUT C:\Users\nikol\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\nikol\OneDrive\Documents\Tugas Akhir\latex\thesis.tex
+INPUT c:\Users\nikol\OneDrive\Tugas Akhir\latex\thesis.tex
 OUTPUT thesis.log
 INPUT C:\Users\nikol\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\nikol\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
