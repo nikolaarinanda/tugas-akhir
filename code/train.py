@@ -16,7 +16,7 @@ from datetime import datetime
 
 # Import local modules
 from data_reader import CyberbullyingDataset
-from model import CNNSentimentClassifier, BERTSentimentClassifier, TextCNN
+from model import CNNSentimentClassifier, BERTSentimentClassifier, TextCNN, CombinedTextCNN, SimpleLightweightTextCNN
 from utils import get_device, to_device, prepare_model, prepare_batch, get_gpu_memory
 
 # =====KONSTANTA=====
@@ -36,7 +36,10 @@ EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
 TOKENIZER_NAME = 'indobenchmark/indobert-base-p1' # Nama tokenizer BERT
 NUM_CLASSES = 2 # Jumlah kelas untuk klasifikasi
 NUM_FILTERS = 100 # Jumlah filter untuk CNN
-KERNEL_SIZES = [3, 4, 5] # Ukuran kernel untuk CNN
+# KERNEL_SIZE = [3, 4, 5] # Ukuran kernel untuk CNN
+KERNEL_SIZE = 3 # Ukuran kernel untuk CNN
+OUT_CHANNELS = 50 # Jumlah channel output untuk CNN
+PADDING_IDX = 0 # Indeks padding untuk embedding
 
 BERT_MODEL_NAME = 'bert-base-uncased' # Nama model BERT
 
@@ -69,8 +72,12 @@ def parse_args():
                         help='Number of classes')
     parser.add_argument('--num_filters', type=int, default=NUM_FILTERS, 
                         help='Number of filters for CNN')
-    parser.add_argument('--kernel_sizes', type=list, default=KERNEL_SIZES, 
+    parser.add_argument('--kernel_size', type=list, default=KERNEL_SIZE, 
                         help='Kernel sizes for CNN')
+    parser.add_argument('--out_channels', type=int, default=OUT_CHANNELS,
+                        help='Number of output channels for CNN')
+    parser.add_argument('--padding_idx', type=int, default=PADDING_IDX,
+                        help='Padding index for embedding')
 
     # Training parameters
     parser.add_argument('--n_folds', type=int, default=N_FOLDS,
@@ -153,13 +160,25 @@ def cnn_train_fold(args, output_dir="none"):
     train_loader, val_loader = get_dataloaders_for_fold(args)
 
     # Initialize model and move to device
-    model = CNNSentimentClassifier(
+
+    # model = CNNSentimentClassifier(
+    #     vocab_size=args.vocab_size,
+    #     embed_dim=args.embed_dim,
+    #     num_classes=args.num_classes,
+    #     kernel_size=args.,
+    #     num_filters=args.num_filters,
+    # )
+
+    model = SimpleLightweightTextCNN(
         vocab_size=args.vocab_size,
         embed_dim=args.embed_dim,
         num_classes=args.num_classes,
-        kernel_sizes=args.kernel_sizes,
-        num_filters=args.num_filters,
+        out_channels=args.out_channels,
+        kernel_size=args.kernel_size,
+        dropout_rate=args.dropout,
+        padding_idx=args.padding_idx
     )
+
     model = prepare_model(model, device)
 
     optimizer = AdamW(model.parameters(), lr=args.lr) 

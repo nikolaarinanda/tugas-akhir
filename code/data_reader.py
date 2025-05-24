@@ -17,10 +17,12 @@ from transformers import AutoTokenizer
 # Download resource NLTK yang diperlukan
 try:
     nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/punkt_tab')
     nltk.data.find('corpora/stopwords')
     nltk.data.find('corpora/wordnet')
 except LookupError:
     nltk.download('punkt')
+    nltk.download('punkt_tab')
     nltk.download('stopwords')
     nltk.download('wordnet')
 
@@ -32,7 +34,7 @@ class CyberbullyingDataset(Dataset):
             file_path="../dataset/Dataset-Research.csv",
             tokenizer_name="indobenchmark/indobert-base-p1",
             folds_file="cyberbullying_datareader_simple_folds.json",
-            random_state=2025,
+            random_state=29082002,
             split="train",
             fold=0,
             n_folds=5,
