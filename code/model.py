@@ -17,14 +17,14 @@ class BERTSentimentClassifier(nn.Module):
         return self.linear(dropped_output)
 
 class CNNSentimentClassifier(nn.Module):
-    def __init__(self, vocab_size, embed_dim, num_classes=2, kernel_sizes=[3,4,5], num_filters=100, dropout_rate=0.1):
+    def __init__(self, vocab_size, embed_dim, kernel_sizes=[3,4,5], num_filters=100, dropout_rate=0.1):
         super(CNNSentimentClassifier, self).__init__()
         self.embedding = nn.Embedding(vocab_size, embed_dim)
         self.convs = nn.ModuleList([
             nn.Conv2d(1, num_filters, (k, embed_dim)) for k in kernel_sizes
         ])
         self.dropout = nn.Dropout(dropout_rate)
-        self.fc = nn.Linear(num_filters * len(kernel_sizes), num_classes)
+        self.fc = nn.Linear(num_filters * len(kernel_sizes), 2) # Dua kelas output
 
     def forward(self, x):
         x = self.embedding(x)  # [Batch, Max_seq_len, Embed_dim]
@@ -36,34 +36,40 @@ class CNNSentimentClassifier(nn.Module):
         logits = self.fc(x)
         return logits
 
+# class TextCNN(nn.Module):
+#     def __init__(self, vocab_size, embed_dim, kernel_sizes, num_filters, dropout_rate):
+#         super(TextCNN, self).__init__()
+#         self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+#         # self.conv1 = nn.Conv1d(embed_dim, num_filters, kernel_size=3)
+#         # self.conv2 = nn.Conv1d(embed_dim, num_filters, kernel_size=4)
+#         # self.conv3 = nn.Conv1d(embed_dim, num_filters, kernel_size=5)
+#         self.convs = nn.ModuleList([
+#             # nn.Conv1d(1, num_filters, (k, embed_dim)) for k in kernel_sizes
+#             nn.Conv1d(1, num_filters, (k, embed_dim)) for k in kernel_sizes 
+#         ])
+#         self.dropout = nn.Dropout(dropout_rate)
+#         # self.fc = nn.Linear(300, 2)
+#         self.fc = nn.Linear(num_filters * len(kernel_sizes), 2) # Dua kelas output
+#     def forward(self, x):
+#         x = self.embedding(x)
+#         x = x.permute(0, 2, 1)
+#         # x1 = F.relu(self.conv1(x)).max(dim=2)[0]
+#         # x2 = F.relu(self.conv2(x)).max(dim=2)[0]
+#         # x3 = F.relu(self.conv3(x)).max(dim=2)[0]
+#         x = [torch.relu(conv(x)).squeeze(3) for conv in self.convs]
+#         # x = torch.cat((x1, x2, x3), dim=1)
+#         x = torch.cat(x, dim=1)
+#         x = self.dropout(x)
+#         return self.fc(x)
+
 class TextCNN(nn.Module):
-    def __init__(self, vocab_size, embed_dim, num_classes):
+    def __init__(self, vocab_size, embed_dim, kernel_sizes, num_filters, dropout_rate, num_classes=2): # Tambahkan num_classes untuk fleksibilitas
         super(TextCNN, self).__init__()
         self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
-        self.conv1 = nn.Conv1d(embed_dim, 100, kernel_size=3)
-        self.conv2 = nn.Conv1d(embed_dim, 100, kernel_size=4)
-        self.conv3 = nn.Conv1d(embed_dim, 100, kernel_size=5)
-        self.dropout = nn.Dropout(0.2)
-        self.fc = nn.Linear(300, num_classes)
-
-    def forward(self, x):
-        x = self.embedding(x)
-        x = x.permute(0, 2, 1)
-        x1 = F.relu(self.conv1(x)).max(dim=2)[0]
-        x2 = F.relu(self.conv2(x)).max(dim=2)[0]
-        x3 = F.relu(self.conv3(x)).max(dim=2)[0]
-        x = torch.cat((x1, x2, x3), dim=1)
-        x = self.dropout(x)
-        return self.fc(x)
-
-class CombinedTextCNN(nn.Module):
-    def __init__(self, vocab_size, embed_dim, num_classes=2, kernel_sizes=[3, 4, 5], num_filters=100, dropout_rate=0.5, padding_idx=0):
-        super(CombinedTextCNN, self).__init__()
         
-        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=padding_idx)
-        
-        # ModuleList untuk membuat layer konvolusi secara dinamis
-        # Setiap Conv1d akan memiliki embed_dim sebagai in_channels dan num_filters sebagai out_channels
+        # PERBAIKAN 1: Definisi self.convs
+        # in_channels sekarang adalah embed_dim
+        # kernel_size sekarang adalah k (panjang filter 1D)
         self.convs = nn.ModuleList([
             nn.Conv1d(in_channels=embed_dim, 
                       out_channels=num_filters, 
@@ -72,37 +78,39 @@ class CombinedTextCNN(nn.Module):
         ])
         
         self.dropout = nn.Dropout(dropout_rate)
-        
-        # Layer fully connected: inputnya adalah jumlah total filter dari semua kernel
-        self.fc = nn.Linear(len(kernel_sizes) * num_filters, num_classes)
+        # Gunakan num_classes yang bisa diatur
+        self.fc = nn.Linear(num_filters * len(kernel_sizes), num_classes) 
 
     def forward(self, x):
-        # x: [Batch_size, Max_seq_len]
+        # x: [Batch, Max_seq_len] (input berupa token IDs)
+        x = self.embedding(x)      # Output: [Batch, Max_seq_len, Embed_dim]
         
-        x = self.embedding(x)  # [Batch_size, Max_seq_len, Embed_dim]
-        
-        # Permute x untuk sesuai dengan input Conv1d: [Batch_size, Embed_dim, Max_seq_len]
-        x = x.permute(0, 2, 1)
-        
-        # Terapkan konvolusi, ReLU, dan max-pooling untuk setiap kernel
-        # conved_outputs akan menjadi list dari tensor, masing-masing [Batch_size, Num_filters]
-        conved_outputs = []
+        # Permutasi agar embed_dim menjadi 'channels' untuk Conv1d
+        x = x.permute(0, 2, 1)  # Output: [Batch, Embed_dim, Max_seq_len]
+                                
+        # PERBAIKAN 2: Operasi konvolusi dan pooling
+        processed_convs = []
         for conv_layer in self.convs:
-            conved = conv_layer(x)    # [Batch_size, Num_filters, Seq_len_out]
-            activated = F.relu(conved) # [Batch_size, Num_filters, Seq_len_out]
+            # Konvolusi + ReLU
+            # conv_layer(x) menghasilkan: [Batch, num_filters, New_seq_len]
+            # New_seq_len = Max_seq_len - kernel_size + 1
+            conved = F.relu(conv_layer(x))
             
-            # Max-pooling over time
-            # activated.size(2) adalah dimensi panjang sekuens setelah konvolusi
-            pooled = F.max_pool1d(activated, activated.size(2)).squeeze(2) # [Batch_size, Num_filters]
-            conved_outputs.append(pooled)
+            # Max pooling over time (di sepanjang New_seq_len)
+            # conved.size(2) adalah New_seq_len
+            # pooled menghasilkan: [Batch, num_filters, 1] setelah pooling
+            # .squeeze(2) menghasilkan: [Batch, num_filters]
+            pooled = F.max_pool1d(conved, conved.size(2)).squeeze(2)
+            processed_convs.append(pooled)
             
-        # Gabungkan hasil dari semua kernel
-        # x_cat: [Batch_size, Num_filters * len(kernel_sizes)]
-        x_cat = torch.cat(conved_outputs, dim=1)
+        # Alternatif yang lebih ringkas untuk loop di atas:
+        # processed_convs = [F.relu(conv(x)).max(dim=2)[0] for conv in self.convs]
+
+        # PERBAIKAN 3: Concatenate hasil yang sudah di-pool
+        x = torch.cat(processed_convs, dim=1)  # Output: [Batch, num_filters * len(kernel_sizes)]
         
-        x = self.dropout(x_cat)
-        logits = self.fc(x)  # [Batch_size, Num_classes]
-        
+        x = self.dropout(x)
+        logits = self.fc(x) # fc layer sudah benar
         return logits
 
 class SimpleLightweightTextCNN(nn.Module):

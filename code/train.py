@@ -16,8 +16,8 @@ from datetime import datetime
 
 # Import local modules
 from data_reader import CyberbullyingDataset
-from model import CNNSentimentClassifier, BERTSentimentClassifier, TextCNN, CombinedTextCNN, SimpleLightweightTextCNN
-from utils import get_device, to_device, prepare_model, prepare_batch, get_gpu_memory
+from model import CNNSentimentClassifier, BERTSentimentClassifier, TextCNN, SimpleLightweightTextCNN
+from utils import get_device, to_device, prepare_model, prepare_batch, get_gpu_memory, EarlyStopping
 
 # =====KONSTANTA=====
 DATASET_PATH = '../dataset/Dataset-Research.csv'
@@ -25,19 +25,25 @@ MODEL_OUTPUT_PATH = 'model_outputs'
 
 SEED = 29082002 # Seed untuk reproducibility
 
-N_FOLDS = 2 # Jumlah fold untuk cross-validation
-MAX_LENGTH = 128 # Panjang maksimum kata dalam dataset
-VOCAB_SIZE = 40000 # Ukuran kosakata
+N_FOLDS = 5 # Jumlah fold untuk cross-validation
+MAX_LENGTH = 125 # Panjang maksimum kata dalam dataset
+VOCAB_SIZE = 40000 # Ukuran kosakata maksimum
+# [0.2, 0.5]
 DROPUOUT_RATE = 0.1 # Tingkat dropout
+# [8, 16, 32]
 BATCH_SIZE = 16 # Ukuran batch
+# [15, 30]
 EPOCHS = 3 # Jumlah epoch
+# [1e-4, 5e-3]
 LEARNING_RATE = 1e-3 # Tingkat pembelajaran
+# 64, 256
 EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
 TOKENIZER_NAME = 'indobenchmark/indobert-base-p1' # Nama tokenizer BERT
 NUM_CLASSES = 2 # Jumlah kelas untuk klasifikasi
+# 64, 128, 256
 NUM_FILTERS = 100 # Jumlah filter untuk CNN
-# KERNEL_SIZE = [3, 4, 5] # Ukuran kernel untuk CNN
-KERNEL_SIZE = 3 # Ukuran kernel untuk CNN
+# [2, 3, 4], [3, 5, 7]
+KERNEL_SIZE = [3, 4, 5] # Ukuran kernel untuk CNN
 OUT_CHANNELS = 50 # Jumlah channel output untuk CNN
 PADDING_IDX = 0 # Indeks padding untuk embedding
 
@@ -72,7 +78,7 @@ def parse_args():
                         help='Number of classes')
     parser.add_argument('--num_filters', type=int, default=NUM_FILTERS, 
                         help='Number of filters for CNN')
-    parser.add_argument('--kernel_size', type=list, default=KERNEL_SIZE, 
+    parser.add_argument('--kernel_size', type=int, default=KERNEL_SIZE, 
                         help='Kernel sizes for CNN')
     parser.add_argument('--out_channels', type=int, default=OUT_CHANNELS,
                         help='Number of output channels for CNN')
@@ -99,6 +105,12 @@ def parse_args():
     # Wandb parameters
     parser.add_argument('--use_wandb', action='store_true',
                        help='Enable Weights & Biases logging')
+    
+    # Early Stopping parameters
+    parser.add_argument('--patience', type=int, default=5,
+                        help='Patience for early stopping (epochs to wait after no improvement)')
+    parser.add_argument('--min_delta', type=float, default=0.001,
+                        help='Minimum change in val_loss to be considered an improvement for early stopping')
     
     return parser.parse_args()
 
@@ -164,20 +176,29 @@ def cnn_train_fold(args, output_dir="none"):
     # model = CNNSentimentClassifier(
     #     vocab_size=args.vocab_size,
     #     embed_dim=args.embed_dim,
-    #     num_classes=args.num_classes,
-    #     kernel_size=args.,
+    #     kernel_size=args.kernel_size,
     #     num_filters=args.num_filters,
+    #     dropout_rate=args.dropout,
     # )
 
-    model = SimpleLightweightTextCNN(
+    model = TextCNN(
         vocab_size=args.vocab_size,
         embed_dim=args.embed_dim,
-        num_classes=args.num_classes,
-        out_channels=args.out_channels,
-        kernel_size=args.kernel_size,
+        kernel_sizes=args.kernel_size,
+        num_filters=args.num_filters,
         dropout_rate=args.dropout,
-        padding_idx=args.padding_idx
+        num_classes=args.num_classes,
     )
+
+    # model = SimpleLightweightTextCNN(
+    #     vocab_size=args.vocab_size,
+    #     embed_dim=args.embed_dim,
+    #     num_classes=args.num_classes,
+    #     out_channels=args.out_channels,
+    #     kernel_size=args.kernel_size,
+    #     dropout_rate=args.dropout,
+    #     padding_idx=args.padding_idx
+    # )
 
     model = prepare_model(model, device)
 
