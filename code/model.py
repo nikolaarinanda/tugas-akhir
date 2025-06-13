@@ -107,10 +107,10 @@ class TextCNN(nn.Module):
         # processed_convs = [F.relu(conv(x)).max(dim=2)[0] for conv in self.convs]
 
         # PERBAIKAN 3: Concatenate hasil yang sudah di-pool
-        x = torch.cat(processed_convs, dim=1)  # Output: [Batch, num_filters * len(kernel_sizes)]
+        z = torch.cat(processed_convs, dim=1)  # Output: [Batch, num_filters * len(kernel_sizes)]
         
-        x = self.dropout(x)
-        logits = self.fc(x) # fc layer sudah benar
+        z = self.dropout(z)
+        logits = self.fc(z) # fc layer sudah benar
         return logits
 
 class SimpleLightweightTextCNN(nn.Module):

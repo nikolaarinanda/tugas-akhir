@@ -31,3 +31,23 @@
 ### 2025-04-19 to 2025-04-25
 
 - Memperbaiki program preprocessing
+
+# 2025-04-26 to 2025-05-02
+
+- membuat program train
+
+# 2025-05-03 to 2025-05-09
+
+- memperbaiki program train
+
+# 2025-05-10 to 2025-05-16
+
+- Membuat Model
+
+# 2025-05-17 to 2025-05-23
+
+- Menambahkan WandB di train
+
+# 2025-05-24 to 2025-06-10
+
+- Eksperimen dengan hyperparameter

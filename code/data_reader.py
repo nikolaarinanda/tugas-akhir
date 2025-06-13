@@ -182,7 +182,7 @@ class CyberbullyingDataset(Dataset):
         text = re.sub(r'[^\x00-\x7F]+', '', text)
 
         # Augmentasi
-        text = self.augmentation_text(text, p_phrase=0.5, p_synonym=0.5, p_typo=0.5, p_swap=0.5, p_random_delete=0.5)
+        # text = self.augmentation_text(text, p_phrase=0.5, p_synonym=0.5, p_typo=0.5, p_swap=0.5, p_random_delete=0.5)
         
         # Tokenisasi
         words = nltk.word_tokenize(text)

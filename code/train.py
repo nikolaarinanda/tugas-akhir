@@ -33,9 +33,9 @@ DROPUOUT_RATE = 0.1 # Tingkat dropout
 # [8, 16, 32]
 BATCH_SIZE = 16 # Ukuran batch
 # [15, 30]
-EPOCHS = 3 # Jumlah epoch
+EPOCHS = 50 # Jumlah epoch
 # [1e-4, 5e-3]
-LEARNING_RATE = 1e-3 # Tingkat pembelajaran
+LEARNING_RATE = 5e-3 # Tingkat pembelajaran
 # 64, 256
 EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
 TOKENIZER_NAME = 'indobenchmark/indobert-base-p1' # Nama tokenizer BERT
