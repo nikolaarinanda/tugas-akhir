@@ -1,15 +1,15 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [1] Config.pm:311> INFO - Logfile is 'thesis.blg'
-[375] biber-MSWIN64:340> INFO - === 
-[483] Biber.pm:420> INFO - Reading 'thesis.bcf'
-[797] Biber.pm:994> INFO - Found 1 citekeys in bib section 0
-[849] Biber.pm:4463> INFO - Processing section 0
-[886] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
-[1010] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1026] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[1191] UCollate.pm:68> INFO - Overriding locale 'id-ID' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1192] UCollate.pm:68> INFO - Overriding locale 'id-ID' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1197] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'id-ID'
-[1197] Biber.pm:4289> INFO - No sort tailoring available for locale 'id-ID'
-[1201] bbl.pm:676> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[1204] bbl.pm:779> INFO - Output to thesis.bbl
+[277] biber-MSWIN64:340> INFO - === 
+[355] Biber.pm:420> INFO - Reading 'thesis.bcf'
+[717] Biber.pm:994> INFO - Found 1 citekeys in bib section 0
+[755] Biber.pm:4463> INFO - Processing section 0
+[794] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
+[885] bibtex.pm:1713> INFO - LaTeX decoding ...
+[900] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[1054] UCollate.pm:68> INFO - Overriding locale 'id-ID' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1054] UCollate.pm:68> INFO - Overriding locale 'id-ID' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1059] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'id-ID'
+[1059] Biber.pm:4289> INFO - No sort tailoring available for locale 'id-ID'
+[1063] bbl.pm:676> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[1065] bbl.pm:779> INFO - Output to thesis.bbl

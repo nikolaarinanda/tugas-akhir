@@ -11,43 +11,32 @@ from tqdm import tqdm, trange
 from torch.utils.data import DataLoader
 from torch.optim import AdamW
 # from torch.optim.lr_scheduler import ReduceLROnPlateau
-from transformers import get_linear_schedule_with_warmup
 from datetime import datetime
 
 # Import local modules
 from data_reader import CyberbullyingDataset
-from model import CNNSentimentClassifier, BERTSentimentClassifier, TextCNN, SimpleLightweightTextCNN
+from model import TextCNNLight, TextCNNMedium, TextCNNHeavy, SimpleLSTM, SimpleRNN
 from utils import get_device, to_device, prepare_model, prepare_batch, get_gpu_memory, EarlyStopping
 
 # =====KONSTANTA=====
 DATASET_PATH = '../dataset/Dataset-Research.csv'
 MODEL_OUTPUT_PATH = 'model_outputs'
-
 SEED = 29082002 # Seed untuk reproducibility
 
 N_FOLDS = 5 # Jumlah fold untuk cross-validation
 MAX_LENGTH = 125 # Panjang maksimum kata dalam dataset
 VOCAB_SIZE = 40000 # Ukuran kosakata maksimum
-# [0.2, 0.5]
 DROPUOUT_RATE = 0.1 # Tingkat dropout
-# [8, 16, 32]
 BATCH_SIZE = 16 # Ukuran batch
-# [15, 30]
 EPOCHS = 50 # Jumlah epoch
-# [1e-4, 5e-3]
 LEARNING_RATE = 5e-3 # Tingkat pembelajaran
-# 64, 256
 EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
 TOKENIZER_NAME = 'indobenchmark/indobert-base-p1' # Nama tokenizer BERT
 NUM_CLASSES = 2 # Jumlah kelas untuk klasifikasi
-# 64, 128, 256
 NUM_FILTERS = 100 # Jumlah filter untuk CNN
-# [2, 3, 4], [3, 5, 7]
 KERNEL_SIZE = [3, 4, 5] # Ukuran kernel untuk CNN
 OUT_CHANNELS = 50 # Jumlah channel output untuk CNN
 PADDING_IDX = 0 # Indeks padding untuk embedding
-
-BERT_MODEL_NAME = 'bert-base-uncased' # Nama model BERT
 
 def parse_args():
     """Parse command line arguments"""
@@ -66,8 +55,6 @@ def parse_args():
     # Model parameters
     parser.add_argument('--tokenizer', type=str, default=TOKENIZER_NAME,
                         help='Tokenizer name')
-    parser.add_argument('--bert_model', type=str, default=BERT_MODEL_NAME,
-                        help='Pre-trained BERT model name')
     parser.add_argument('--dropout', type=float, default=DROPUOUT_RATE,
                         help='Dropout rate')
     parser.add_argument('--vocab_size', type=int, default=VOCAB_SIZE,
@@ -172,33 +159,11 @@ def cnn_train_fold(args, output_dir="none"):
     train_loader, val_loader = get_dataloaders_for_fold(args)
 
     # Initialize model and move to device
-
-    # model = CNNSentimentClassifier(
-    #     vocab_size=args.vocab_size,
-    #     embed_dim=args.embed_dim,
-    #     kernel_size=args.kernel_size,
-    #     num_filters=args.num_filters,
-    #     dropout_rate=args.dropout,
-    # )
-
-    model = TextCNN(
+    model = SimpleLSTM(
         vocab_size=args.vocab_size,
         embed_dim=args.embed_dim,
-        kernel_sizes=args.kernel_size,
-        num_filters=args.num_filters,
-        dropout_rate=args.dropout,
         num_classes=args.num_classes,
     )
-
-    # model = SimpleLightweightTextCNN(
-    #     vocab_size=args.vocab_size,
-    #     embed_dim=args.embed_dim,
-    #     num_classes=args.num_classes,
-    #     out_channels=args.out_channels,
-    #     kernel_size=args.kernel_size,
-    #     dropout_rate=args.dropout,
-    #     padding_idx=args.padding_idx
-    # )
 
     model = prepare_model(model, device)
 
