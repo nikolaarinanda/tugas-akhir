@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 import wandb
 from sklearn.metrics import classification_report
 from tqdm import tqdm, trange
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 from torch.optim import AdamW
 from datetime import datetime
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, logging as hf_logging
+from transformers import logging as hf_logging
 
 from data_reader import CyberbullyingDataset
 from model_bert import BertSentimentClassifier
@@ -82,7 +82,7 @@ def get_gpu_memory():
 
 class EarlyStopping:
     """Menghentikan pelatihan lebih awal jika loss validasi tidak membaik setelah kesabaran tertentu."""
-    def __init__(self, patience=7, verbose=False, delta=0, path='checkpoint.pt', trace_func=print):
+    def __init__(self, patience=7, verbose=False, delta=0, path=None, trace_func=print, save_model=True): # Added save_model flag and path can be None
         """
         Args:
             patience (int): Berapa lama menunggu setelah loss validasi terakhir membaik.
@@ -91,21 +91,23 @@ class EarlyStopping:
                             Default: False
             delta (float): Perubahan minimum dalam kuantitas yang dipantau agar memenuhi syarat sebagai peningkatan.
                            Default: 0
-            path (str): Jalur untuk checkpoint yang akan disimpan.
-                        Default: 'checkpoint.pt'
+            path (str, optional): Jalur untuk checkpoint yang akan disimpan. Jika None, model tidak akan disimpan.
+                                  Default: None
             trace_func (function): fungsi cetak jejak.
-                                   Default: print            
+                                   Default: print
+            save_model (bool): Jika True, model akan disimpan.
+                               Default: True
         """
         self.patience = patience
         self.verbose = verbose
         self.counter = 0
         self.best_score = None
         self.early_stop = False
-        # self.val_loss_min = np.Inf
-        self.val_loss_min = np.inf
+        self.val_loss_min = np.inf # Menggunakan np.inf (lowercase)
         self.delta = delta
         self.path = path
         self.trace_func = trace_func
+        self.save_model = save_model # New flag to control saving
 
     def __call__(self, val_loss, model):
 
@@ -126,12 +128,21 @@ class EarlyStopping:
 
     def save_checkpoint(self, val_loss, model):
         '''Menyimpan model ketika loss validasi menurun.'''
-        if self.verbose:
-            self.trace_func(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}). Saving model ...')
-        torch.save(model.state_dict(), self.path)
-        self.val_loss_min = val_loss
+        if self.save_model and self.path: # Only save if saving is enabled and path is valid
+            if self.verbose:
+                self.trace_func(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}). Saving model ...')
+            torch.save(model.state_dict(), self.path)
+            self.val_loss_min = val_loss
+        elif self.save_model and not self.path:
+            self.trace_func("Peringatan: save_model adalah True tetapi path adalah None. Model tidak disimpan.")
+            self.val_loss_min = val_loss # Still update for early stopping logic
+        else: # self.save_model is False
+            if self.verbose:
+                self.trace_func(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}). Penyimpanan model dilewati (save_model=False).')
+            self.val_loss_min = val_loss # Still update for early stopping logic
 
 # ==================== LOGIKA UTAMA TRAIN.PY ====================
+
 def parse_args():
     """Menguraikan argumen baris perintah."""
     parser = argparse.ArgumentParser(description='Melatih berbagai model untuk analisis sentimen')
@@ -160,14 +171,14 @@ def parse_args():
                         help='Ukuran kosakata untuk embedding (untuk model non-BERT)')
     parser.add_argument('--embed_dim', type=int, default=EMBEDDING_DIM, 
                         help='Dimensi embedding untuk CNN/LSTM/RNN')
-    parser.add_argument('--num_classes', type=int, default=NUM_CLASSES, 
-                        help='Jumlah kelas')
     parser.add_argument('--num_filters', type=int, nargs='+', default=KERNEL_SIZE, 
                         help='Ukuran kernel untuk CNN (misalnya, 3 4 5)')
     parser.add_argument('--out_channels', type=int, default=OUT_CHANNELS,
                         help='Jumlah saluran output untuk CNN (jika berlaku)')
     parser.add_argument('--padding_idx', type=int, default=PADDING_IDX,
                         help='Indeks padding untuk embedding (untuk model non-BERT)')
+    parser.add_argument('--num_classes', type=int, default=NUM_CLASSES,
+                        help='Jumlah kelas untuk klasifikasi (default: 2 untuk cyberbullying vs non-cyberbullying)')
 
     # Parameter pelatihan
     parser.add_argument('--n_folds', type=int, default=N_FOLDS,
@@ -301,7 +312,7 @@ def initialize_model(args, device):
     
     return prepare_model(model, device)
 
-def train_model(args, fold_idx=0, output_dir="none"):
+def train_model(args, fold_idx=0, output_dir=None): # Changed default output_dir to None
     """Melatih dan mengevaluasi model untuk satu fold."""
     print(f"\n{'='*10} Memulai Pelatihan untuk Fold {fold_idx + 1} {'='*10}")
     
@@ -315,11 +326,16 @@ def train_model(args, fold_idx=0, output_dir="none"):
     optimizer = AdamW(model.parameters(), lr=args.lr) 
     criterion = torch.nn.CrossEntropyLoss().to(device)
     
+    checkpoint_path = None
+    if output_dir: # If output_dir is provided (meaning output_model is True)
+        checkpoint_path = os.path.join(output_dir, f"fold_{fold_idx+1}_checkpoint.pt")
+
     early_stopping = EarlyStopping(
         patience=args.patience, 
         verbose=True, 
         delta=args.min_delta, 
-        path=os.path.join(output_dir, f"fold_{fold_idx+1}_checkpoint.pt") if args.output_model != "none" else 'checkpoint.pt'
+        path=checkpoint_path, # Pass the resolved checkpoint path
+        save_model=args.output_model # Pass the flag to EarlyStopping
     )
 
     history = {
@@ -412,16 +428,17 @@ def train_model(args, fold_idx=0, output_dir="none"):
             break
     
     # Muat bobot model terbaik yang ditemukan oleh early stopping
-    if args.output_model and os.path.exists(early_stopping.path):
-        model.load_state_dict(torch.load(early_stopping.path))
-        print(f"Model terbaik dimuat dari {early_stopping.path}")
+    # Hanya jika output_model diaktifkan dan ada checkpoint yang disimpan
+    if args.output_model and checkpoint_path and os.path.exists(checkpoint_path):
+        model.load_state_dict(torch.load(checkpoint_path))
+        print(f"Model terbaik dimuat dari {checkpoint_path}")
     else:
         print("Checkpoint early stopping tidak dimuat (penyimpanan model dinonaktifkan atau tidak ada checkpoint). Menggunakan bobot epoch terakhir untuk evaluasi akhir.")
 
     # Evaluasi akhir pada set validasi
     print("\n--- Evaluasi Akhir pada Set Validasi ---")
     model.eval()
-    all_preds, all_labels = [], []
+    all_preds_final, all_labels_final = [], [] 
     with torch.no_grad():
         for batch in tqdm(val_loader, desc="Validasi Akhir", leave=False):
             batch = prepare_batch(batch, device)
@@ -431,17 +448,17 @@ def train_model(args, fold_idx=0, output_dir="none"):
                 outputs = model(batch['input_ids'])
             
             _, predicted = torch.max(outputs.data, 1)
-            all_preds.extend(predicted.cpu().numpy())
-            all_labels.extend(batch['labels'].cpu().numpy())
+            all_preds_final.extend(predicted.cpu().numpy())
+            all_labels_final.extend(batch['labels'].cpu().numpy())
     
     print("Laporan Klasifikasi:")
-    print(classification_report(all_labels, all_preds, target_names=['Non-Cyberbullying', 'Cyberbullying'], digits=4))
+    print(classification_report(all_labels_final, all_preds_final, target_names=['Non-Cyberbullying', 'Cyberbullying'], digits=4))
 
     if args.use_wandb:
-        wandb.log({"final_classification_report": classification_report(all_labels, all_preds, output_dict=True)})
+        wandb.log({"final_classification_report": classification_report(all_labels_final, all_preds_final, output_dict=True)})
 
     # Membuat plot riwayat pelatihan
-    if output_dir != "none":
+    if output_dir: # Only plot if output_dir is a valid path
         plt.figure(figsize=(12, 5))
         plt.subplot(1, 2, 1)
         plt.plot(history['train_loss'], label='Loss Pelatihan')
@@ -477,7 +494,7 @@ def main():
         )
         print("Logging Wandb diaktifkan.")
 
-    output_dir = "none"
+    output_dir = None # Initialize as None
     if args.output_model:
         output_dir = create_output_dir(args.output_dir)
         # Simpan argumen ke file JSON di direktori output
@@ -490,7 +507,7 @@ def main():
 
     # Jalankan pelatihan untuk N_FOLDS
     for i in range(args.n_folds):
-        trained_model, history = train_model(args, fold_idx=i, output_dir=output_dir)
+        trained_model, history = train_model(args, fold_idx=i, output_dir=output_dir) # Pass output_dir to train_model
         all_fold_histories.append(history)
         final_models.append(trained_model)
         
