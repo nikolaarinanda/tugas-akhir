@@ -2372,7 +2372,22 @@
     <bcf:datasource type="file" datatype="bibtex">references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">knuth2001art</bcf:citekey>
+    <bcf:citekey order="1" intorder="1">sembiring2024dampak</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">putri2023cyberbullying</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">kurniawan2024dampak</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">sari2018komunikasi</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">rosiana2023analisis</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">aser2022fenomena</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">razi2017klasifikasi</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">liao2017cnn</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">razi2017klasifikasi</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">10468424</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">chen2015convolutional</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">razi2017klasifikasi</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">kim2014temporal</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">liao2017cnn</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">putri2023cyberbullying</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">10468424</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

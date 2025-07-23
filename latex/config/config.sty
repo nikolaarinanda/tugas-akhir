@@ -26,6 +26,7 @@
 \usepackage{amsmath} % Untuk equation
 \usepackage{enumitem} % Untuk list enumerate yg lebih rapi
 \usepackage[bookmarks]{hyperref}
+\usepackage{lipsum}
 \hypersetup{
 	colorlinks,
 	citecolor=black,
@@ -34,17 +35,12 @@
 	urlcolor=black
 }
 
-% Ukuran kertas A4
-\special{papersize=210mm,297mm}
-
-% Setting margin
-\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3cm]{geometry}
 
 % Setting indensasi
 \usepackage{indentfirst}
 \usepackage{parskip}
 \setlength{\parindent}{20pt}
-\setlength{\parskip}{10pt}
+\setlength{\parskip}{0pt}
 
 % Linespacing 1.5. Tidak serupa dengan 1.5 di Word (RDB)
 \renewcommand{\baselinestretch}{1.5}
@@ -95,6 +91,14 @@
 \usepackage{setspace}		% Spacing paragraph
 \usepackage{fancyhdr}		% Agar nomor halaman di pojok kanan atas
 \usepackage{caption} 		% Caption gambar & tabel
+\usepackage{comment}
+
+\captionsetup[figure]{font=footnotesize} % Mengatur caption gambar ke 10pt (footnotesize)
+\captionsetup[figure]{labelsep=space} % Mengubah ":" menjadi spasi setelah nomor gambar
+\captionsetup[table]{font=footnotesize}
+\captionsetup[table]{labelsep=space}
+\captionsetup[equation]{font=footnotesize}
+\captionsetup[lstlisting]{font=footnotesize, labelsep=space}
 
 % Setting supaya nomor halaman pertama dengan "chapter"
 % berada di kanan atas
@@ -102,6 +106,22 @@
 	\fancyhf{}%
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyhead[R]{\thepage}
+}
+
+% Fancy header selang-seling kiri-kanan atas
+\fancypagestyle{alternatingstyle}{
+  \fancyhf{} % Clear all headers and footers
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyhead[RO]{\thepage} % Right Odd
+  \fancyhead[LE]{\thepage} % Left Even
+}
+
+\newcommand{\forceoddpage}{
+  \ifodd\value{page}
+  \else
+    \hbox{}
+    \newpage
+  \fi
 }
 
 % Setting judul
@@ -114,9 +134,31 @@
 	{\normalfont\normalsize\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}%
 	{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+
+%\makeatletter
+%\def\@makechapterhead#1{%
+%  \vspace*{-2cm} % GESER KE ATAS (coba-coba sampai pas di margin)
+%  {\parindent \z@ \centering
+%   \normalfont
+%   \interlinepenalty\@M
+%   \Large\bfseries \MakeUppercase{\@chapapp\space \thechapter}\par\nobreak
+%   \vskip 0pt
+%   \Large\bfseries \MakeUppercase{#1}\par\nobreak
+%   \vskip 20pt
+%  }}
+%\makeatother
+
     
 % Setting spacing di setiap judul chapter
-\titlespacing*{\chapter}{0pt}{-30pt}{20pt}
+\titlespacing*{\chapter}{0pt}{0pt}{10pt}
+\titlespacing*{\section}{0pt}{10pt}{0pt}
+\titlespacing*{\subsection}{0pt}{10pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+
 
 % Setting nomor pada subbsubsubbab
 \setcounter{secnumdepth}{3}
@@ -131,10 +173,29 @@
 % Setting daftar isi, daftar gambar, daftar tabel, daftar rumus
 \usepackage[titles]{tocloft}
 \setlength{\cftbeforechapskip}{5.2pt}
+% ------------------------------------------------------------------
+% Make the vertical gap before *every* figure/table entry the same:
+\setlength{\cftbeforefigskip}{0pt}   % or use whatever fixed length you like
+\setlength{\cftbeforetabskip}{0pt}
+% ------------------------------------------------------------------
 \cftsetindents{section}{1.5em}{2.3em}
 \cftsetindents{subsection}{3em}{3em}
+\cftsetindents{subsubsection}{4.5em}{4em}
 \setlength{\cfttabindent}{1.5em}
 \setlength{\cftfigindent}{1.5em}
+
+\usepackage{etoolbox}
+\makeatletter
+  % before starting any list: make addvspace do nothing
+  \pretocmd{\listoffigures}{\begingroup\renewcommand*{\addvspace}[1]{}}{}{}
+  \apptocmd {\listoffigures}{\endgroup}{}{}
+  \pretocmd{\listoftables} { \begingroup\renewcommand*{\addvspace}[1]{}}{}{}
+  \apptocmd {\listoftables} { \endgroup}{}{}
+\makeatother
+
+
+
+\setcounter{tocdepth}{3} 
 
 % Tambahkan kata "BAB" sebelum nomor bab di daftar isi
 \renewcommand*\cftchappresnum{\MakeUppercase{BAB}~}
@@ -148,6 +209,7 @@
 \renewcommand{\cftchapleader}{\dotfill} 
 \renewcommand{\cftsecleader}{\dotfill}
 \renewcommand{\cftsubsecleader}{\dotfill}
+\renewcommand{\cftsubsubsecleader}{\dotfill}
 \renewcommand{\cftfigleader}{\dotfill}
 \renewcommand{\cfttableader}{\dotfill}
 
@@ -165,17 +227,46 @@
 	\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}
 }
 
+
 % Mengatur format daftar rumus
-\renewcommand{\cftmyequationspresnum}{Rumus\ }
+\renewcommand{\cftmyequationspresnum}{}
 \newlength{\mylenf}
 \settowidth{\mylenf}{\cftmyequationspresnum}
-\setlength{\cftmyequationsnumwidth}{\dimexpr\mylenf+1.5em} % Menyesuaikan nomor
+\setlength{\cftmyequationsnumwidth}{\dimexpr\mylenf+5em} % Menyesuaikan nomor
 \setlength{\cftmyequationsindent}{1.5em} % Menambahkan indentasi daftar rumus
 \renewcommand{\cftmyequationsleader}{\dotfill}
+
+\usepackage{etoolbox}
+
+\newenvironment{equationcaptioned}[3][]{%
+  \refstepcounter{equation}
+  \myequations{#3}
+  \begin{center}
+    \vspace{0.5em}
+    % Removed the fcolorbox and kept only the minipage
+    \begin{minipage}{0.9\linewidth}
+      \begin{spacing}{0.7} % ⬅️ Spasi 1.0 hanya di rumus
+      \begin{equation*}
+      \begin{gathered}
+        #2
+      \end{gathered}
+      \ifstrempty{#1}{}{\label{#1}}
+      \end{equation*}
+      \end{spacing}
+    \end{minipage}
+  \end{center}
+  \vspace{0.5em}
+  \begin{center}
+    \footnotesize \theequation\ #3
+  \end{center}
+}{}
+
+
 
 % Setting daftar gambar dan daftar tabel
 \renewcommand\cftfigpresnum{Gambar\ }
 \renewcommand\cfttabpresnum{Tabel\ }
+
 \settowidth{\mylenf}{\cftfigpresnum}
 \setlength{\cftfignumwidth}{\dimexpr\mylenf+1.5em}
 \setlength{\cfttabnumwidth}{\dimexpr\mylenf+0.5em}
@@ -183,7 +274,93 @@
 % Setting penomoran caption gambar, tabel, dan rumus
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
-\renewcommand\theequation{\arabic{section}.\arabic{equation}}
+\renewcommand\theequation{Rumus~\arabic{section}.\arabic{equation}}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+% Pengaturan untuk listings
+\lstset{
+    language=Python,                  % Bahasa pemrograman
+    basicstyle=\ttfamily\footnotesize,        % Gaya font kode (diperkecil)
+    numbers=none,                      % Tidak menampilkan nomor baris
+    backgroundcolor=\color{white},     % Warna latar belakang
+    showstringspaces=false,            % Tidak menampilkan spasi dalam string
+    frame=single,                      % Membuat frame di sekitar kode
+    rulecolor=\color{black},           % Warna garis bingkai
+    breaklines=true,                   % Membungkus kode jika lebih panjang dari satu baris
+    breakatwhitespace=true,            % Membungkus di spasi
+    keepspaces=true,                   % Menjaga spasi di dalam kode
+    xleftmargin=10pt,                  % Margin kiri
+    xrightmargin=10pt,                 % Margin kanan
+    aboveskip=0pt,                    % Jarak di atas kode
+    belowskip=0pt,                    % Jarak di bawah kode
+    lineskip=-1pt,
+    extendedchars=true                 % Mengizinkan karakter non-ASCII
+    escapeinside={\%*}{*)}             % Escape karakter LaTeX dalam listings
+}
+
+
+% Daftar Kode
+\usepackage{tocloft}
+\newcommand{\listoflistingscaption}{DAFTAR KODE}
+\renewcommand{\lstlistingname}{Kode}
+\renewcommand{\lstlistlistingname}{\listoflistingscaption}
+
+
+% Menentukan format penomoran untuk listings dengan angka Arab
+\makeatletter
+\renewcommand{\thelstnumber}{\@arabic\c@lstnumber}
+\makeatother
+
+% Menetapkan counter listings agar mengikuti chapter dan menggunakan format "chapter.listing"
+\makeatletter
+\@removefromreset{lstlisting}{chapter}  % Mencegah reset counter listing saat chapter berubah
+\makeatother
+\renewcommand{\lstlistingname}{Kode}
+\AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{chapter}.\arabic{lstlisting}}}
+
+% Mengatur prefix "Kode" di daftar kode dengan nomor Arab
+\renewcommand{\lstlistoflistings}{%
+  \begingroup
+  \let\oldnumberline\numberline
+  \renewcommand{\numberline}[1]{Kode~##1~}
+  \listof{lstlisting}{\listoflistingscaption}
+  \endgroup
+}
+% Mengatur titik-titik pada daftar kode agar sama persis dengan daftar rumus
+\makeatletter
+% Definisikan kembali cara menampilkan daftar kode
+\renewcommand*\l@lstlisting[2]{%
+  \vskip \cftbeforelstlistingskip
+  \@dottedtocline{1}{1.5em}{6em}{#1}{%
+    \leaders\hbox{%
+      $\m@th \mkern \@dotsep mu \hbox{.}\mkern \@dotsep mu$%
+    }\hfill\nobreak#2%
+  }%
+}
+
+% Pastikan nilai @dotsep sama dengan yang digunakan di daftar rumus
+\renewcommand\@dotsep{2.5}  % Coba nilai yang berbeda: 1.5, 2.0, 2.5, 3.0, dll.
+\makeatother
+
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,   % warna untuk \ref, \autoref, dll
+    urlcolor=blue,     % warna untuk \href (tautan web)
+    citecolor=black    % warna untuk \cite
+}
+
+\usepackage{cleveref}
+% Setelah paket cleveref dimuat
+\crefalias{lstlisting}{kode}
+\crefname{kode}{Kode}{Kode}
+\Crefname{kode}{Kode}{Kode}
+\newcommand{\coderef}[1]{Kode~\ref{#1}}
+
 
 % Untuk mengganti nama bulan di babel bahasa
 % tapi belum jalan (RDB)
@@ -205,7 +382,7 @@
 
 % Command untuk variabel NIM
 \newcommand{\nim}[1]{\def\@nim{#1}}
-\newcommand{\printnim}{\@nim}
+\newcommand{\printnim}{\@nim} 
 
 % Command untuk variabel Dosen Pembimbing I & II
 \newcommand{\namadosbinga}[1]{\def\@namadosbinga{#1}}

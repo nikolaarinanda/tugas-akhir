@@ -1,0 +1,244 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{razi2017klasifikasi}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=b67d59a418656869dd8ea7464204e9b5}{%
+           family={Razi},
+           familyi={R\bibinitperiod},
+           given={AR},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Universitas Gadjah Mada}%
+      }
+      \strng{namehash}{b67d59a418656869dd8ea7464204e9b5}
+      \strng{fullhash}{b67d59a418656869dd8ea7464204e9b5}
+      \strng{fullhashraw}{b67d59a418656869dd8ea7464204e9b5}
+      \strng{bibnamehash}{b67d59a418656869dd8ea7464204e9b5}
+      \strng{authorbibnamehash}{b67d59a418656869dd8ea7464204e9b5}
+      \strng{authornamehash}{b67d59a418656869dd8ea7464204e9b5}
+      \strng{authorfullhash}{b67d59a418656869dd8ea7464204e9b5}
+      \strng{authorfullhashraw}{b67d59a418656869dd8ea7464204e9b5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Klasifikasi Artikel Berita Berbahasa Indonesia Menggunakan Convolutional Neural Network}
+      \field{type}{phdthesis}
+      \field{year}{2017}
+    \endentry
+    \entry{kim2014temporal}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=1fecefbf07117382be6f83e7910ea8a0}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Yoon},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=be0a17ad25caf70fd7adecd4bfc2a3bd}{%
+           family={Chiu},
+           familyi={C\bibinitperiod},
+           given={Yi-I},
+           giveni={Y\bibinithyphendelim I\bibinitperiod}}}%
+        {{hash=4fd098da15f655702772fd7349ace10f}{%
+           family={Hanaki},
+           familyi={H\bibinitperiod},
+           given={Kentaro},
+           giveni={K\bibinitperiod}}}%
+        {{hash=9e8be096517aa9e735e0279a789ba80d}{%
+           family={Hegde},
+           familyi={H\bibinitperiod},
+           given={Darshan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6d4804cc2b12eeb7ab41eb5ee03fc7ab}{%
+           family={Petrov},
+           familyi={P\bibinitperiod},
+           given={Slav},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{5eee5f2bd4e556439437103f838da06b}
+      \strng{fullhash}{2d0a33a40c501ab1212ecca564f0e70c}
+      \strng{fullhashraw}{2d0a33a40c501ab1212ecca564f0e70c}
+      \strng{bibnamehash}{5eee5f2bd4e556439437103f838da06b}
+      \strng{authorbibnamehash}{5eee5f2bd4e556439437103f838da06b}
+      \strng{authornamehash}{5eee5f2bd4e556439437103f838da06b}
+      \strng{authorfullhash}{2d0a33a40c501ab1212ecca564f0e70c}
+      \strng{authorfullhashraw}{2d0a33a40c501ab1212ecca564f0e70c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1405.3515}
+      \field{title}{Temporal analysis of language through neural language models}
+      \field{year}{2014}
+    \endentry
+    \entry{liao2017cnn}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=07770e00bfb8251855901149fb112aa0}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Shiyang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=27a780ee716960d6d3ff67e599656086}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Junbo},
+           giveni={J\bibinitperiod}}}%
+        {{hash=665fdc49babd7d581585ab88397e4ac7}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Ruiyun},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e44d5da3261ad35430d970d3526bcfa7}{%
+           family={Sato},
+           familyi={S\bibinitperiod},
+           given={Koichi},
+           giveni={K\bibinitperiod}}}%
+        {{hash=95986922cd7657ccf2395a9dae494b5e}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Zixue},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{fullhash}{da6f63975f095fc5625ebf3df2668c5f}
+      \strng{fullhashraw}{da6f63975f095fc5625ebf3df2668c5f}
+      \strng{bibnamehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{authorbibnamehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{authornamehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{authorfullhash}{da6f63975f095fc5625ebf3df2668c5f}
+      \strng{authorfullhashraw}{da6f63975f095fc5625ebf3df2668c5f}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Procedia computer science}
+      \field{title}{CNN for situations understanding based on sentiment analysis of twitter data}
+      \field{volume}{111}
+      \field{year}{2017}
+      \field{pages}{376\bibrangedash 381}
+      \range{pages}{6}
+    \endentry
+    \entry{putri2023cyberbullying}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=aa27a559db8b74fdef457f44d8214cd9}{%
+           family={Putri},
+           familyi={P\bibinitperiod},
+           given={Yessi\bibnamedelimb Mareta\bibnamedelima Andari},
+           giveni={Y\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=667d8188a36b60205e290959036ecfe6}{%
+           family={Azahra},
+           familyi={A\bibinitperiod},
+           given={Putri\bibnamedelima Fitrawati},
+           giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=71a6c94745215f5cc04f4cb88de26ab5}{%
+           family={Sinaga},
+           familyi={S\bibinitperiod},
+           given={Ester\bibnamedelima Marito},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=3b1ae9831dc8f174e88bd3e2723e7585}{%
+           family={Prawitri},
+           familyi={P\bibinitperiod},
+           given={Ajeng\bibnamedelima Linggar},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{ddd59b1f933d87189c73cd9f09662b21}
+      \strng{fullhash}{7f1ef5a240dc6e6b0bd08c75e8990de0}
+      \strng{fullhashraw}{7f1ef5a240dc6e6b0bd08c75e8990de0}
+      \strng{bibnamehash}{ddd59b1f933d87189c73cd9f09662b21}
+      \strng{authorbibnamehash}{ddd59b1f933d87189c73cd9f09662b21}
+      \strng{authornamehash}{ddd59b1f933d87189c73cd9f09662b21}
+      \strng{authorfullhash}{7f1ef5a240dc6e6b0bd08c75e8990de0}
+      \strng{authorfullhashraw}{7f1ef5a240dc6e6b0bd08c75e8990de0}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Jurnal common}
+      \field{number}{1}
+      \field{title}{Cyberbullying di media sosial tiktok terhadap remaja sekolah menengah pertama}
+      \field{volume}{7}
+      \field{year}{2023}
+      \field{pages}{33\bibrangedash 44}
+      \range{pages}{12}
+    \endentry
+    \entry{10468424}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=9a3fd4d32ed859af02c49b791605227a}{%
+           family={Prameswari},
+           familyi={P\bibinitperiod},
+           given={Bunga\bibnamedelima Aura},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=5a02a91b090215cf3054f85cfcd27b02}{%
+           family={Syafa\bibnamedelima Oktaviani},
+           familyi={S\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Haliza},
+           giveni={H\bibinitperiod}}}%
+        {{hash=32672c6e1f195e7a1c40d21705bdb9cd}{%
+           family={Wicaksono},
+           familyi={W\bibinitperiod},
+           given={Titus\bibnamedelima Rangga},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=854961d16363360e9dc77c96c77671a1}{%
+           family={Pieter\bibnamedelima Leonard},
+           familyi={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={Biben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=5ebde004551e8f4f605ea8b769e2d7d6}{%
+           family={Achmad},
+           familyi={A\bibinitperiod},
+           given={Said},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8a1f015a6eede220eb88476923ba1034}{%
+           family={Sutoyo},
+           familyi={S\bibinitperiod},
+           given={Rhio},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{61d6030d9c2668cc612905206eb675b8}
+      \strng{fullhash}{11da7be68bfcd7c7585b5c30862ef0a1}
+      \strng{fullhashraw}{11da7be68bfcd7c7585b5c30862ef0a1}
+      \strng{bibnamehash}{61d6030d9c2668cc612905206eb675b8}
+      \strng{authorbibnamehash}{61d6030d9c2668cc612905206eb675b8}
+      \strng{authornamehash}{61d6030d9c2668cc612905206eb675b8}
+      \strng{authorfullhash}{11da7be68bfcd7c7585b5c30862ef0a1}
+      \strng{authorfullhashraw}{11da7be68bfcd7c7585b5c30862ef0a1}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2023 IEEE 8th International Conference on Recent Advances and Innovations in Engineering (ICRAIE)}
+      \field{title}{Building Prediction Model for Detecting Cyberbullying using TikTok Comments}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 7}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/ICRAIE59459.2023.10468424
+      \endverb
+      \keyw{Technological innovation;Video on demand;Buildings;Cyberbullying;Bidirectional control;Mental health;Predictive models;Cyberbullying;TikTok;BERT;Deep Learning;Sentiment Analysis}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

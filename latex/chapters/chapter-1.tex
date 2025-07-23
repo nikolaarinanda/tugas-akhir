@@ -1,55 +1,107 @@
 \newpage
-\chapter{Pendahuluan} \label{Bab I}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\chapter{PENDAHULUAN} \label{Bab I}
 
 \section{Latar Belakang} \label{I.Latar Belakang}
-Latar Belakang berisi dasar pemikiran, kebutuhan atau alasan yang menjadi ide dari topik tugas akhir. Tujuan utamanya adalah untuk memberikan informasi secukupnya kepada pembaca agar memahami topik yang akan dibahas. Terdapat dua hal yang wajib dikemukakan: \par 
+% \textit{Mean Absolute Error} (MAE) \cite{Suryanto2019MAE}
+% \lipsum[1-3] % Menampilkan paragraf 1 sampai 2 dari lorem ipsum
+
+Perkembangan teknologi digital yang pesat telah membawa perubahan signifikan dalam cara manusia berinteraksi. Namun, di balik kemudahan yang dihadirkan, muncul pula tantangan serius, terutama terkait dampak pada kesehatan mental. teknologi digital yang intens tanpa filter dapat memicu berbagai gangguan mental, seperti kecemasan, depresi, hingga perasaan terisolasi, terutama pada kelompok rentan seperti anak muda \cite{sembiring2024dampak}. Fenomena ini menjadi perhatian global seiring dengan meningkatnya jumlah pengguna digital dari berbagai usia.
+
+Salah satu ancaman terbesar terhadap kesehatan mental di dunia maya adalah cyberbullying. Ini merupakan tindakan perundungan yang terjadi di ranah digital, seringkali dalam bentuk komentar bernada negatif, hinaan, maupun pelecehan verbal \cite{putri2023cyberbullying}. Dampak cyberbullying sangat serius, tidak hanya menyebabkan tekanan psikologis seperti stres dan gangguan tidur, tetapi juga dapat meningkatkan risiko masalah kesehatan mental yang lebih parah, termasuk depresi, kecemasan, dan, dalam kasus ekstrem, pikiran untuk bunuh diri pada korbannya \cite{kurniawan2024dampak}.
+
+Dunia digital memungkinkan komunikasi di media sosial menjadi lebih cepat dan bebas, memfasilitasi interaksi antarindividu dari berbagai penjuru dunia. Platform-platform ini menjadi wadah utama bagi pengguna untuk berbagi informasi, mengekspresikan diri, dan menjalin koneksi secara masif \cite{sari2018komunikasi}.
+
+Salah satu platform yang paling digemari dan mengalami pertumbuhan pesat dalam beberapa tahun terakhir adalah TikTok. Dengan jutaan pengguna aktif dari beragam usia dan latar belakang, TikTok telah menjadi fenomena global yang mengubah cara konsumsi dan produksi konten video pendek. Popularitasnya yang meroket menjadikannya salah satu aplikasi paling banyak diunduh di dunia \cite{rosiana2023analisis}. Namun, popularitas ini juga membawa serta permasalahan moderasi konten yang kompleks.
+
+Maraknya komentar bernada negatif, hinaan, dan pelecehan verbal menjadi indikasi kuat adanya cyberbullying di platform ini. Karakteristik komentar yang cenderung singkat, tidak baku, dan bersifat informal membuat proses deteksi dan identifikasi cyberbullying menjadi sangat sulit dilakukan secara manual, membutuhkan sumber daya yang besar dan cenderung subjektif \cite{aser2022fenomena}.
+
+Untuk mengatasi permasalahan ini, diperlukan solusi analisis sentimen yang mampu mengklasifikasikan komentar secara otomatis. Analisis sentimen adalah proses identifikasi opini atau emosi dalam teks, yang dapat dikategorikan menjadi sentimen positif, netral, atau negatif. Agar proses analisis berjalan optimal, data teks perlu melalui tahapan text processing yang sistematis, seperti pembersihan teks dari noise, tokenisasi, penghapusan stopword yang tidak relevan, serta konversi teks ke representasi numerik yang dapat diproses oleh sistem komputasi \cite{razi2017klasifikasi}.
+
+Pendekatan modern dalam analisis sentimen banyak mengandalkan teknik Deep Learning. Metode ini, yang merupakan bagian dari pembelajaran mesin dengan jaringan saraf tiruan berlapis-lapis, memiliki kemampuan luar biasa dalam mempelajari pola kompleks dari data mentah, termasuk data teks, tanpa perlu fitur yang dirancang secara manual \cite{liao2017cnn}. Ini membuka jalan bagi sistem otomatis yang lebih canggih untuk memahami nuansa bahasa.
+
+Di bawah payung Deep Learning, bidang Natural Language Processing (NLP) memegang peranan krusial. NLP berfokus pada interaksi antara komputer dan bahasa manusia, memungkinkan mesin untuk memproses, menganalisis, memahami, dan menghasilkan bahasa alami. Hal ini sangat esensial untuk mengurai makna di balik komentar-komentar pengguna dan mengidentifikasi sentimen yang terkandung di dalamnya \cite{razi2017klasifikasi}.
+
+Beberapa penelitian terdahulu telah mencoba mengatasi masalah cyberbullying dengan menggunakan arsitektur canggih seperti BERT melalui proses fine-tuning pada dataset spesifik. Model-model berbasis transformer seperti BERT memang menunjukkan performa tinggi dalam banyak tugas NLP. Namun, hasil dari studi-studi tersebut seringkali menunjukkan kecenderungan overfitting, di mana model terlalu spesifik terhadap data pelatihan sehingga performanya buruk pada data baru yang belum pernah dilihat sebelumnya, terutama dengan ukuran dataset yang terbatas atau distribusi data yang tidak seimbang \cite{10468424}.
+
+Melihat tantangan tersebut, arsitektur TextCNN muncul sebagai alternatif yang menjanjikan. Penelitian terdahulu terkait TextCNN telah membuktikan keunggulannya dalam mengekstraksi fitur penting dari rangkaian kata dan telah banyak digunakan dalam berbagai tugas klasifikasi teks, termasuk analisis sentimen dan deteksi spam atau misinformasi. Keunggulan utamanya adalah kemampuannya dalam mempelajari representasi fitur secara otomatis melalui filter konvolusi, yang efektif menangkap pola lokal dan global dalam teks \cite{chen2015convolutional}.
+
+Berdasarkan uraian di atas, penelitian ini berfokus pada penerapan metode text processing dan arsitektur TextCNN untuk membangun sistem klasifikasi sentimen komentar TikTok, khususnya yang mengandung indikasi cyberbullying. Sistem ini akan menggunakan pendekatan binary classification untuk membedakan antara komentar cyberbullying dan non-cyberbullying, dengan harapan dapat mencapai generalisasi yang baik. Diharapkan hasil dari penelitian ini dapat memberikan kontribusi signifikan dalam mendukung sistem moderasi konten serta menciptakan lingkungan media sosial yang lebih sehat, aman, dan ramah bagi seluruh pengguna.
+
+\section{Rumusan Masalah} \label{I.Rumusan Masalah}
+
+Berdasarkan latar belakang yang telah diuraikan di atas, maka permasalahan penelitian dirumuskan sebagai berikut: \par
+
 \begin{enumerate}[noitemsep]
-	\item Deskripsi yang luas dan longgar yang berkaitan dengan bidang/masalah di masyarakat, industry dan atau bidang-bidang lainnya. Deskripsi ini mewakili bidang/masalah secara umum yang berkaitan dengan Teknik Informatika, bekerja dan akan terlibat di dalamnya. Sangat disarankan di sini, sebisa mungkin tidak ada Batasan tentang pilihan teknologi yang akan digunakan. Contoh: bidang transportasi, bidang telekomunikasi, bidang Pendidikan, bidang manufaktur, bidang renewable energi, pariwisata, militer, transportasi, kesehatan, pertanian, pengelolaan infrastruktur dan sebagainya.
-	\item Deskripsi lebih khusus dan mendetail yang didapatkan dari poin 1 di atas. Dari deskripsi umum di atas, selanjutkan fokuskan pada fenomena masalah yang akan diangkat. Pendetailan harus mampu membawa masalah kepada masalah yang mennjukkan peran Anda dalam penelitian 
+	% \item Bagaimana menerapkan tahapan text processing untuk mempersiapkan data komentar TikTok dalam analisis sentimen?
+	% \item Seberapa baik arsitektur Text CNN dalam mengklasifikasikan komentar TikTok yang mengandung unsur cyberbullying berdasarkan sentimennya?
+    \item Bagaimana tahapan text processing dapat diterapkan untuk mempersiapkan data komentar cyberbullying pada TikTok sebelum analisis sentimen?
+	\item Bagaimana arsitektur TextCNN dapat dibangun dan diimplementasikan untuk mengklasifikasikan komentar cyberbullying pada TikTok?
+    \item Bagaimana performa model TextCNN dalam mengklasifikasikan komentar cyberbullying dan non-cyberbullying pada TikTok?
 \end{enumerate}
 
-Saat menuliskan bagian ini, posisikan anda sebagai pembaca – apakah anda tertarik untuk terus membaca? \par
+\section{Tujuan Penelitian} \label{I.Tujuan}
+Berdasarkan rumusan masalah yang telah diuraikan di atas, maka tujuan dari penelitian ini adalah: \par
 
-\section{Rumusan masalah} \label{I.Rumusan Masalah}
-\indent Merumuskan masalah secara konkrit, bentuk pertanyaan fakta / kebenaran yang masih dipertanyakan \par
-
-Dari pendahuluan di atas, mahasiswa diharapkan dapat memformulasikan masalah engineering yang solid. Masalah yang kemudian akan diformulasi mahasiswa harus terdefinisi dengan baik (harus jelas, tidak ambigu/ada makna ganda, tanpa menggunakan jargon), masalah harus real (benar-benar ada masalah terebut) sehingga nantinya akan ada solusi yang konkrit. Perlu dipertimbangkan juga masalah tersebut harus bisa dipecahkan dalam waktu maksimal 1 semester oleh mahasiswa dengan alokasi waktu per minggu tidak lebih dari 20 jam per minggu. \par
-
-Lebih jelasnya masalah yang diharapkan adalah seperti dalam 3 poin di bawah ini. Jika tidak mengandung semua unsur dibawah maka tugas akhir ini tidak memenuhi syarat sebagai tugas akhir. \par
 \begin{enumerate}[noitemsep]
-	\item Harus ada proses perancangan yang utuh dari penentuan masalah real yang perlu dipecahkan, 
-	\item Harus menjelaskan spesifikasi yang akan dibuat
-	\item Harus ada implementasi dalam bentuk salah satu di bawah ini:
-	\begin{enumerate}
-		\item Hardware/perangkat keras
-		\item Software/perangkat lunak
-		\item Proses/simulasi yang dibuat sendiri (Matlab, C/C++, Phyton, dan lain-lain) bukan melalui software yang murni dan sudah paten dan tinggal memasukkan data (ETAP, EDSA, SPSS, dan lain-lain)
-	\end{enumerate}
+	% \item Menerapkan teknik text processing pada data komentar TikTok untuk keperluan analisis sentimen.
+	% \item Membangun dan menguji kinerja arsitektur Text CNN dalam mengklasifikasikan sentimen komentar yang mengandung unsur cyberbullying.
+    \item Menerapkan tahapan text processing untuk mempersiapkan data komentar cyberbullying pada TikTok sebelum analisis sentimen.
+    \item Membangun dan mengimplementasikan arsitektur TextCNN untuk mengklasifikasikan komentar cyberbullying pada TikTok.
+    \item Menganalisis performa model TextCNN dalam mengklasifikasikan komentar cyberbullying dan non-cyberbullying pada TikTok.
 \end{enumerate}
 
-Hasil rancangan dalam bentuk hardware/software/simulasi tersebut harus diuji dan diverifikasi apakah bekerja dengan baik atau belum Jika belum bekerja baik, mahasiswa harus bisa menjelaskan alasannya dan perbaikannya ke depan (walau pun saat tugas akhir ini selesai, alat/software/simulasi belum bisa bekerja).\par
-
-Selain itu, rumusan sangat disarankan untuk melibatkan pengalaman multidisiplin. Misalnya melibatkan unsur-unsur seperti seni, ekonomi, mekanik, politik, proses kimia, etika, kesehatan, dan sebagainya. Contoh-contoh rumusan masalah yang \textbf{tidak disarankan}: \par
-\begin{enumerate}[noitemsep]
-	\item \textbf{Masalah tidak real dan tidak terlalu hipotetis}. Misalnya, topik riset atau topik untuk lomba (contoh: mencari metode paling cepat untuk menentukan posisi kebakaran di dalam hutan).
-	\item Rumusan untuk membuat alat/produk yang \textbf{tidak dapat diimplemetasikan dan diukur/diuji dalam waktu maksimal 2 semester}. Misalnya membuat roket dengan daya jangkau 500 km.
-	\item \textbf{Solusi terlalu kompleks} sehingga dalam satu tahun hanya dapat menghasilkan bagian kecil dari solusi yang diharapkan Rumusan masalah berisi ringkasan fenomena dan masalah.
-\end{enumerate}
-
-
-\section{Tujuan} \label{I.Tujuan}
-Tujuan diisikan tujuan dari penelitian yang dilakukan, berdasarkan sub-bab \ref{I.Latar Belakang} dan \ref{I.Rumusan Masalah} dilengkapi dengan spesifikasinya \par
 
 \section{Batasan Masalah} \label{I.Batasan}
-Batasan yang dimaksud disini ialah batasan dari penelitian tugas akhir yang dilakukan. Batasan masalah ditujukan agar tugas akhir yang dilakukan tidak terlalu luas, dan menjadi lebih realistis untuk diselesaikan. \par
+Adapun batasan masalah dari penelitian ini agar sesuai dengan yang diharapkan adalah sebagai berikut: \par
+
+\begin{enumerate}[noitemsep]
+    % \item Bahasa pemrograman yang digunakan adalah bahasa pemrograman Python.
+    % \item Data yang digunakan adalah komentar dari TikTok dalam bahasa Indonesia.
+    % \item Kategori sentimen dibatasi menjadi dua kelas: positif dan negatif.
+    % \item Arsitektur deep learning yang digunakan terbatas pada Text CNN.
+    \item Penelitian ini hanya akan menggunakan data komentar yang diambil dari platform TikTok.
+    \item Klasifikasi sentimen akan difokuskan secara spesifik pada deteksi indikasi cyberbullying yang bersifat biner.
+    \item Model yang digunakan dalam penelitian ini terbatas pada arsitektur TextCNN.
+    \item Data komentar yang dianalisis terbatas pada bahasa Indonesia.
+    \item Tahapan text processing yang dilakukan akan mencakup pembersihan teks, tokenisasi, penghapusan stopword, dan word embedding.
+    \item Evaluasi performa model akan didasarkan pada metrik klasifikasi standar seperti akurasi, presisi, recall, dan F1-score.
+\end{enumerate}
 
 \section{Manfaat Penelitian} \label{I.Manfaat}
-Manfaat tugas akhir yang dilakukan didefinisikan sebagai manfaat yang diperoleh ketika tugas akhir telah selesai dilakukan. Manfaat dapat berupa manfaat untuk masyarakat dan atau dunia akademik. \par
+Adapun manfaat yang diperoleh dari hasil penelitian ini adalah sebagai berikut: \par
+
+\begin{enumerate}[noitemsep]
+    % \item Memberikan kontribusi dalam pengembangan sistem deteksi komentar negatif secara otomatis di media sosial.
+    % \item Menjadi acuan dalam penggunaan arsitektur Text CNN untuk klasifikasi teks pendek seperti komentar media sosial.
+    % \item Membantu mengurangi penyebaran komentar berunsur cyberbullying melalui sistem analisis sentimen otomatis.
+    \item Memberikan kontribusi dalam pengembangan sistem deteksi komentar negatif dan cyberbullying secara otomatis di media sosial.
+    \item Menjadi acuan dan referensi dalam penggunaan arsitektur TextCNN untuk klasifikasi teks pendek, khususnya komentar media sosial yang memiliki karakteristik unik.
+    \item Membantu mengurangi penyebaran komentar berunsur cyberbullying di platform digital melalui implementasi sistem analisis sentimen otomatis.
+\end{enumerate}
+
 
 \section{Sistematika Penulisan} \label{I.Sistematika}
 Sistematika penulisan berisi pembahasan apa yang akan ditulis disetiap Bab. Sistematika pada umumnya berupa paragraf yang setiap paragraf mencerminkan bahasan setiap Bab. \par
-\subsection{Bab I}
-\subsection{Bab II}
-\subsection{Bab III}
-\subsection{Bab IV}
-\subsection{Bab V}
+
+\noindent\textbf{Bab I}
+
+Berisi latar belakang, rumusan masalah, tujuan, batasan, manfaat penelitian, serta sistematika penulisan.
+
+\noindent\textbf{Bab II}
+
+Membahas teori-teori yang relevan seperti cyberbullying, analisis sentimen, text processing, dan arsitektur Text CNN.
+
+\noindent\textbf{Bab III}
+
+Menjelaskan metode pengumpulan data, tahapan text processing, perancangan model Text CNN, serta evaluasi performa.
+
+\noindent\textbf{Bab IV}
+
+Menyajikan hasil pelatihan dan pengujian model, serta analisis performa dan interpretasi hasil klasifikasi sentimen.
+
+\noindent\textbf{Bab V}
+
+Menyimpulkan hasil penelitian dan memberikan saran untuk pengembangan lebih lanjut.

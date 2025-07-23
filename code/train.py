@@ -1,46 +1,50 @@
 import os
-import time
 import argparse
 import torch
 import numpy as np
-import json
 import matplotlib.pyplot as plt
 import wandb
 from sklearn.metrics import classification_report
 from tqdm import tqdm, trange
 from torch.utils.data import DataLoader
 from torch.optim import AdamW
+from muon import SingleDeviceMuonWithAuxAdam
+from torch.optim.lr_scheduler import StepLR
 # from torch.optim.lr_scheduler import ReduceLROnPlateau
 from datetime import datetime
 
 # Import local modules
-from data_reader import CyberbullyingDataset
-from model import TextCNNLight, TextCNNMedium, TextCNNHeavy, SimpleLSTM, SimpleRNN
-from utils import get_device, to_device, prepare_model, prepare_batch, get_gpu_memory, EarlyStopping
+from datareader import CyberbullyingDataset
+from model import TextCNNLight, TextCNNMedium, TextCNNHeavy
+from utils import EarlyStopping
 
 # =====KONSTANTA=====
+
 DATASET_PATH = '../dataset/Dataset-Research.csv'
 MODEL_OUTPUT_PATH = 'model_outputs'
 SEED = 29082002 # Seed untuk reproducibility
 
+# Cross-validation parameters
 N_FOLDS = 5 # Jumlah fold untuk cross-validation
-MAX_LENGTH = 125 # Panjang maksimum kata dalam dataset
-VOCAB_SIZE = 40000 # Ukuran kosakata maksimum
-DROPUOUT_RATE = 0.1 # Tingkat dropout
+MAX_LENGTH = 128 # Panjang maksimum kata dalam dataset
+
+# Training parameters
+EPOCHS = 50 # Jumlah epoch 
 BATCH_SIZE = 16 # Ukuran batch
-EPOCHS = 50 # Jumlah epoch
 LEARNING_RATE = 5e-3 # Tingkat pembelajaran
-EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
 TOKENIZER_NAME = 'indobenchmark/indobert-base-p1' # Nama tokenizer BERT
-NUM_CLASSES = 2 # Jumlah kelas untuk klasifikasi
+
+# Model parameters for CNN
+DROPUOUT_RATE = 0.1 # Tingkat dropout untuk CNN
+NUM_CLASSES = 2 # Jumlah kelas klasifikasi untuk CNN
+EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
 NUM_FILTERS = 100 # Jumlah filter untuk CNN
 KERNEL_SIZE = [3, 4, 5] # Ukuran kernel untuk CNN
 OUT_CHANNELS = 50 # Jumlah channel output untuk CNN
-PADDING_IDX = 0 # Indeks padding untuk embedding
 
 def parse_args():
     """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='Train BERT for sentiment analysis')
+    parser = argparse.ArgumentParser(description='Train CNN for sentiment analysis')
 
     # Seed and reproducibility
     parser.add_argument('--seed', type=int, default=SEED,
@@ -57,8 +61,8 @@ def parse_args():
                         help='Tokenizer name')
     parser.add_argument('--dropout', type=float, default=DROPUOUT_RATE,
                         help='Dropout rate')
-    parser.add_argument('--vocab_size', type=int, default=VOCAB_SIZE,
-                        help='Vocabulary size for embedding')
+    parser.add_argument('--batch_size', type=int, default=BATCH_SIZE,
+                        help='Batch size for embedding')
     parser.add_argument('--embed_dim', type=int, default=EMBEDDING_DIM, 
                         help='Embedding dimension for CNN')
     parser.add_argument('--num_classes', type=int, default=NUM_CLASSES, 
@@ -69,14 +73,10 @@ def parse_args():
                         help='Kernel sizes for CNN')
     parser.add_argument('--out_channels', type=int, default=OUT_CHANNELS,
                         help='Number of output channels for CNN')
-    parser.add_argument('--padding_idx', type=int, default=PADDING_IDX,
-                        help='Padding index for embedding')
 
     # Training parameters
     parser.add_argument('--n_folds', type=int, default=N_FOLDS,
                         help='Fold number for cross-validation')
-    parser.add_argument('--batch_size', type=int, default=BATCH_SIZE,
-                        help='Batch size')
     parser.add_argument('--epochs', type=int, default=EPOCHS,
                         help='Number of epochs')
     parser.add_argument('--lr', type=float, default=LEARNING_RATE,
@@ -88,7 +88,7 @@ def parse_args():
     
     parser.add_argument('--output_dir', type=str, default=MODEL_OUTPUT_PATH,
                         help='Directory to save model outputs')
-    
+
     # Wandb parameters
     parser.add_argument('--use_wandb', action='store_true',
                        help='Enable Weights & Biases logging')
@@ -123,7 +123,7 @@ def get_dataloaders_for_fold(args):
         random_state=args.seed,
         split="train",
         n_folds=args.n_folds,
-        max_length=args.max_length
+        max_length=args.max_length,
     ) # Membuat fold train dataset
 
     val_dataset = CyberbullyingDataset(
@@ -132,7 +132,7 @@ def get_dataloaders_for_fold(args):
         random_state=args.seed,
         split="val",
         n_folds=args.n_folds,
-        max_length=args.max_length
+        max_length=args.max_length,
     ) # Membuat fold val dataset
     
     # Membuat DataLoader
@@ -158,17 +158,46 @@ def cnn_train_fold(args, output_dir="none"):
     
     train_loader, val_loader = get_dataloaders_for_fold(args)
 
-    # Initialize model and move to device
-    model = SimpleLSTM(
-        vocab_size=args.vocab_size,
+    model = TextCNNLight(
+        vocab_size=train_loader.dataset.vocab_size,
         embed_dim=args.embed_dim,
         num_classes=args.num_classes,
+        output_dim=args.out_channels,
+        dropout_rate=args.dropout
     )
 
-    model = prepare_model(model, device)
+    # model = TextCNNMedium(
+    #     vocab_size=train_loader.dataset.vocab_size,
+    #     embed_dim=args.embed_dim,
+    #     num_classes=args.num_classes,
+    # )
+
+    # model = TextCNNMedium(
+    #     vocab_size=train_loader.dataset.vocab_size,
+    #     embed_dim=args.embed_dim,
+    #     num_classes=args.num_classes,
+    #     output_channels=args.out_channels,
+    #     kernel_sizes=args.kernel_size,
+    #     dropout_rate=args.dropout
+    # )
+
+    model = model.to(device)
+
+    hidden_weights = [p for p in model.parameters() if p.ndim >= 2]
+    other_params = [p for p in model.parameters() if p.ndim < 2]
+
+    param_groups = [
+        {"params": hidden_weights, "use_muon": True, "lr": 0.02, "weight_decay": 0.01},
+        {"params": other_params, "use_muon": False, "lr": 3e-4, "betas": (0.9, 0.95), "weight_decay": 0.01},
+    ]
 
     optimizer = AdamW(model.parameters(), lr=args.lr) 
+    # optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
+
     criterion = torch.nn.CrossEntropyLoss().to(device)
+
+    # Early stopping setup
+    # scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
     
     for epoch in range(args.epochs):
         model.train()
@@ -179,7 +208,7 @@ def cnn_train_fold(args, output_dir="none"):
         # Training loop
         for batch in tqdm(train_loader, desc=f"Training Epoch {epoch+1}", leave=False):
             # Move batch to device
-            batch = prepare_batch(batch, device)
+            batch = to_device(batch, device)
             
             optimizer.zero_grad()
             outputs = model(batch['input_ids'])
@@ -203,7 +232,7 @@ def cnn_train_fold(args, output_dir="none"):
         with torch.no_grad():
             for batch in tqdm(val_loader, desc="Validating", leave=False):
                 # Move batch to device
-                batch = prepare_batch(batch, device)
+                batch = to_device(batch, device)
                 
                 outputs = model(batch['input_ids'])
                 loss = criterion(outputs, batch['labels'])
@@ -232,11 +261,16 @@ def cnn_train_fold(args, output_dir="none"):
                 "train_accuracy": train_accuracy,
                 "val_loss": avg_val_loss,
                 "val_accuracy": val_accuracy,
-                "epoch": epoch + 1
+                "learning_rate": optimizer.param_groups[0]['lr'],
+                # "epoch": epoch + 1
             })
+
+        # Early stopping check
+        # scheduler.step()
         
         # Print results
         print(f"Epoch {epoch+1}/{args.epochs}")
+        print(f"Learning Rate: {optimizer.param_groups[0]['lr']:.6f}")
         print(f"Train Loss: {avg_train_loss:.4f}, Accuracy: {train_accuracy:.2f}%")
         print(f"Val Loss: {avg_val_loss:.4f}, Accuracy: {val_accuracy:.2f}%")
     
@@ -247,6 +281,35 @@ def cnn_train_fold(args, output_dir="none"):
 
     return model
 
+def get_device():
+    """Get the device to use (GPU if available, else CPU)"""
+    if torch.cuda.is_available():
+        device = torch.device("cuda:0")
+        print(f"Using GPU: {torch.cuda.get_device_name(0)}")
+    else:
+        device = torch.device("cpu")
+        print("Using CPU")
+    return device
+
+def to_device(data, device):
+    """Move data to specified device"""
+    if isinstance(data, (list, tuple)):
+        return [to_device(x, device) for x in data]
+    elif isinstance(data, dict):
+        return {k: to_device(v, device) for k, v in data.items()}
+    elif isinstance(data, torch.Tensor):
+        return data.to(device)
+    return data
+
+def get_gpu_memory():
+    """Get GPU memory usage if available"""
+    if torch.cuda.is_available():
+        return {
+            "allocated": f"{torch.cuda.memory_allocated()/1e9:.2f} GB",
+            "cached": f"{torch.cuda.memory_reserved()/1e9:.2f} GB"
+        }
+    return None
+
 def main():
     args = parse_args()
     set_seed(args.seed)
@@ -254,21 +317,17 @@ def main():
     # Cek wandb status
     if args.use_wandb:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        run = wandb.init(
+        wandb.init(
             project="my-awesome-project",
             name=f"exp_{timestamp}",
-            # Track hyperparameters and metadata
-            config=vars(args),
-            # config={
-            #     "learning_rate": 0.01,
-            #     "epochs": 10,
-            # },
+            config=vars(args), # Track hyperparameters and metadata
         )
 
     # Train untuk 1 fold
     if args.output_model:
         output_dir = create_output_dir(args.output_dir)
         cnn_train_fold(args, output_dir)
+
     cnn_train_fold(args)
         
     if args.use_wandb:

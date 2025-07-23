@@ -13,3 +13,5 @@ thesis.run.xml
 thesis.toc
 .DS_Store
 chapters/.DS_Store
+thesis.bcf
+*.minted

@@ -6,12 +6,12 @@ import os
 import json
 import nltk
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from nltk.stem import WordNetLemmatizer
+# from nltk.tokenize import word_tokenize
+# from nltk.stem import WordNetLemmatizer
 import torch
 from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import StratifiedKFold
-from typing import List, Dict, Tuple, Optional, Union
+# from typing import List, Dict, Tuple, Optional, Union
 from transformers import AutoTokenizer
 
 # Download resource NLTK yang diperlukan
@@ -26,22 +26,24 @@ except LookupError:
     nltk.download('stopwords')
     nltk.download('wordnet')
 
-INDONESIAN_STOPWORDS = set(stopwords.words('indonesian'))
+# STOPWORDS = set(stopwords.words('indonesian'))
+STOPWORDS = set(stopwords.words('english'))
 
 class CyberbullyingDataset(Dataset):
     def __init__(
             self,
             file_path="../dataset/Dataset-Research.csv",
             tokenizer_name="indobenchmark/indobert-base-p1",
-            folds_file="cyberbullying_datareader_simple_folds.json",
+            folds_file="cyberbullying_folds.json",
             random_state=29082002,
             split="train",
             fold=0,
             n_folds=5,
             max_length=128,
             augmentasi_file="../dataset/dictionary/augmentation.json",
-            slang_word_file="../dataset/dictionary/slang-word-specific.json"
+            slang_word_file="../dataset/dictionary/slang-word-specific.json",
     ):        
+        # self.file_path = file_path
         self.file_path = file_path
         self.folds_file = folds_file
         self.random_state = random_state
@@ -54,11 +56,13 @@ class CyberbullyingDataset(Dataset):
         
         # Initialize tokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
+        self.vocab_size = len(self.tokenizer)
+
         # Load dataset
         self.load_data()
-        # Setup n-Fold Cross Validation => membuat self.fold_indices yang berisi train_indices dan val_indices dari semua fold
+        # Setup n-Fold Cross Validation
         self.setup_folds()
-        # Mempersiapkan Indices (bentuk jamak index) => membuat self.indices (yang berisi indices dari fold yang dipilih berdasarkan 'split' dan 'fold'
+        # Mempersiapkan Indices (bentuk jamak index)
         self.setup_indices()
 
     def __len__(self):
@@ -68,10 +72,10 @@ class CyberbullyingDataset(Dataset):
         # Mengambil index dari data yang akan diambil
         idx = self.indices[idx]
         # Mengambil data komentar dan sentiment
-        comment = str(self.df.iloc[idx]['comment'])
-        sentiment = str(self.df.iloc[idx]['sentiment'])
+        text = str(self.df.iloc[idx]["comment"])
+        label = str(self.df.iloc[idx]["sentiment"])
         # Melakukan Pre-Processing
-        comment_processed = self.preprocess(comment)
+        comment_processed = self.preprocess(text)
         # Tokenisasi
         encoding = self.tokenizer(
             comment_processed,
@@ -80,12 +84,13 @@ class CyberbullyingDataset(Dataset):
             padding='max_length',
             return_attention_mask=True,
             return_tensors='pt',
+            truncation=True
         )
         data = {
             'input_ids': encoding['input_ids'].flatten(),
             'attention_mask': encoding['attention_mask'].flatten(),
-            'labels': torch.tensor(int(sentiment), dtype=torch.long),
-            'original_text': comment,
+            'labels': torch.tensor(int(label), dtype=torch.long),
+            'original_text': text,
             'processed_text': comment_processed,
             'original_index': idx
         }
@@ -182,7 +187,7 @@ class CyberbullyingDataset(Dataset):
         text = re.sub(r'[^\x00-\x7F]+', '', text)
 
         # Augmentasi
-        # text = self.augmentation_text(text, p_phrase=0.5, p_synonym=0.5, p_typo=0.5, p_swap=0.5, p_random_delete=0.5)
+        text = self.augmentation_text(text, p_phrase=0.5, p_synonym=0.5, p_typo=0.5, p_swap=0.5, p_random_delete=0.5)
         
         # Tokenisasi
         words = nltk.word_tokenize(text)
@@ -191,7 +196,7 @@ class CyberbullyingDataset(Dataset):
         words = self.normalization(words)
 
         # Menghapus stopwords
-        words = [word for word in words if word not in INDONESIAN_STOPWORDS]
+        words = [word for word in words if word not in STOPWORDS]
 
         # Menggabungkan kembali kata-kata menjadi kalimat
         text = ' '.join(words)
@@ -212,8 +217,8 @@ class CyberbullyingDataset(Dataset):
         # Jika fold sudah ada, maka load fold
         if os.path.exists(self.folds_file):
             self.load_folds()
+        # Jika tidak ada, maka buat fold
         else:
-            # Jika tidak ada, maka buat fold
             self.create_folds()
 
     def load_folds(self):
@@ -223,7 +228,7 @@ class CyberbullyingDataset(Dataset):
         with open(self.folds_file, 'r') as f:
             fold_data = json.load(f)
         self.fold_indices = fold_data['fold_indices']
-        # print(f"Menggunakan {fold_data['n_folds']} folds dengan {fold_data['n_samples']} samples")
+        print(f"Menggunakan {fold_data['n_folds']} folds dengan {fold_data['n_samples']} samples")
     
     def create_folds(self):
         '''
@@ -232,7 +237,7 @@ class CyberbullyingDataset(Dataset):
         print(f"Membuat n-fold CV dengan random state {self.random_state}")
         skf = StratifiedKFold(n_splits=self.n_folds, shuffle=True, random_state=self.random_state)
         fold_indices = {}
-        for fold, (train_idx, val_idx) in enumerate(skf.split(self.df, self.df['sentiment'])):
+        for fold, (train_idx, val_idx) in enumerate(skf.split(self.df, self.df['label'])):
             fold_indices[f"fold_{fold}"] = {
                 'train_indices': train_idx.tolist(),
                 'val_indices': val_idx.tolist()
@@ -248,7 +253,7 @@ class CyberbullyingDataset(Dataset):
             }, f)
 
             self.fold_indices = fold_indices
-            # print(f'Created {self.n_folds}-fold indices and saved to {self.folds_file}')
+            print(f'Created {self.n_folds}-fold indices and saved to {self.folds_file}')
 
     def load_data(self):
         self.df = pd.read_csv(self.file_path) # Load csv
@@ -257,26 +262,27 @@ class CyberbullyingDataset(Dataset):
         self.df['sentiment'] = self.df['sentiment'].astype(int) # Convert sentiment to int
         self.df['sentiment'] = self.df['sentiment'].apply(lambda x: 1 if x == -1 else 0) # Transform labels: convert -1 to 1, and 1 to 0
         self.df = self.df[(self.df['sentiment'] == 0) | (self.df['sentiment'] == 1)] # Filter sentiment
-    
+
+        # Undersampling menyeimbangkan dataset (hanya untuk split "train")
+        if self.split == "train":
+            df_label_0 = self.df[self.df['sentiment'] == 0]
+            df_label_1 = self.df[self.df['sentiment'] == 1]
+
+            min_samples_per_class = min(len(df_label_0), len(df_label_1))
+
+            df_label_0_undersampled = df_label_0.sample(n=min_samples_per_class, random_state=self.random_state)
+            df_label_1_undersampled = df_label_1.sample(n=min_samples_per_class, random_state=self.random_state)
+
+            self.df = pd.concat([df_label_0_undersampled, df_label_1_undersampled])
+            self.df = self.df.sample(frac=1, random_state=self.random_state).reset_index(drop=True)
+
 if __name__ == "__main__":
+    dataset = CyberbullyingDataset(fold=0, split="train")
+    data = dataset[8]
+    print(data)
+
     # dataset = CyberbullyingDataset(fold=random.randint(0, 4), split=random.choice(["train", "val"])) # Instansiasi kelas dengan fold dan split acak
     # data = dataset[random.randint(0, len(dataset) - 1)] # Ambil data secara acak
-
-    dataset = CyberbullyingDataset(fold=0, split="train") # instansiasi kelas
-
-    for data in dataset:
-        print(f"original text: {data['original_text']}")
-        print(f"processed text: {data['processed_text']}")
-
-    # data = dataset[8] # mengambil data
-
-    # print(f"input IDs: {data['input_ids']}")
-    # print(f"attention mask: {data['attention_mask']}")
-    # print(f"original text: {data['original_text']}")
-    # print(f"processed text: {data['processed_text']}")
-    # print(f"original index: {data['original_index']}")
-    # print(f"labels: {data['labels']}")
-
-    # print(data)
-
-    
+    # for data in dataset:
+    #     print(f"original text: {data['original_text']}")
+    #     print(f"processed text: {data['processed_text']}")

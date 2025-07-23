@@ -2,8 +2,9 @@
 %--------------------------------------------------------------------%
 %
 % Template TA LaTeX Teknik Informatika ITERA.
-% Editor: Radhinka Bagaskara, Martin C.T. Manullang, iwawiwi
-% Version 2024.1
+% Editor: Radhinka Bagaskara, Martin C.T. Manullang, I Wayan Wiprayoga Wisesa, Ardoni Yeriko Rifana Gultom (IF 2021)
+% Version 2025.1
+% TELAH DISESUAIKAN DENGAN FORMAT PERPUSTAKAAN ITERA MEI 2025 (UNESCO FORMAT)
 %
 % Berdasarkan "Templat LaTeX Tesis Informatika ITB" oleh Petra Barus & Peb Ruswono Aryan
 % https://github.com/petrabarus/if-itb-latex
@@ -14,7 +15,8 @@
 %--------------------------------------------------------------------%
 
 % Set jenis dokumen Tugas Akhir
-\documentclass[12pt, a4paper, onecolumn, oneside, final]{report}
+\documentclass[article]{report} % Untuk versi perpustakaan
+\usepackage[paperwidth=155mm,paperheight=230mm,top=2cm, bottom=2cm, left=2cm, right=2cm, includefoot, heightrounded, bindingoffset=0.5cm]{geometry}
 
 \input{config/config.sty}
 
@@ -30,67 +32,88 @@
     %----------------------------------------------------------------%
     
     % Judul Tugas Akhir
-    \title{Judul Tugas Akhir} 	
+    \title{Analisis Sentimen Komentar Cyberbullying pada TikTok Menggunakan Arsitektur Text CNN} % Judul Tugas Akhir dalam Bahasa Indonesia	
     % DITULIS DALAM HURUF KAPITAL; Font size 16 pt; Bold; Tidak melebihi 4 baris
-    \titleEN{Judul Tugas Akhir (Inggris)}      % Judul Tugas Akhir dalam Bahasa Inggris
+    \titleEN{Comparison }      % Judul Tugas Akhir dalam Bahasa Inggris
     
     % Informasi Mahasiswa
-    \author{Nama Mahasiswa}		% Nama Mahasiswa
-	\nim{1234567890}			% NIM Mahasiswa
+    \author{Nikola Arinanda}		% Nama Mahasiswa
+	\nim{121140202}			% NIM Mahasiswa
 	
 	%Informasi Dosen Pembimbing
 	\dosbingA%
-		{Nama dan Gelar Pembimbing I}%	% Nama Dosen Pembimbing 1
-		{NIP. 123456789}				% NIP Dosen Pembimbing 1
+		{Martin Clinton Tosima Manullang, Ph.D.}%	% Nama Dosen Pembimbing 1
+		{NIP. 19930109 2019 03 1 017}				% NIP Dosen Pembimbing 1
 	\dosbingB%
-		{Nama dan Gelar Pembimbing II}%	% Nama Dosen Pembimbing 2
-		{NIP. 123456789}				% NIP Dosen Pembimbing 2
+		{Leslie Anggraini, S.Kom., M.Cs.}%	% Nama Dosen Pembimbing 2
+		{NRK. 19970817 2024 2294}				% NIP Dosen Pembimbing 2
 		
 	%Informasi Dosen Penguji
 	\pengujiA%
-		{Nama dan Gelar Penguji I}%	% Nama Dosen Penguji 1
-		{NIP. 123456789}				% NIP Dosen Penguji 1
+		{Andika Setiawan, S.Kom., M.Cs.}%	% Nama Dosen Penguji 1
+		{NIP. 19911127 2022 03 1 007}				% NIP Dosen Penguji 1
 	\pengujiB%
-		{Nama dan Gelar Penguji II}%	% Nama Dosen Penguji 2
-		{NIP. 123456789}				% NIP Dosen Penguji 2
+		{Eko Dwi Nugroho, S.Kom., M.Cs.}%	% Nama Dosen Penguji 2
+		{NIP. 19910209 2024 06 1 001}				% NIP Dosen Penguji 2
 
 	\sloppy % mencegah text overflow. (Jose)
     \pagenumbering{roman}
     \setcounter{page}{1} % Nomor halaman dimulai dengan "ii" di hal. Pengesahan
 
     \input{chapters/cover-hard} % Hardcover
-    \input{chapters/approval} % Lembar Pengesahan
-    \input{chapters/statement} % Halaman Pernyataan Orisinalitas
-    \input{chapters/publication} % Halaman Persetujuan Publikasi
-    \input{chapters/forewords} % Kata Pengantar
+   \input{chapters/approval} % Lembar Pengesahan
+    % Ganti margin & aktifkan twoside mulai dari sini
+    \clearpage
+    % \newgeometry{
+    %     top=2cm,
+    %     bottom=2cm,
+    %     left=2cm,
+    %     right=2cm,
+    %     includefoot,
+    %     heightrounded,
+    %     bindingoffset=0.5cm,
+    %     twoside
+    % }
+    \pagestyle{alternatingstyle}
+   \input{chapters/statement} % Halaman Pernyataan Orisinalitas
+   \input{chapters/publication} % Halaman Persetujuan Publikasi
+   \input{chapters/forewords} % Kata Pengantar
     
-    \input{chapters/summary} % Ringkasan
+   \input{chapters/summary} % Ringkasan
     \input{chapters/abstract-id} % Abstrak (Indonesia)
     \input{chapters/abstract-en} % Abstrak (Inggris)
 %    \input{chapters/motto}
-%    \input{chapters/dedicated}
+%   \input{chapters/dedicated}
 
-	% Daftar Isi
-	\phantomsection% 
-	\addcontentsline{toc}{chapter}{Daftar Isi}
+    % Daftar Isi
+    \phantomsection% 
+    \addcontentsline{toc}{chapter}{DAFTAR ISI}
     \tableofcontents
     \pagebreak
     % Daftar tabel
     \phantomsection% 
-    \addcontentsline{toc}{chapter}{Daftar Tabel}
+    \addcontentsline{toc}{chapter}{DAFTAR TABEL}
     \listoftables
     \pagebreak
     % Daftar gambar
     \phantomsection% 
-    \addcontentsline{toc}{chapter}{Daftar Gambar}
+    \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
     \listoffigures
     \pagebreak
-    % Daftar persamaan
+    % Daftar rumus
+    % \pagestyle{daftarrumusstyle}
     \phantomsection% 
-    \addcontentsline{toc}{chapter}{Daftar Persamaan}
+    \addcontentsline{toc}{chapter}{DAFTAR RUMUS}
     \listofmyequations
-    \pagebreak
+    % \thispagestyle{daftarrumusstyle}
+    % \pagebreak
 %    \input{chapters/symbols}
+    % Daftar kode
+    \phantomsection% 
+    \addcontentsline{toc}{chapter}{DAFTAR KODE}
+    \lstlistoflistings
+    \pagebreak
+    
 
     %----------------------------------------------------------------%
     % Konfigurasi Bab
@@ -114,13 +137,16 @@
     \pagenumbering{arabic}
     
     %----------------------------------------------------------------%
-
     %----------------------------------------------------------------%
     % Daftar Bab
     % Untuk menambahkan daftar bab, buat berkas bab misalnya `chapter-6` di direktori `chapters`, dan masukkan ke sini.
     %----------------------------------------------------------------%
     \justifying
     \input{chapters/chapter-1}
+    % Mulai selang-seling halaman
+    \forceoddpage
+    \cleardoublepage
+    \pagestyle{alternatingstyle}
     \input{chapters/chapter-2}
     \input{chapters/chapter-3}
     \input{chapters/chapter-4}
@@ -130,14 +156,14 @@
     % Daftar Pustaka
     \newpage
     \phantomsection% 
-    \addcontentsline{toc}{chapter}{Daftar Pustaka}
+    \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
     \printbibliography[title={Daftar Pustaka}]
 
     % Lampiran
     % TODO: Tabel Lampiran
     \newpage
     \appendix
-    \addcontentsline{toc}{chapter}{Lampiran}
+    \addcontentsline{toc}{chapter}{LAMPIRAN}
     \chapter*{Lampiran}
     \renewcommand\thesection{\Alph{section}}
     \input{chapters/appendix}

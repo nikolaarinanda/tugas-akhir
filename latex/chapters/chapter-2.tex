@@ -1,100 +1,87 @@
 \newpage
-\chapter{Tinjauan Pustaka} \label{Bab II}
+\chapter{TINJAUAN PUSTAKA} \label{Bab II}
 
 \section{Tinjauan Pustaka} \label{II.Tinjauan}
-Berisi penelitian terdahulu yang menjadi konsep / pendukung penelitian yang dilakukan. Lakukan pembahasan secara sistematis dengan menjelaskan masalah apa yang diangkat di penelitian terdahulu, metode yang digunakan, kontribusi yang diberikan, serta analisis penulis terkait dengan keunggulan atau keterbatasannya. Tuangkan perbandingan penelitian terdahulu dengan penelitian yang akan dikerjakan, minimal 5 jurnal pembanding (3 -4 tahun terakhir). Kemudian penulis sebaiknya melakukan rangkuman terutama terkait dengan peluang pengembangan atau tugas akhir yang akan dilakukan \par
-
-Perujukan literatur dapat dilakukan dengan menambahkan entri baru dalam file \verb|references.bib|. Cara merujuk sitasi menggunakan \verb|\cite{nama label sitasi}|. Hasil sitasi seperti ini: \cite{knuth2001art}. Daftar Pustaka hanya akan memunculkan sitasi yang direferensikan menggunakan command \verb|\cite{}|. \par
-
-\begin{enumerate}[noitemsep]
-	\item Sistem Informasi Pendaftaran Haji dan Umroh Di PT Multazam Sriwijaya Barakah Palembang Menggunakan Metode Rapid Application Development. \blindtext
-	\item Sistem Informasi Umroh Di PT XYZ Lampung Menggunakan Metode Rapid Application Development. \blindtext
-\end{enumerate}
-
-\begin{longtable}{| b{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|} % Longtable berguna agar tabel dapat terpotong di halaman baru
-	\caption{Literasi Penelitian Terdahulu}
-	\label{table:2.literasi}\\
-	\hline
-	\textbf{No.} & \textbf{Judul} & \textbf{Masalah} & \textbf{Metode} & \textbf{Hasil} \\
-	\hline
-	\endhead % Agar semua baris diatas ini diulang jika melewati halaman baru (repeat header row)
-	1. & Sistem Informasi Pendaftaran Haji dan Umroh Di PT Multazam Sriwijaya Barakah Palembang Menggunakan Metode Rapid Application Development & Belum adanya sistem untuk pendaftaran haji \& umrah & Rapid Application Development & Sistem Informasi Pendaftaran Haji dan Umroh di PT Multazam Sriwijaya Barakah Palembang\\ 
-	\hline
-	2. & Sistem Informasi Umroh Di PT XYZ Lampung Menggunakan Metode Rapid Application Development & Belum adanya sistem untuk pendaftaran haji \& umrah & Rapid Application Development & Sistem Informasi Pendaftaran Umroh di PT XYZ Lampung\\ 
-	\hline
-	3. & Sistem Informasi Umroh Di PT XYZ Lampung Menggunakan Metode Rapid Application Development & Belum adanya sistem untuk pendaftaran haji \& umrah & Rapid Application Development & Sistem Informasi Pendaftaran Umroh di PT XYZ Lampung\\ 
-	\hline
+Penulis  melakukan  pencarian  referensi  terkait beberapa penelitian serupa yang pernah dilakukan sebagai dasar penelitian. Penelitian-penelitian yang menjadi referensi penulis dijabarkan pada Tabel \ref{table:2.literasi}. \par
+\renewcommand{\arraystretch}{1.0} % Mengatur spasi antar baris menjadi 1
+\begin{longtable}{|c|p{0.25\textwidth}|p{0.21\textwidth}|p{0.145\textwidth}|p{0.2\textwidth}|}
+  \caption{Literasi Penelitian Terdahulu}\label{table:2.literasi}\\
+  \hline
+  \textbf{No} 
+    & \textbf{Penulis [Tahun] [Judul]} 
+    & \textbf{Permasalahan} 
+    & \textbf{Metode} 
+    & \textbf{Hasil} \\ % ← you must end the row here
+  \hline
+\endfirsthead
+  \hline
+  \textbf{No} 
+    & \textbf{Penulis [Tahun] [Judul]} 
+    & \textbf{Permasalahan} 
+    & \textbf{Metode} 
+    & \textbf{Hasil} \\ % ← and here too
+  \hline
+\endhead 
+  \hline
+\endfoot
+  \hline
+\endlastfoot
+    1. & Yoon Kim [2014] [Convolutional Neural Networks for Sentence Classification] & Menguji efektivitas arsitektur CNN sederhana yang dilatih di atas pre-trained word vectors untuk tugas klasifikasi kalimat. & Menggunakan arsitektur CNN dengan satu lapis konvolusi dan operasi max-over-time pooling yang diaplikasikan pada word vectors. & Model CNN sederhana dengan pre-trained vectors mencapai performa yang sangat baik dan menjadi state-of-the-art di beberapa dataset. Performa ini dapat lebih ditingkatkan melalui fine-tuning.\\ 
+    \hline
+    2. & Bunga Aura Prameswari , Haliza Syafa Oktaviani , Titus Rangga Wicaksono, Biben Pieter Leonard, Said Achmad dan Rhio Sutoyo [2023] [Building Prediction Model for Detecting Cyberbullying using TikTok Comments ] & Membangun model prediksi untuk mendeteksi cyberbullying secara otomatis pada kolom komentar TikTok , karena fitur pencegahan yang ada saat ini masih memerlukan intervensi manual. & Menggunakan model Deep Learning dengan arsitektur BERT (Bidirectional Encoder Representations from Transformers) yang di-fine-tuning pada 1.508 komentar TikTok yang telah dikumpulkan dan dilabeli secara manual. & Model prediksi berbasis BERT berhasil mengklasifikasikan komentar cyberbullying dengan akurasi validasi mencapai 63\% , namun hasil pelatihan menunjukkan adanya indikasi overfitting. \\
+    \hline
 \end{longtable}
+
+
+
 
 \section{Dasar Teori} \label{II.Teori}
-Berisi teori/konsep yang berkaitan/digunakan dalam tugas akhir yang dikerjakan. Gunakanlah data melalui buku/jurnal referensi, publikasi tugas akhir, penelitian, buku, dan informasi web yang dapat dipertanggungjawabkan, hindari penggunaan dasar teori melalui tautan Wikipedia, surat kabar, atau portal berita, yang dapat memiliki isi yang tidak bersifat fakta. \par
 
-Berikut adalah contoh penyisipan tabel menggunakan \verb|\begin{longtable}{}|: \par
+\subsection{ Convolutional Neural Network (CNN) untuk Klasifikasi Teks} \label{II.teori1}
+% Denyut yang dirasakan sebenarnya bukan darah yang dipompa langsung oleh jantung ke aorta, melainkan gelombang tekanan yang berasal dari aorta yang merambat lebih cepat dibandingkan aliran darah itu sendiri \cite{Ivanny2014Perbandingan}. \par
 
-\begin{longtable}{|c|c|c|c|}
-	\caption{Contoh Tabel}
-	\label{table:2.contoh}\\
-	\hline
-	Col1 & Col2 & Col2 & Col3 \\
-	\hline
-	\endhead
-	1 & 6 & 87837 & 787 \\ 
-	\hline
-	2 & 7 & 78 & 5415 \\
-	\hline
-	3 & 545 & 778 & 7507 \\
-	\hline
-	4 & 545 & 18744 & 7560 \\
-	\hline
-	5 & 88 & 788 & 6344 \\
-	\hline
-\end{longtable}
+Convolutional Neural Network (CNN) adalah arsitektur deep learning yang terbukti efektif untuk tugas klasifikasi kalimat. Dalam konteks analisis teks, model ini bekerja dengan merepresentasikan sebuah kalimat sebagai matriks di mana setiap baris adalah vektor kata atau word embedding \cite{razi2017klasifikasi}. Lapisan konvolusi kemudian menerapkan serangkaian filter dengan ukuran kernel yang berbeda untuk mengekstrak fitur-fitur semantik dari potongan-potongan kalimat. 
 
-\subsection{Subbab 1} \label{II.Subbab1}
-Deskripsikan mengenai teori / konsep yang berkaitan / digunakan / menjadi acuan dalam penelitian. Kemudian berikan pembahasan sederhana mengenai penggunaannya di dalam tugas akhir yang Anda kerjakan. \par
+Setelah itu, operasi pooling diaplikasikan untuk mengambil nilai fitur yang paling signifikan dari setiap filter, yang secara efektif menangkap sinyal terpenting dari seluruh kalimat dan mengatasi masalah panjang kalimat yang bervariasi. Fitur-fitur yang terpilih ini kemudian digabungkan dan dimasukkan ke lapisan fully connected dengan regularisasi dropout untuk menghasilkan prediksi klasifikasi melalui fungsi softmax. \par
 
-Berikut adalah contoh penyisipan gambar menggunakan \verb|\begin{figure}[H]|:
+\subsection{\textit{Pentingnya Pre-trained Word Embedding}} \label{II.teori2}
+% \lipsum[1-2] % Menampilkan paragraf 1 sampai 2 dari lorem ipsum
+% Gambar yang digunakan \ref{fig:3.ref_gbr}. \par
+% \begin{figure}[H] % Kalau menggunakan H, posisi gambar akan tepat dibawah teks 
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{figure/zeta.png}
+%     \caption{Referensi Gambar}
+%     \label{fig:3.ref_gbr}
+%     {\footnotesize Sumber: internet}
+% \end{figure}
 
-\begin{figure}[H] % Kalau menggunakan H, posisi gambar akan tepat dibawah teks
-    \centering
-    \includegraphics[width=0.8\textwidth]{figure/chapter-2-infrastructure-diagram.png}
-    \caption{Contoh gambar}
-    \label{fig:2.contoh}
-\end{figure}
+Word embedding adalah representasi vektor dari kata-kata yang memproyeksikan makna semantik ke dalam ruang vektor berdimensi rendah, di mana kata-kata yang mirip secara makna memiliki jarak yang dekat. Penelitian oleh Yoon Kim (2014) menunjukkan bahwa menginisialisasi model CNN dengan pre-trained word embedding (vektor kata yang sudah dilatih sebelumnya pada korpus data yang sangat besar, seperti Google News) secara dramatis meningkatkan kinerja klasifikasi. 
 
-\subsubsection{Subsubbab} \label{II.Subsubbab1}
+Vektor-vektor ini berfungsi sebagai "ekstraktor fitur universal" yang kuat. Eksperimen membuktikan bahwa model dengan pre-trained vectors yang statis (tidak diubah selama pelatihan) jauh mengungguli model yang diinisialisasi secara acak. Kinerja dapat ditingkatkan lebih jauh lagi dengan melakukan fine-tuning, yaitu memperbarui nilai vektor selama proses pelatihan agar lebih spesifik dengan tugas yang dikerjakan \cite{kim2014temporal}. \par
 
-Berikut adalah contoh subsubbab. Ini adalah level subbab maksimal dalam laporan Tugas Akhir, dan tidak boleh lebih dalam.
+\subsection{\textit{Analisis Sentimen}} \label{II.teori3}
+% \lipsum[3-4] % Menampilkan paragraf 3 sampai 4 dari lorem ipsum
+% Berikut adalah ilustrasi konsep yang digunakan seperti pada Gambar \ref{fig:3.ref_gbr2}. \par
+% \begin{figure}[H] % Posisi gambar tepat dibawah teks
+%   \centering
+%   \includegraphics[width=0.7\textwidth]{figure/Logo_ITERA.png}
+%   \caption{Ilustrasi Konsep}
+%   \label{fig:3.ref_gbr2}
+%   {\footnotesize Sumber: dokumentasi penelitian}
+% \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=3cm]{figure/samplephoto.jpg}
-	\caption{Contoh foto}
-	\label{fig:2.foto}
-\end{figure}
+Analisis sentimen adalah cabang dari Pemrosesan Bahasa Alami (NLP) yang bertujuan untuk mengidentifikasi, mengekstrak, dan mengklasifikasikan opini atau sentimen yang terkandung dalam sebuah teks. Tugas utamanya adalah menentukan polaritas dari teks tersebut sesuai dengan jumlah kelas yang ditentukan, apakah bernilai positif, negatif, atau netral \cite{liao2017cnn}. Pendekatan ini relevan untuk analisis komentar TikTok yang berfokus pada sentimen negatif, terutama dalam konteks cyberbullying. Dengan menggunakan CNN, model dapat belajar mengenali pola bahasa yang menunjukkan sentimen negatif, seperti kata-kata kasar, hinaan, atau komentar yang merendahkan. \par
 
-\subsection{Subbab 2} \label{II.Subbab2}
-Untuk membuat sebuah persamaan, gunakan kode \verb|\begin{equation}| dibawah: \par
+cyberbullying di mana tujuannya adalah untuk mengklasifikasikan apakah sebuah komentar mengandung sentimen negatif yang mengarah pada perundungan.
 
-\begin{equation}
-	x + 1 = 2
-\end{equation}
-\label{eq:2.sum}
-\myequations{Fungsi x}
+\subsection{Cyberbullying} \label{II.mae}
+% \textit{Mean Absolute Error} (MAE) \cite{Suryanto2019MAE} \cite{cort2005maermse}. Rumus perhitungan dari MAE dapat dilihat pada \ref{eq:2.mae}. \par
 
-Berikut adalah contoh penulisan persamaan yang lebih kompleks, yaitu persamaan distribusi normal. \par
+% \begin{equationcaptioned}[eq:2.mae]{
+%     MAE = \frac{1}{n} \sum_{i=1}^{n} \left| y_i - \hat{y}_i \right|
+% }{
+%     Mean Absolute Error (MAE)
+% }
+% \end{equationcaptioned}
 
-\begin{equation}
-	P(x) = \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma ^2 }}}
-\end{equation}
-\label{eq:2.normal}
-\myequations{Distribusi normal}
-
-Jika menuliskan banyak persamaan secara berurutan, gunakan  \verb|\begin{align}| atau \verb|\begin{gather}|: \par
-
-\begin{align} 
-	2x - 5y &=  8 \\ 
-	3x + 9y &=  -12
-\end{align}
-\label{eq:2.SPL}
-\myequations{Sistem persamaan linier}
+Cyberbullying atau perundungan siber adalah tindakan agresif dan disengaja yang dilakukan oleh individu atau kelompok menggunakan media elektronik, secara berulang-ulang terhadap seseorang yang dianggap tidak mudah untuk membela diri. Dalam konteks media sosial seperti TikTok, cyberbullying dapat bermanifestasi dalam bentuk komentar jahat, ujaran kebencian, pelecehan, atau penghinaan \cite{putri2023cyberbullying}. Analisis sentimen menggunakan model seperti Text CNN dapat diterapkan untuk mendeteksi komentar-komentar tersebut secara otomatis. Dengan melatih model pada dataset komentar yang telah dilabeli sebagai cyberbullying atau bukan, sistem dapat belajar mengenali pola bahasa yang digunakan dalam perundungan dan membantu proses moderasi konten.\par

@@ -1,50 +1,114 @@
 \newpage
-\chapter{Analisis dan Perancangan} \label{Bab III}
+\chapter{METODE PENELITIAN} \label{Bab III}
 
 \section{Alur Penelitian} \label{III.Alur}
-Digambarkan terkait bagaimana proses yang dilakukan dalam penelitian, dari awal sampai dengan akhir. Gambarkan dalam bentuk diagram alir (\textit{flowchart}). \par
+% Pada penelitian ini, alur dirancang untuk memastikan setiap tahapan pemrosesan dilakukan secara sistematis dan efisien. Alur penelitian ini mencerminkan langkah-langkah utama yang dilakukan pada penelitian ini, dapat dilihat pada Gambar \ref{fig:3.alur}. \par
+Penelitian ini dilakukan dengan pendekatan kuantitatif eksperimental yang berfokus pada penerapan metode deep learning, khususnya arsitektur Text CNN, untuk klasifikasi sentimen komentar cyberbullying. Secara umum, alur penelitian ini terdiri dari beberapa tahapan utama, yaitu: \par
+
+\begin{figure}[H] % Kalau menggunakan H, posisi gambar akan tepat dibawah teks
+    \centering
+    \includegraphics[width=0.3\textwidth]{figure/sistematika-penelitian.jpg}
+    \caption{Alur Penelitian}
+    \label{fig:3.alur}
+\end{figure}
 
 \section{Penjabaran Langkah Penelitian} \label{III.Jabar Alur}
-Penjelasan detail dari langkah-langkah alur penelitian, yang sudah tergambar dalam flowchart di subbab \ref{III.Alur}. Subsubbab berikut harus sesuai dengan jumlah alur penelitian. \par
+Untuk memperjelas setiap langkah-langkah yang telah didefinisikan pada Gambar \ref{fig:3.alur}, berikut ini akan dijelaskan secara rinci tahapan-tahapan yang dilakukan dalam penelitian ini.
 
-\subsection{Langkah 1} \label{III.Langkah 1}
-Penjelasan Langkah 1. \par
+\subsection{Identifikasi Masalah} \label{III.Identifikasi_masalah}
+% \lipsum[1] % Menampilkan paragraf 1 sampai 2 dari lorem ipsum
 
-\subsection{Langkah 2} \label{III.Langkah 2}
-Penjelasan Langkah 2. \par
 
 \section{Alat dan Bahan Tugas Akhir} \label{III.Alat dan Bahan}
-Berisi alat-alat dan bahan-bahan yang digunakan dalam penelitian. \par
+Dalam menjalani penelitian, beberapa alat dan bahan digunakan untuk memastikan penelitian berjalan dengan baik.\par
 
 \subsection{Alat} \label{III.Alat}
-Alat yang digunakan untuk melakukan penelitian, dapat berupa computer, PC, Arduino, raspberry, etc. Contoh: \par
+Dalam menganalisis sentimen komentar cyberbullying pada TikTok menggunakan arsitektur Text CNN, berikut adalah alat-alat yang digunakan: \par
+
+\subsubsection{Perangkat Lunak}
 \begin{enumerate}[noitemsep]
-	\item \textit{Notebook} dengan spesifikasi minumum sistem operasi Windows 11, processor AMD Ryzen 5 7430 CPU @ 6 core/2,3 GHz, RAM 16GB DDR4, grafis AMD Radeon RX Vega 7 2GB, SSD 512 GB.
-	\item \textit{Smartphone} dengan spesifikasi OS Android OS 12, CPU Snapdragon 778G Octa-core, GPU Adreno 642L, memori 128 GB, RAM 6 GB.
-	\item Platform game engine Godot v4.3
-	\item Code editor Microsoft Visual Studio Code
-	\item Github
+    \item \textit{Visual Studio Code} sebagai \textit{text editor}.
+    \item Torch versi 2.3.1
+    \item transformers versi 4.51.2
+    \item NumPy versi 1.26.2
+    \item Pandas versi 2.2.3
+    \item Scikit-learn versi 1.7.0
+    \item Matplotlib versi 3.9.0
+    \item Wandb versi 0.19.11
+    \item Tqdm versi 4.66.5
+    \item Muon-optimizer versi 0.1.0
 \end{enumerate}
+
+\subsubsection{Perangkat Keras}
+\begin{itemize}[noitemsep]
+	\item Asus Vivobook 14x m1403qa
+    \item Processor AMD Ryzen 5 5600H with Radeon Graphics    
+    \item RAM 24 GB
+    \item AMD Radeon (TM) Graphics
+    \item Sistem operasi Windows 11 Home 64-bit
+\end{itemize}
 
 \subsection{Bahan} \label{III.Bahan}
-Bahan yang digunakan/diperlukan untuk melakukan penelitian, dapat berupa: \par
-\begin{enumerate}[noitemsep]
-	\item Dataset pihak lain yang diperoleh dengan izin atau dalam lisensi yang diizinkan untuk digunakan secara langsung,
-	\item Dataset pihak pertama yang disusun sendiri melalui quisioner, observasi, atau interview,
-	\item Dokumen panduan yang mengacu pada standar, hasil tugas akhir, atau artikel yang disitasi dan digunakan. 
-\end{enumerate}
+Dataset yang digunakan pada penelitian ini merupakan dataset komentar TikTok yang diperoleh dari repositori GitHub penelitian Prameswari et al \cite{10468424}. Dataset ini berisi komentar-komentar TikTok yang telah dilabeli dengan kategori sentimen positif dan negatif. Dataset ini berisi 1.508 data komentar TikTok yang telah dilabeli. Dataset ini digunakan untuk melatih dan menguji model Text CNN dalam mengklasifikasikan sentimen komentar TikTok yang mengandung unsur cyberbullying.
 
-\section{Metode Pengembangan/Pengukuran} \label{III.Metode}
-Membahas mengenai metode yang digunakan dalam penelitian, berdasarkan dasar teori yang sebelumnya sudah dijelaskan pada subbab \ref{II.Teori}. Setiap Tugas Akhir wajib memiliki metode dalam pelaksanaannya yang sesuai dengan penelitian yang dikerjakan: \par
-\begin{enumerate}[noitemsep]
-	\item Alur pengembangan tugas akhir, menggunakan flowchart
-	\item Cara pengumpulan data yang digunakan ()Kuesioner, Wawancara, pengujian, dan lainnya)
-	\item Metode pengembangan tugas akhir (Metode Waterfall, Agile, RAD, dan lainnya).
-\end{enumerate}
-Subbab ini akan berhubungan erat dengan Subbab \ref{IV.Hasil}. \par
+\section{Ilustrasi Perhitungan Metode} \label{III.Ilustrasi}
+Metode yang digunakan dalam penelitian ini adalah Text CNN (Text Convolutional Neural Network), yaitu arsitektur CNN yang diadaptasi untuk klasifikasi teks. Berikut tahapan dan ilustrasi metode: \par
 
-\section{Ilustrasi Metode Pengembangan/Pengukuran} \label{III.Ilustrasi}
-Jelaskan contoh perhitungan dari metode pengemubangan bagi penelitian Tugas Akhir yang menggunakan algoritma perhitungan tertentu. Tidak perlu harus menggunakan seluruh dataset, cukup menggunakan sampel data. Tujuannya untuk menggambarkan alur perhitungan metode dari data awal sampai luaran yang ditargetkan. \par
+\subsection{Embedding Layer}
+Komentar yang telah diproses diubah menjadi vektor representasi kata (menggunakan Word2Vec, GloVe, atau embedding trainable). \par
+Misal: \texttt{"kamu jelek"} → \texttt{[[0.2, -0.4], [0.5, 0.7]]}
 
-\section{Rancangan Pengujian} \label{III.Rancang Uji}
-Penjabaran terkait rancangan \& skenario pengujian pada penelitian. Dapat berupa pengujian perangkat keras, lunak, fungsional, dan non-fungsional. Subbab ini akan berhubungan erat dengan Subbab \ref{IV.Uji}. \par
+\subsection{Convolutional Layer}
+Filter konvolusi diterapkan untuk mengekstrak pola n-gram.
+Misal filter size: 2, 3, 4.
+
+\subsection{ReLU Activation Function}
+Fungsi aktivasi ReLU digunakan untuk menambah non-linearitas.
+
+\subsection{Max Pooling}
+Memilih nilai fitur tertinggi dari hasil konvolusi untuk mempertahankan fitur paling signifikan.
+
+\subsection{Fully Connected Layer}
+Output pooling digabung dan diteruskan ke dense layer.
+
+\subsection{Output Layer}
+Fungsi aktivasi softmax digunakan untuk mengklasifikasikan komentar ke dalam salah satu kelas: positif, netral, atau negatif.
+
+% Dalam penelitian ini, hasil perhitungan dari program akan melalui serangkaian pengujian untuk mengevaluasi tingkat keakuratan model yang digunakan. Data dummy tersebut dapat dilihat pada Tabel \ref{table:3.dummy}. \par
+% \begin{longtable}{|c|c|c|c|c|c|c|c|c|}
+% 	\caption{Data \textit{dummy} Pengujian}
+% 	\label{table:3.dummy}\\
+% 	\hline
+% 	\multirow{2}{*}{\textbf{Subjek}} & \multicolumn{7}{|c|}{\textbf{Hasil Prediksi (BPM)}} & \multirow{2}{*}{\textbf{GT}} \\ \cline{2-8}
+%     & \textbf{F} & \textbf{NA} & \textbf{NO} & \textbf{RC} & \textbf{LC} & \textbf{M} & \textbf{C} & \\ 
+%         \hline
+% 	   \endfirsthead
+%        \hline
+%        \multirow{2}{*}{\textbf{Subjek}} & \multicolumn{7}{|c|}{\textbf{Hasil Prediksi (BPM)}} & \multirow{2}{*}{\textbf{GT}} \\ \cline{2-8}
+%     & \textbf{F} & \textbf{NA} & \textbf{NO} & \textbf{RC} & \textbf{LC} & \textbf{M} & \textbf{C} & \\ 
+%     \hline
+% 	\endhead
+% 	\hline
+% 	\endfoot
+% 	\hline
+% 	\endlastfoot
+% 	1 & 68 & 69 & 68 & 70 & 68 & 71 & 69 & 68 \\ 
+% 	\hline
+% 	2 & 69 & 69 & 68 & 70 & 68 & 71 & 69 & 69 \\
+% 	\hline
+% 	3 & 70 & 70 & 69 & 71 & 68 & 73 & 69 & 70\\
+% 	\hline
+% 	4 & 71 & 70 & 70 & 72 & 69 & 73 & 70 & 71 \\
+% 	\hline
+% 	5 & 72 & 72 & 70 & 72 & 70 & 74 & 70 & 72 \\
+% 	\hline
+%         6 & 73 & 72 & 71 & 74 & 71 & 76 & 71 & 73 \\ 
+% 	\hline
+% 	7 & 74 & 73 & 72 & 74 & 72 & 77 & 71 & 74 \\
+% 	\hline
+% 	8 & 75 & 74 & 72 & 74 & 73 & 77 & 73 & 75\\
+% 	\hline
+% 	9 & 76 & 75 & 73 & 75 & 74 & 78 & 75 & 76 \\
+% 	\hline
+% 	10 & 77 & 76 & 74 & 78 & 75 & 78 & 76 & 77
+% \end{longtable}
