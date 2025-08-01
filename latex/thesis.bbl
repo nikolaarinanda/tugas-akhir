@@ -392,34 +392,8 @@
       \endverb
       \keyw{Technological innovation;Video on demand;Buildings;Cyberbullying;Bidirectional control;Mental health;Predictive models;Cyberbullying;TikTok;BERT;Deep Learning;Sentiment Analysis}
     \endentry
-    \entry{chen2015convolutional}{thesis}{}{}
-      \name{author}{1}{}{%
-        {{hash=b72dd08bf66c8e0d8cacf0017b3c21a8}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Yahui},
-           giveni={Y\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {University of Waterloo}%
-      }
-      \strng{namehash}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \strng{fullhash}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \strng{fullhashraw}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \strng{bibnamehash}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \strng{authorbibnamehash}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \strng{authornamehash}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \strng{authorfullhash}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \strng{authorfullhashraw}{b72dd08bf66c8e0d8cacf0017b3c21a8}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Convolutional neural network for sentence classification}
-      \field{type}{mathesis}
-      \field{year}{2015}
-    \endentry
   \enddatalist
+  \missing{chen2015convolutional}
   \missing{kim2014temporal}
 \endrefsection
 \endinput

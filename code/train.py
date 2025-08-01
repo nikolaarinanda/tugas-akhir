@@ -166,38 +166,26 @@ def cnn_train_fold(args, output_dir="none"):
         dropout_rate=args.dropout
     )
 
-    # model = TextCNNMedium(
-    #     vocab_size=train_loader.dataset.vocab_size,
-    #     embed_dim=args.embed_dim,
-    #     num_classes=args.num_classes,
-    # )
-
-    # model = TextCNNMedium(
-    #     vocab_size=train_loader.dataset.vocab_size,
-    #     embed_dim=args.embed_dim,
-    #     num_classes=args.num_classes,
-    #     output_channels=args.out_channels,
-    #     kernel_sizes=args.kernel_size,
-    #     dropout_rate=args.dropout
-    # )
-
     model = model.to(device)
 
-    hidden_weights = [p for p in model.parameters() if p.ndim >= 2]
-    other_params = [p for p in model.parameters() if p.ndim < 2]
+    # hidden_weights = [p for p in model.parameters() if p.ndim >= 2]
+    # other_params = [p for p in model.parameters() if p.ndim < 2]
 
-    param_groups = [
-        {"params": hidden_weights, "use_muon": True, "lr": 0.02, "weight_decay": 0.01},
-        {"params": other_params, "use_muon": False, "lr": 3e-4, "betas": (0.9, 0.95), "weight_decay": 0.01},
-    ]
+    # param_groups = [
+    #     {"params": hidden_weights, "use_muon": True, "lr": 0.02, "weight_decay": 0.01},
+    #     {"params": other_params, "use_muon": False, "lr": 3e-4, "betas": (0.9, 0.95), "weight_decay": 0.01},
+    # ]
 
     optimizer = AdamW(model.parameters(), lr=args.lr) 
     # optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
 
     criterion = torch.nn.CrossEntropyLoss().to(device)
 
-    # Early stopping setup
-    # scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
+    # Learning rate scheduler
+    scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
+
+    # 🔽 Inisialisasi EarlyStopping
+    early_stopping = EarlyStopping(patience=args.patience, min_delta=args.min_delta)
     
     for epoch in range(args.epochs):
         model.train()
@@ -266,13 +254,18 @@ def cnn_train_fold(args, output_dir="none"):
             })
 
         # Early stopping check
-        # scheduler.step()
+        scheduler.step()
         
         # Print results
         print(f"Epoch {epoch+1}/{args.epochs}")
         print(f"Learning Rate: {optimizer.param_groups[0]['lr']:.6f}")
         print(f"Train Loss: {avg_train_loss:.4f}, Accuracy: {train_accuracy:.2f}%")
         print(f"Val Loss: {avg_val_loss:.4f}, Accuracy: {val_accuracy:.2f}%")
+
+        # 🔽 Early stopping check
+        if early_stopping(avg_val_loss):
+            print(f"Early stopping triggered at epoch {epoch+1}.")
+            break
     
     # Save model if required
     if args.output_model:

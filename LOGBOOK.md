@@ -51,3 +51,12 @@
 # 2025-05-24 to 2025-06-10
 
 - Eksperimen dengan hyperparameter
+
+# 2025-06-10 to 2025-07-05
+
+- ..........
+
+# 2025-07-05 to 2025-08-01
+
+- Bimbingan draf laporan dari bab 1 - 2
+- Implementasi learning rate scheduler dan early stopping
