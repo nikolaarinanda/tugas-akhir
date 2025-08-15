@@ -60,3 +60,8 @@
 
 - Bimbingan draf laporan dari bab 1 - 2
 - Implementasi learning rate scheduler dan early stopping
+
+# 2025-08-01 to 2025-08-15
+
+- Penulisan laporan bab 2 dan penambahan di bab 1
+- Pencarian sitasi utama yang berkesuaian dengan penelitian saya
