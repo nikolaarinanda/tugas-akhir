@@ -65,3 +65,8 @@
 
 - Penulisan laporan bab 2 dan penambahan di bab 1
 - Pencarian sitasi utama yang berkesuaian dengan penelitian saya
+
+# 2025-08-15 to 2025-08-01
+
+- Penulisan laporan bab 3
+- Perubahan salah satu sitasi utama dari tesis ke paper
