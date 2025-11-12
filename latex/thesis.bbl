@@ -88,101 +88,69 @@
       \field{pages}{33\bibrangedash 44}
       \range{pages}{12}
     \endentry
-    \entry{kurniawan2024dampak}{article}{}{}
-      \name{author}{5}{}{%
-        {{hash=baf27244acff9ebe4e5e7be25b751e3d}{%
-           family={Kurniawan},
-           familyi={K\bibinitperiod},
-           given={Kurniawan},
-           giveni={K\bibinitperiod}}}%
-        {{hash=1b003ffb9af345edd81d3525fbbaa92c}{%
-           family={Yosep},
-           familyi={Y\bibinitperiod},
-           given={Iyus},
-           giveni={I\bibinitperiod}}}%
-        {{hash=48ab9883cfebbbb26bdb79ff51a78aac}{%
-           family={Khoirunnisa},
-           familyi={K\bibinitperiod},
-           given={Khoirunnisa},
-           giveni={K\bibinitperiod}}}%
-        {{hash=033ed8762509f67920c04be9236ffde2}{%
-           family={Mardhiyah},
-           familyi={M\bibinitperiod},
-           given={Ai},
-           giveni={A\bibinitperiod}}}%
-        {{hash=039cbf013323a78d07262927bb837ea5}{%
-           family={Fitriani},
-           familyi={F\bibinitperiod},
-           given={Nurlaila},
-           giveni={N\bibinitperiod}}}%
+    \entry{hinduja10role}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=fb0303c1b0388c05362bbe8f21ab72f0}{%
+           family={Hinduja},
+           familyi={H\bibinitperiod},
+           given={Sameer},
+           giveni={S\bibinitperiod}}}%
+        {{hash=20adac23258ca0d12d6af6c6b331f6ac}{%
+           family={Patchin},
+           familyi={P\bibinitperiod},
+           given={Justin\bibnamedelima W},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
       }
-      \strng{namehash}{f9d334f33b6952d32f9e3100fa20df98}
-      \strng{fullhash}{988e2e30ce7fa15e5380cc05017aef62}
-      \strng{fullhashraw}{988e2e30ce7fa15e5380cc05017aef62}
-      \strng{bibnamehash}{f9d334f33b6952d32f9e3100fa20df98}
-      \strng{authorbibnamehash}{f9d334f33b6952d32f9e3100fa20df98}
-      \strng{authornamehash}{f9d334f33b6952d32f9e3100fa20df98}
-      \strng{authorfullhash}{988e2e30ce7fa15e5380cc05017aef62}
-      \strng{authorfullhashraw}{988e2e30ce7fa15e5380cc05017aef62}
+      \list{publisher}{1}{%
+        {Frontiers}%
+      }
+      \strng{namehash}{132cfdd1db188dc6da8b3b6d32707003}
+      \strng{fullhash}{132cfdd1db188dc6da8b3b6d32707003}
+      \strng{fullhashraw}{132cfdd1db188dc6da8b3b6d32707003}
+      \strng{bibnamehash}{132cfdd1db188dc6da8b3b6d32707003}
+      \strng{authorbibnamehash}{132cfdd1db188dc6da8b3b6d32707003}
+      \strng{authornamehash}{132cfdd1db188dc6da8b3b6d32707003}
+      \strng{authorfullhash}{132cfdd1db188dc6da8b3b6d32707003}
+      \strng{authorfullhashraw}{132cfdd1db188dc6da8b3b6d32707003}
       \field{sortinit}{3}
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{JPP (Jurnal Kesehatan Poltekkes Palembang)}
-      \field{number}{1}
-      \field{title}{Dampak Cyberbullying terhadap Risiko Bunuh Diri pada Remaja: Narrative Review}
-      \field{volume}{19}
-      \field{year}{2024}
-      \field{pages}{8\bibrangedash 16}
-      \range{pages}{9}
+      \field{journaltitle}{Frontiers in Sociology}
+      \field{title}{The Role of Hope in Bullying and Cyberbullying Prevention}
+      \field{volume}{10}
+      \field{pages}{1576372}
+      \range{pages}{1}
     \endentry
-    \entry{sari2018komunikasi}{article}{}{}
-      \name{author}{5}{}{%
-        {{hash=0bb37517d796ef030c86828e8bdef121}{%
-           family={Sari},
-           familyi={S\bibinitperiod},
-           given={Astari\bibnamedelima Clara},
-           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=219f8e4f6efc6901d2425a16214844ed}{%
-           family={Hartina},
-           familyi={H\bibinitperiod},
-           given={Rini},
-           giveni={R\bibinitperiod}}}%
-        {{hash=526d51575edbc2d73013c10095b163d5}{%
-           family={Awalia},
-           familyi={A\bibinitperiod},
-           given={Reski},
-           giveni={R\bibinitperiod}}}%
-        {{hash=427d2ee6bc1c5670d0c5c3f9a226a602}{%
-           family={Irianti},
-           familyi={I\bibinitperiod},
-           given={Hana},
-           giveni={H\bibinitperiod}}}%
-        {{hash=108b5cb43ba8cd07990b7643ff88115d}{%
-           family={Ainun},
-           familyi={A\bibinitperiod},
-           given={Nurul},
-           giveni={N\bibinitperiod}}}%
+    \entry{wearesocial2025}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=bc1a2ffbeac1224c04dd83d1436c79cd}{%
+           family={Kemp},
+           familyi={K\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
       }
-      \strng{namehash}{ab6a070b5c655fbe6d2fd52692b69d13}
-      \strng{fullhash}{bb6e6e67867fceb8ffb772ece999da4f}
-      \strng{fullhashraw}{bb6e6e67867fceb8ffb772ece999da4f}
-      \strng{bibnamehash}{ab6a070b5c655fbe6d2fd52692b69d13}
-      \strng{authorbibnamehash}{ab6a070b5c655fbe6d2fd52692b69d13}
-      \strng{authornamehash}{ab6a070b5c655fbe6d2fd52692b69d13}
-      \strng{authorfullhash}{bb6e6e67867fceb8ffb772ece999da4f}
-      \strng{authorfullhashraw}{bb6e6e67867fceb8ffb772ece999da4f}
+      \strng{namehash}{bc1a2ffbeac1224c04dd83d1436c79cd}
+      \strng{fullhash}{bc1a2ffbeac1224c04dd83d1436c79cd}
+      \strng{fullhashraw}{bc1a2ffbeac1224c04dd83d1436c79cd}
+      \strng{bibnamehash}{bc1a2ffbeac1224c04dd83d1436c79cd}
+      \strng{authorbibnamehash}{bc1a2ffbeac1224c04dd83d1436c79cd}
+      \strng{authornamehash}{bc1a2ffbeac1224c04dd83d1436c79cd}
+      \strng{authorfullhash}{bc1a2ffbeac1224c04dd83d1436c79cd}
+      \strng{authorfullhashraw}{bc1a2ffbeac1224c04dd83d1436c79cd}
       \field{sortinit}{4}
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Jurnal The Messenger}
-      \field{number}{2}
-      \field{title}{Komunikasi dan media sosial}
-      \field{volume}{3}
-      \field{year}{2018}
-      \field{pages}{69}
-      \range{pages}{1}
+      \field{note}{Diakses: 11 Agustus 2025}
+      \field{title}{Digital 2025: Indonesia}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://datareportal.com/reports/digital-2025-indonesia
+      \endverb
+      \verb{url}
+      \verb https://datareportal.com/reports/digital-2025-indonesia
+      \endverb
     \endentry
     \entry{rosiana2023analisis}{article}{}{}
       \name{author}{4}{}{%
@@ -225,119 +193,7 @@
       \field{volume}{11}
       \field{year}{2023}
     \endentry
-    \entry{aser2022fenomena}{article}{}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{2}{}{%
-        {{hash=ca894f1eeb5f3a4a55497848a0256dd7}{%
-           family={Aser},
-           familyi={A\bibinitperiod},
-           given={Fabiola\bibnamedelima Greselda},
-           giveni={F\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-        {{hash=f692c21ad54d3ce60c6001fee5307046}{%
-           family={Paramita},
-           familyi={P\bibinitperiod},
-           given={Sinta},
-           giveni={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \strng{fullhash}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \strng{fullhashraw}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \strng{bibnamehash}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \strng{authorbibnamehash}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \strng{authornamehash}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \strng{authorfullhash}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \strng{authorfullhashraw}{42ba6a3ca8e3ce2ff6a17517476a7090}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Kiwari}
-      \field{number}{3}
-      \field{title}{Fenomena Cyberbullying di Media Sosial TikTok}
-      \field{volume}{1}
-      \field{year}{2022}
-      \field{pages}{449\bibrangedash 453}
-      \range{pages}{5}
-    \endentry
-    \entry{razi2017klasifikasi}{thesis}{}{}
-      \name{author}{1}{}{%
-        {{hash=b67d59a418656869dd8ea7464204e9b5}{%
-           family={Razi},
-           familyi={R\bibinitperiod},
-           given={AR},
-           giveni={A\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {Universitas Gadjah Mada}%
-      }
-      \strng{namehash}{b67d59a418656869dd8ea7464204e9b5}
-      \strng{fullhash}{b67d59a418656869dd8ea7464204e9b5}
-      \strng{fullhashraw}{b67d59a418656869dd8ea7464204e9b5}
-      \strng{bibnamehash}{b67d59a418656869dd8ea7464204e9b5}
-      \strng{authorbibnamehash}{b67d59a418656869dd8ea7464204e9b5}
-      \strng{authornamehash}{b67d59a418656869dd8ea7464204e9b5}
-      \strng{authorfullhash}{b67d59a418656869dd8ea7464204e9b5}
-      \strng{authorfullhashraw}{b67d59a418656869dd8ea7464204e9b5}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Klasifikasi Artikel Berita Berbahasa Indonesia Menggunakan Convolutional Neural Network}
-      \field{type}{phdthesis}
-      \field{year}{2017}
-    \endentry
-    \entry{liao2017cnn}{article}{}{}
-      \name{author}{5}{}{%
-        {{hash=07770e00bfb8251855901149fb112aa0}{%
-           family={Liao},
-           familyi={L\bibinitperiod},
-           given={Shiyang},
-           giveni={S\bibinitperiod}}}%
-        {{hash=27a780ee716960d6d3ff67e599656086}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Junbo},
-           giveni={J\bibinitperiod}}}%
-        {{hash=665fdc49babd7d581585ab88397e4ac7}{%
-           family={Yu},
-           familyi={Y\bibinitperiod},
-           given={Ruiyun},
-           giveni={R\bibinitperiod}}}%
-        {{hash=e44d5da3261ad35430d970d3526bcfa7}{%
-           family={Sato},
-           familyi={S\bibinitperiod},
-           given={Koichi},
-           giveni={K\bibinitperiod}}}%
-        {{hash=95986922cd7657ccf2395a9dae494b5e}{%
-           family={Cheng},
-           familyi={C\bibinitperiod},
-           given={Zixue},
-           giveni={Z\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{b8cc6af2ea9b52a466ccc108125f533e}
-      \strng{fullhash}{da6f63975f095fc5625ebf3df2668c5f}
-      \strng{fullhashraw}{da6f63975f095fc5625ebf3df2668c5f}
-      \strng{bibnamehash}{b8cc6af2ea9b52a466ccc108125f533e}
-      \strng{authorbibnamehash}{b8cc6af2ea9b52a466ccc108125f533e}
-      \strng{authornamehash}{b8cc6af2ea9b52a466ccc108125f533e}
-      \strng{authorfullhash}{da6f63975f095fc5625ebf3df2668c5f}
-      \strng{authorfullhashraw}{da6f63975f095fc5625ebf3df2668c5f}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Procedia computer science}
-      \field{title}{CNN for situations understanding based on sentiment analysis of twitter data}
-      \field{volume}{111}
-      \field{year}{2017}
-      \field{pages}{376\bibrangedash 381}
-      \range{pages}{6}
-    \endentry
-    \entry{10468424}{inproceedings}{}{}
+    \entry{prameswari2023cyberbullying}{inproceedings}{}{}
       \name{author}{6}{}{%
         {{hash=9a3fd4d32ed859af02c49b791605227a}{%
            family={Prameswari},
@@ -378,8 +234,8 @@
       \strng{authornamehash}{61d6030d9c2668cc612905206eb675b8}
       \strng{authorfullhash}{11da7be68bfcd7c7585b5c30862ef0a1}
       \strng{authorfullhashraw}{11da7be68bfcd7c7585b5c30862ef0a1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2023 IEEE 8th International Conference on Recent Advances and Innovations in Engineering (ICRAIE)}
@@ -392,9 +248,610 @@
       \endverb
       \keyw{Technological innovation;Video on demand;Buildings;Cyberbullying;Bidirectional control;Mental health;Predictive models;Cyberbullying;TikTok;BERT;Deep Learning;Sentiment Analysis}
     \endentry
+    \entry{liao2017cnn}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=07770e00bfb8251855901149fb112aa0}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Shiyang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=27a780ee716960d6d3ff67e599656086}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Junbo},
+           giveni={J\bibinitperiod}}}%
+        {{hash=665fdc49babd7d581585ab88397e4ac7}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Ruiyun},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e44d5da3261ad35430d970d3526bcfa7}{%
+           family={Sato},
+           familyi={S\bibinitperiod},
+           given={Koichi},
+           giveni={K\bibinitperiod}}}%
+        {{hash=95986922cd7657ccf2395a9dae494b5e}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Zixue},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{fullhash}{da6f63975f095fc5625ebf3df2668c5f}
+      \strng{fullhashraw}{da6f63975f095fc5625ebf3df2668c5f}
+      \strng{bibnamehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{authorbibnamehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{authornamehash}{b8cc6af2ea9b52a466ccc108125f533e}
+      \strng{authorfullhash}{da6f63975f095fc5625ebf3df2668c5f}
+      \strng{authorfullhashraw}{da6f63975f095fc5625ebf3df2668c5f}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Procedia computer science}
+      \field{title}{CNN for situations understanding based on sentiment analysis of twitter data}
+      \field{volume}{111}
+      \field{year}{2017}
+      \field{pages}{376\bibrangedash 381}
+      \range{pages}{6}
+    \endentry
+    \entry{ying2019overview}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=bf827576bc08bcbef835217a69df8fb2}{%
+           family={Ying},
+           familyi={Y\bibinitperiod},
+           given={Xue},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{namehash}{bf827576bc08bcbef835217a69df8fb2}
+      \strng{fullhash}{bf827576bc08bcbef835217a69df8fb2}
+      \strng{fullhashraw}{bf827576bc08bcbef835217a69df8fb2}
+      \strng{bibnamehash}{bf827576bc08bcbef835217a69df8fb2}
+      \strng{authorbibnamehash}{bf827576bc08bcbef835217a69df8fb2}
+      \strng{authornamehash}{bf827576bc08bcbef835217a69df8fb2}
+      \strng{authorfullhash}{bf827576bc08bcbef835217a69df8fb2}
+      \strng{authorfullhashraw}{bf827576bc08bcbef835217a69df8fb2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Journal of physics: Conference series}
+      \field{title}{An overview of overfitting and its solutions}
+      \field{volume}{1168}
+      \field{year}{2019}
+      \field{pages}{022022}
+      \range{pages}{1}
+    \endentry
+    \entry{kim2014convolutional}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=1fecefbf07117382be6f83e7910ea8a0}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Yoon},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{1fecefbf07117382be6f83e7910ea8a0}
+      \strng{fullhash}{1fecefbf07117382be6f83e7910ea8a0}
+      \strng{fullhashraw}{1fecefbf07117382be6f83e7910ea8a0}
+      \strng{bibnamehash}{1fecefbf07117382be6f83e7910ea8a0}
+      \strng{authorbibnamehash}{1fecefbf07117382be6f83e7910ea8a0}
+      \strng{authornamehash}{1fecefbf07117382be6f83e7910ea8a0}
+      \strng{authorfullhash}{1fecefbf07117382be6f83e7910ea8a0}
+      \strng{authorfullhashraw}{1fecefbf07117382be6f83e7910ea8a0}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1408.5882}
+      \field{title}{Convolutional neural networks for sentence classification}
+      \field{year}{2014}
+    \endentry
+    \entry{nugraha2023analisis}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=b04c00b1d39301884e0ba527fe3dde1c}{%
+           family={Nugraha},
+           familyi={N\bibinitperiod},
+           given={Damar},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6e9c189c81dc733976fea2c19fa209e5}{%
+           family={Astuti},
+           familyi={A\bibinitperiod},
+           given={Puji},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9356ef40d9bc9abac47053d33203599}
+      \strng{fullhash}{b9356ef40d9bc9abac47053d33203599}
+      \strng{fullhashraw}{b9356ef40d9bc9abac47053d33203599}
+      \strng{bibnamehash}{b9356ef40d9bc9abac47053d33203599}
+      \strng{authorbibnamehash}{b9356ef40d9bc9abac47053d33203599}
+      \strng{authornamehash}{b9356ef40d9bc9abac47053d33203599}
+      \strng{authorfullhash}{b9356ef40d9bc9abac47053d33203599}
+      \strng{authorfullhashraw}{b9356ef40d9bc9abac47053d33203599}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{INFORMATION SYSTEM FOR EDUCATORS AND PROFESSIONALS: Journal of Information System}
+      \field{number}{2}
+      \field{title}{Analisis sentimen cyberbullying pada sosial media Instagram menggunakan metode Support Vector Machine}
+      \field{volume}{8}
+      \field{year}{2023}
+      \field{pages}{153\bibrangedash 164}
+      \range{pages}{12}
+    \endentry
+    \entry{abdullah2025sentiment}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=24c535eff1bd91bdb2662eb4d10eb5a4}{%
+           family={Abdullah},
+           familyi={A\bibinitperiod},
+           given={Athallah\bibnamedelima Zacky},
+           giveni={A\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
+        {{hash=5a65636f434a044d025b1b9794912911}{%
+           family={Setiawan},
+           familyi={S\bibinitperiod},
+           given={Erwin\bibnamedelima Budi},
+           giveni={E\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{fullhash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{fullhashraw}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{bibnamehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authorbibnamehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authornamehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authorfullhash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authorfullhashraw}{13a50bdaa931653852f54e7af797f4c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{INTENSIF: Jurnal Ilmiah Penelitian dan Penerapan Teknologi Sistem Informasi}
+      \field{number}{1}
+      \field{title}{Sentiment Analysis Accuracy for 2024 Indonesian Election Tweets Using CNN-LSTM With Genetic Algorithm Optimization}
+      \field{volume}{9}
+      \field{year}{2025}
+      \field{pages}{1\bibrangedash 14}
+      \range{pages}{14}
+    \endentry
+    \entry{ardiyansa2025klasifikasi}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=931ff2245636c5c5b1739f50eff3c96a}{%
+           family={Ardiyansa},
+           familyi={A\bibinitperiod},
+           given={Safrizal\bibnamedelima Ardana},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=a212ea8f709992d077f9a88a9f8947f3}{%
+           family={Guci},
+           familyi={G\bibinitperiod},
+           given={Abdi\bibnamedelima Negara},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=7ad5165a54d969e70e6a22ab16375ccf}{%
+           family={Febryan},
+           familyi={F\bibinitperiod},
+           given={Jemmy},
+           giveni={J\bibinitperiod}}}%
+        {{hash=50e4dcebfeb5316a1f3021bb4695279b}{%
+           family={Alhusari},
+           familyi={A\bibinitperiod},
+           given={Dian},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0849b8bca32ca8dd898e005e16d3f7c7}{%
+           family={Fajri},
+           familyi={F\bibinitperiod},
+           given={Haidar\bibnamedelima Ahmad},
+           giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{fullhash}{015f98397e3f24e8cbeb05c704ca8aca}
+      \strng{fullhashraw}{015f98397e3f24e8cbeb05c704ca8aca}
+      \strng{bibnamehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{authorbibnamehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{authornamehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{authorfullhash}{015f98397e3f24e8cbeb05c704ca8aca}
+      \strng{authorfullhashraw}{015f98397e3f24e8cbeb05c704ca8aca}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Indonesian Journal of Computer Science}
+      \field{number}{3}
+      \field{title}{Klasifikasi Sentimen Tweet dengan Arsitektur Hybrid Transformers-CNN pada Platform Twitter}
+      \field{volume}{14}
+      \field{year}{2025}
+    \endentry
+    \entry{chen2025analysis}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=db092e7668e04a5d8c3290bab58025f4}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Shuaiyu},
+           giveni={S\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=d12cf52b776a7f1d49d649f51c245f30}{%
+           family={Marwan\bibnamedelima Omar},
+           familyi={M\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Omer\bibnamedelimb Burak\bibnamedelima Istanbullu},
+           giveni={O\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim I\bibinitperiod},
+           suffix={Anil\bibnamedelima Fernando},
+           suffixi={A\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{fullhash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{fullhashraw}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{bibnamehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authorbibnamehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authornamehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authorfullhash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authorfullhashraw}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{editorbibnamehash}{d12cf52b776a7f1d49d649f51c245f30}
+      \strng{editornamehash}{d12cf52b776a7f1d49d649f51c245f30}
+      \strng{editorfullhash}{d12cf52b776a7f1d49d649f51c245f30}
+      \strng{editorfullhashraw}{d12cf52b776a7f1d49d649f51c245f30}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{CONF-CIAP 2025: Proceedings of the 4th International Conference on Computing Innovation and Applied Physics}
+      \field{title}{Sentiment Analysis Techniques for Deep Learning Classification and Comparison}
+      \field{year}{2025}
+    \endentry
+    \entry{qolbya2023empati}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a91b678ebaa2ddefba511f1c927dfa4b}{%
+           family={Qolbya},
+           familyi={Q\bibinitperiod},
+           given={Ahya\bibnamedelima Ghina},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=d9bb1f099ebb2b4fb26017bf88c7c5c1}{%
+           family={Siswandi},
+           familyi={S\bibinitperiod},
+           given={Aleissya\bibnamedelima Sahira},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=19ef3d27247c8cc9bfe288016356d1a5}{%
+           family={Putri},
+           familyi={P\bibinitperiod},
+           given={Raissa\bibnamedelima Dwifandra},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{97e23e315b425f0bd22d918699327fb2}
+      \strng{fullhash}{54d585679a943a9043e264e3f3c6754c}
+      \strng{fullhashraw}{54d585679a943a9043e264e3f3c6754c}
+      \strng{bibnamehash}{54d585679a943a9043e264e3f3c6754c}
+      \strng{authorbibnamehash}{54d585679a943a9043e264e3f3c6754c}
+      \strng{authornamehash}{97e23e315b425f0bd22d918699327fb2}
+      \strng{authorfullhash}{54d585679a943a9043e264e3f3c6754c}
+      \strng{authorfullhashraw}{54d585679a943a9043e264e3f3c6754c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Flourishing Journal}
+      \field{number}{9}
+      \field{title}{Empati dan Cyberbullying pada Remaja Pengguna Media Sosial: Sebuah Kajian Literatur}
+      \field{volume}{3}
+      \field{year}{2023}
+      \field{pages}{352\bibrangedash 359}
+      \range{pages}{8}
+    \endentry
+    \entry{sari2019literasi}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=c31b342e3d03bca2256a4c842b4a769c}{%
+           family={Sari},
+           familyi={S\bibinitperiod},
+           given={Sapta},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c31b342e3d03bca2256a4c842b4a769c}
+      \strng{fullhash}{c31b342e3d03bca2256a4c842b4a769c}
+      \strng{fullhashraw}{c31b342e3d03bca2256a4c842b4a769c}
+      \strng{bibnamehash}{c31b342e3d03bca2256a4c842b4a769c}
+      \strng{authorbibnamehash}{c31b342e3d03bca2256a4c842b4a769c}
+      \strng{authornamehash}{c31b342e3d03bca2256a4c842b4a769c}
+      \strng{authorfullhash}{c31b342e3d03bca2256a4c842b4a769c}
+      \strng{authorfullhashraw}{c31b342e3d03bca2256a4c842b4a769c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Professional: Jurnal komunikasi dan administrasi publik}
+      \field{number}{2}
+      \field{title}{Literasi media pada generasi milenial di era digital}
+      \field{volume}{6}
+      \field{year}{2019}
+      \field{pages}{30\bibrangedash 42}
+      \range{pages}{13}
+    \endentry
+    \entry{liao2018some}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=f24118aba9b3679bda21fc0bbbe4fb0f}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Yuan-Fu},
+           giveni={Y\bibinithyphendelim F\bibinitperiod}}}%
+        {{hash=207d347f9f83513a70fda1d7654c2d90}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yih-Ru},
+           giveni={Y\bibinithyphendelim R\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{0a7d216447776cc8d9afe66257c71842}
+      \strng{fullhash}{0a7d216447776cc8d9afe66257c71842}
+      \strng{fullhashraw}{0a7d216447776cc8d9afe66257c71842}
+      \strng{bibnamehash}{0a7d216447776cc8d9afe66257c71842}
+      \strng{authorbibnamehash}{0a7d216447776cc8d9afe66257c71842}
+      \strng{authornamehash}{0a7d216447776cc8d9afe66257c71842}
+      \strng{authorfullhash}{0a7d216447776cc8d9afe66257c71842}
+      \strng{authorfullhashraw}{0a7d216447776cc8d9afe66257c71842}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2018 World Symposium on Digital Intelligence for Systems and Machines (DISA)}
+      \field{title}{Some experiences on applying deep learning to speech signal and natural language processing}
+      \field{year}{2018}
+      \field{pages}{83\bibrangedash 94}
+      \range{pages}{12}
+    \endentry
+    \entry{pambudi2021effect}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=865d63485d1313391f18cb3335a0d818}{%
+           family={Pambudi},
+           familyi={P\bibinitperiod},
+           given={Agung},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a58a6438ed88420b889c68381a5ea8ab}{%
+           family={Suprapto},
+           familyi={S\bibinitperiod},
+           given={Suprapto},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \strng{fullhash}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \strng{fullhashraw}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \strng{bibnamehash}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \strng{authorbibnamehash}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \strng{authornamehash}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \strng{authorfullhash}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \strng{authorfullhashraw}{cb0bd02a58ee1043320e8ca3a15b245b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IJCCS (Indonesian Journal of Computing and Cybernetics Systems)}
+      \field{number}{1}
+      \field{title}{Effect of sentence length in sentiment analysis using support vector machine and convolutional neural network method}
+      \field{volume}{15}
+      \field{year}{2021}
+      \field{pages}{21\bibrangedash 30}
+      \range{pages}{10}
+    \endentry
+    \entry{wang2019convolutional}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=798ec600bd04b00f1b4fefba1442eb19}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Ruishuang},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c6a3ad17e787b177a8b95624def09fdc}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zhao},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=3f63d8de2975d0bddc2dd877029a2cae}{%
+           family={Cao},
+           familyi={C\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=84e53870b10b90866b8483be8fe5a60e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Tong},
+           giveni={T\bibinitperiod}}}%
+        {{hash=1f647bb6da8304b7be380ec58eb6373a}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{928510ec4d5c8fb8c4db814c0e7c8dd4}
+      \strng{fullhash}{d9215923dbf768bbf52dddb231b71e2b}
+      \strng{fullhashraw}{d9215923dbf768bbf52dddb231b71e2b}
+      \strng{bibnamehash}{928510ec4d5c8fb8c4db814c0e7c8dd4}
+      \strng{authorbibnamehash}{928510ec4d5c8fb8c4db814c0e7c8dd4}
+      \strng{authornamehash}{928510ec4d5c8fb8c4db814c0e7c8dd4}
+      \strng{authorfullhash}{d9215923dbf768bbf52dddb231b71e2b}
+      \strng{authorfullhashraw}{d9215923dbf768bbf52dddb231b71e2b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2019 international joint conference on neural networks (IJCNN)}
+      \field{title}{Convolutional recurrent neural networks for text classification}
+      \field{year}{2019}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+    \endentry
+    \entry{wei2019eda}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=61331a11b490f3d927555985facd25b3}{%
+           family={Wei},
+           familyi={W\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1312184a1d84bfc4d190754a02752d2e}{%
+           family={Zou},
+           familyi={Z\bibinitperiod},
+           given={Kai},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \strng{fullhash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \strng{fullhashraw}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \strng{bibnamehash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \strng{authorbibnamehash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \strng{authornamehash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \strng{authorfullhash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \strng{authorfullhashraw}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1901.11196}
+      \field{title}{EDA: Easy data augmentation techniques for boosting performance on text classification tasks}
+      \field{year}{2019}
+    \endentry
+    \entry{mikolov2013distributed}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=a2d359b12ca2fadf0b40136a73f021bb}{%
+           family={Mikolov},
+           familyi={M\bibinitperiod},
+           given={Tomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=ee3f7d7b96add98106db907e189d6c13}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Kai},
+           giveni={K\bibinitperiod}}}%
+        {{hash=84d9f354fa0b45dae996f27dad2c6607}{%
+           family={Corrado},
+           familyi={C\bibinitperiod},
+           given={Greg\bibnamedelima S},
+           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=62f954323339abeba6c6a240e9d2855b}{%
+           family={Dean},
+           familyi={D\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{d4849f6d57e38d9b9846cfb360e45131}
+      \strng{fullhash}{fde8281f0504852db8650bb0736061b6}
+      \strng{fullhashraw}{fde8281f0504852db8650bb0736061b6}
+      \strng{bibnamehash}{d4849f6d57e38d9b9846cfb360e45131}
+      \strng{authorbibnamehash}{d4849f6d57e38d9b9846cfb360e45131}
+      \strng{authornamehash}{d4849f6d57e38d9b9846cfb360e45131}
+      \strng{authorfullhash}{fde8281f0504852db8650bb0736061b6}
+      \strng{authorfullhashraw}{fde8281f0504852db8650bb0736061b6}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advances in neural information processing systems}
+      \field{title}{Distributed representations of words and phrases and their compositionality}
+      \field{volume}{26}
+      \field{year}{2013}
+    \endentry
+    \entry{goodfellow2016deep}{book}{}{}
+      \name{author}{4}{}{%
+        {{hash=5d2585c11210cf1d4512e6e0a03ec315}{%
+           family={Goodfellow},
+           familyi={G\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ccec1ccd2e1aa86960eb2e872c6b7020}{%
+           family={Courville},
+           familyi={C\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT press Cambridge}%
+      }
+      \strng{namehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{fullhash}{d84b0b9d19401c079b1a67dd4962d9e0}
+      \strng{fullhashraw}{d84b0b9d19401c079b1a67dd4962d9e0}
+      \strng{bibnamehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{authorbibnamehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{authornamehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{authorfullhash}{d84b0b9d19401c079b1a67dd4962d9e0}
+      \strng{authorfullhashraw}{d84b0b9d19401c079b1a67dd4962d9e0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{2}
+      \field{title}{Deep learning}
+      \field{volume}{1}
+      \field{year}{2016}
+    \endentry
+    \entry{collobert2011natural}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=133261178beda1dc3991e0e1dfd5a791}{%
+           family={Collobert},
+           familyi={C\bibinitperiod},
+           given={Ronan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=417a25f3511d7c21e76d4a15e67dd679}{%
+           family={Weston},
+           familyi={W\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ac762f2592005edf6bad58f566967c6c}{%
+           family={Bottou},
+           familyi={B\bibinitperiod},
+           given={Léon},
+           giveni={L\bibinitperiod}}}%
+        {{hash=7db9458d121085904e6496ca5d82977a}{%
+           family={Karlen},
+           familyi={K\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=481308b301166b521c74fde6566e97e6}{%
+           family={Kavukcuoglu},
+           familyi={K\bibinitperiod},
+           given={Koray},
+           giveni={K\bibinitperiod}}}%
+        {{hash=2fcdcad35bbdb2117d9c48af1ee938a6}{%
+           family={Kuksa},
+           familyi={K\bibinitperiod},
+           given={Pavel},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{d12381cfb1e47a6c365b9375e84171c5}
+      \strng{fullhash}{aaab451dc6e8d11474bacabdbd135819}
+      \strng{fullhashraw}{aaab451dc6e8d11474bacabdbd135819}
+      \strng{bibnamehash}{d12381cfb1e47a6c365b9375e84171c5}
+      \strng{authorbibnamehash}{d12381cfb1e47a6c365b9375e84171c5}
+      \strng{authornamehash}{d12381cfb1e47a6c365b9375e84171c5}
+      \strng{authorfullhash}{aaab451dc6e8d11474bacabdbd135819}
+      \strng{authorfullhashraw}{aaab451dc6e8d11474bacabdbd135819}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of machine learning research}
+      \field{number}{7}
+      \field{title}{Natural language processing (almost) from scratch.}
+      \field{volume}{12}
+      \field{year}{2011}
+    \endentry
   \enddatalist
-  \missing{chen2015convolutional}
-  \missing{kim2014temporal}
 \endrefsection
 \endinput
 

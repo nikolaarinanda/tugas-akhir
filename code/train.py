@@ -8,19 +8,17 @@ from sklearn.metrics import classification_report, confusion_matrix, precision_s
 from tqdm import tqdm, trange
 from torch.utils.data import DataLoader
 from torch.optim import AdamW
-from muon import SingleDeviceMuonWithAuxAdam
+# from muon import SingleDeviceMuonWithAuxAdam
 from torch.optim.lr_scheduler import StepLR
-# from torch.optim.lr_scheduler import ReduceLROnPlateau
 from datetime import datetime
 
 # Import local modules
 from datareader import CyberbullyingDataset
-from model import TextCNNLight, TextCNNMedium, TextCNNHeavy
+from model import TextCNNLight
 from utils import EarlyStopping
 
 # =====KONSTANTA=====
-
-DATASET_PATH = '../dataset/Dataset-Research.csv'
+DATASET_PATH = '../dataset/cyberbullying.csv'
 MODEL_OUTPUT_PATH = 'model_outputs'
 SEED = 29082002 # Seed untuk reproducibility
 
@@ -37,9 +35,9 @@ TOKENIZER_NAME = 'indobenchmark/indobert-base-p1' # Nama tokenizer BERT
 # Model parameters for CNN
 DROPUOUT_RATE = 0.1 # Tingkat dropout untuk CNN
 NUM_CLASSES = 2 # Jumlah kelas klasifikasi untuk CNN
-EMBEDDING_DIM = 128 # Dimensi embedding untuk CNN
+EMBEDDING_DIM = 300 # Dimensi embedding untuk CNN
 NUM_FILTERS = 100 # Jumlah filter untuk CNN
-KERNEL_SIZE = [3, 4, 5] # Ukuran kernel untuk CNN
+KERNEL_SIZE = [2, 4] # Ukuran kernel untuk CNN
 OUT_CHANNELS = 50 # Jumlah channel output untuk CNN
 
 def parse_args():
@@ -150,135 +148,12 @@ def get_dataloaders_for_fold(args):
     
     return train_loader, val_loader
 
-# def cnn_train_fold(args, output_dir="none"):
-#     print(f"\n{'='*5} Fold {args.n_folds+1} {'='*5}")
-    
-#     # Setup device
-#     device = get_device()
-    
-#     train_loader, val_loader = get_dataloaders_for_fold(args)
-
-#     model = TextCNNLight(
-#         vocab_size=train_loader.dataset.vocab_size,
-#         embed_dim=args.embed_dim,
-#         num_classes=args.num_classes,
-#         output_dim=args.out_channels,
-#         dropout_rate=args.dropout
-#     )
-
-#     model = model.to(device)
-
-#     # hidden_weights = [p for p in model.parameters() if p.ndim >= 2]
-#     # other_params = [p for p in model.parameters() if p.ndim < 2]
-
-#     # param_groups = [
-#     #     {"params": hidden_weights, "use_muon": True, "lr": 0.02, "weight_decay": 0.01},
-#     #     {"params": other_params, "use_muon": False, "lr": 3e-4, "betas": (0.9, 0.95), "weight_decay": 0.01},
-#     # ]
-
-#     optimizer = AdamW(model.parameters(), lr=args.lr) 
-#     # optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
-
-#     criterion = torch.nn.CrossEntropyLoss().to(device)
-
-#     # Learning rate scheduler
-#     scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
-
-#     # 🔽 Inisialisasi EarlyStopping
-#     early_stopping = EarlyStopping(patience=args.patience, min_delta=args.min_delta)
-    
-#     for epoch in range(args.epochs):
-#         model.train()
-#         train_loss = 0
-#         train_correct = 0
-#         train_total = 0
-        
-#         # Training loop
-#         for batch in tqdm(train_loader, desc=f"Training Epoch {epoch+1}", leave=False):
-#             # Move batch to device
-#             batch = to_device(batch, device)
-            
-#             optimizer.zero_grad()
-#             outputs = model(batch['input_ids'])
-#             loss = criterion(outputs, batch['labels'])
-            
-#             # Calculate accuracy
-#             _, predicted = torch.max(outputs.data, 1)
-#             train_total += batch['labels'].size(0)
-#             train_correct += (predicted == batch['labels']).sum().item()
-            
-#             loss.backward()
-#             optimizer.step()
-#             train_loss += loss.item()
-            
-#         # Validation loop
-#         model.eval()
-#         val_loss = 0
-#         val_correct = 0
-#         val_total = 0
-        
-#         with torch.no_grad():
-#             for batch in tqdm(val_loader, desc="Validating", leave=False):
-#                 # Move batch to device
-#                 batch = to_device(batch, device)
-                
-#                 outputs = model(batch['input_ids'])
-#                 loss = criterion(outputs, batch['labels'])
-                
-#                 # Calculate accuracy
-#                 _, predicted = torch.max(outputs.data, 1)
-#                 val_total += batch['labels'].size(0)
-#                 val_correct += (predicted == batch['labels']).sum().item()
-#                 val_loss += loss.item()
-
-#         # Print GPU memory usage if available
-#         if torch.cuda.is_available():
-#             memory_info = get_gpu_memory()
-#             print(f"GPU Memory Usage - Allocated: {memory_info['allocated']}, Cached: {memory_info['cached']}")
-        
-#         # Calculate metrics
-#         avg_train_loss = train_loss / len(train_loader)
-#         train_accuracy = 100 * train_correct / train_total
-#         avg_val_loss = val_loss / len(val_loader)
-#         val_accuracy = 100 * val_correct / val_total
-        
-#         # Log metrics
-#         if args.use_wandb:
-#             wandb.log({
-#                 "train_loss": avg_train_loss,
-#                 "train_accuracy": train_accuracy,
-#                 "val_loss": avg_val_loss,
-#                 "val_accuracy": val_accuracy,
-#                 "learning_rate": optimizer.param_groups[0]['lr'],
-#                 # "epoch": epoch + 1
-#             })
-
-#         # Early stopping check
-#         scheduler.step()
-        
-#         # Print results
-#         print(f"Epoch {epoch+1}/{args.epochs}")
-#         print(f"Learning Rate: {optimizer.param_groups[0]['lr']:.6f}")
-#         print(f"Train Loss: {avg_train_loss:.4f}, Accuracy: {train_accuracy:.2f}%")
-#         print(f"Val Loss: {avg_val_loss:.4f}, Accuracy: {val_accuracy:.2f}%")
-
-#         # 🔽 Early stopping check
-#         if early_stopping(avg_val_loss):
-#             print(f"Early stopping triggered at epoch {epoch+1}.")
-#             break
-    
-#     # Save model if required
-#     if args.output_model:
-#         model_save_path = os.path.join(output_dir, f"fold_{args.fold+1}_model.pth")
-#         torch.save(model.state_dict(), model_save_path)
-
-#     return model
-
 def cnn_train_fold(args, output_dir="none"):
     print(f"\n{'='*5} Fold {args.n_folds+1} {'='*5}")
     
     # Setup device
     device = get_device()
+    
     train_loader, val_loader = get_dataloaders_for_fold(args)
 
     model = TextCNNLight(
@@ -287,107 +162,115 @@ def cnn_train_fold(args, output_dir="none"):
         num_classes=args.num_classes,
         output_dim=args.out_channels,
         dropout_rate=args.dropout
-    ).to(device)
+    )
 
-    optimizer = AdamW(model.parameters(), lr=args.lr)
+    model = model.to(device)
+
+    # hidden_weights = [p for p in model.parameters() if p.ndim >= 2]
+    # other_params = [p for p in model.parameters() if p.ndim < 2]
+
+    # param_groups = [
+    #     {"params": hidden_weights, "use_muon": True, "lr": 0.02, "weight_decay": 0.01},
+    #     {"params": other_params, "use_muon": False, "lr": 3e-4, "betas": (0.9, 0.95), "weight_decay": 0.01},
+    # ]
+
+    optimizer = AdamW(model.parameters(), lr=args.lr) 
+    # optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
+
     criterion = torch.nn.CrossEntropyLoss().to(device)
-    scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
-    early_stopping = EarlyStopping(patience=args.patience, min_delta=args.min_delta)
 
+    # Learning rate scheduler
+    scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
+
+    # 🔽 Inisialisasi EarlyStopping
+    early_stopping = EarlyStopping(patience=args.patience, min_delta=args.min_delta)
+    
     for epoch in range(args.epochs):
         model.train()
-        train_loss, train_correct, train_total = 0, 0, 0
-
+        train_loss = 0
+        train_correct = 0
+        train_total = 0
+        
         # Training loop
         for batch in tqdm(train_loader, desc=f"Training Epoch {epoch+1}", leave=False):
+            # Move batch to device
             batch = to_device(batch, device)
+            
             optimizer.zero_grad()
             outputs = model(batch['input_ids'])
             loss = criterion(outputs, batch['labels'])
             
+            # Calculate accuracy
             _, predicted = torch.max(outputs.data, 1)
             train_total += batch['labels'].size(0)
             train_correct += (predicted == batch['labels']).sum().item()
+            
             loss.backward()
             optimizer.step()
             train_loss += loss.item()
-
+            
         # Validation loop
         model.eval()
-        val_loss, val_correct, val_total = 0, 0, 0
-        all_preds, all_labels = [], []
-
+        val_loss = 0
+        val_correct = 0
+        val_total = 0
+        
         with torch.no_grad():
             for batch in tqdm(val_loader, desc="Validating", leave=False):
+                # Move batch to device
                 batch = to_device(batch, device)
+                
                 outputs = model(batch['input_ids'])
                 loss = criterion(outputs, batch['labels'])
-
+                
+                # Calculate accuracy
                 _, predicted = torch.max(outputs.data, 1)
                 val_total += batch['labels'].size(0)
                 val_correct += (predicted == batch['labels']).sum().item()
                 val_loss += loss.item()
 
-                # Simpan semua prediksi dan label untuk confusion matrix
-                all_preds.extend(predicted.cpu().numpy())
-                all_labels.extend(batch['labels'].cpu().numpy())
-
-        # Hitung metrik evaluasi
-        all_preds = np.array(all_preds)
-        all_labels = np.array(all_labels)
-        avg_train_loss = train_loss / len(train_loader)
-        train_accuracy = 100 * train_correct / train_total
-        avg_val_loss = val_loss / len(val_loader)
-        val_accuracy = 100 * val_correct / val_total
-
-        # === Confusion Matrix & Metrics ===
-        # cm = confusion_matrix(all_labels, all_preds)
-        precision = precision_score(all_labels, all_preds, zero_division=0)
-        recall = recall_score(all_labels, all_preds, zero_division=0)
-        f1 = f1_score(all_labels, all_preds, zero_division=0)
-
         # Print GPU memory usage if available
         if torch.cuda.is_available():
             memory_info = get_gpu_memory()
             print(f"GPU Memory Usage - Allocated: {memory_info['allocated']}, Cached: {memory_info['cached']}")
-
-        # Log metrics ke wandb
+        
+        # Calculate metrics
+        avg_train_loss = train_loss / len(train_loader)
+        train_accuracy = 100 * train_correct / train_total
+        avg_val_loss = val_loss / len(val_loader)
+        val_accuracy = 100 * val_correct / val_total
+        
+        # Log metrics
         if args.use_wandb:
             wandb.log({
                 "train_loss": avg_train_loss,
                 "train_accuracy": train_accuracy,
                 "val_loss": avg_val_loss,
                 "val_accuracy": val_accuracy,
-                "precision": precision,
-                "recall": recall,
-                "f1_score": f1,
-                # "confusion_matrix": wandb.sklearn.plot_confusion_matrix(all_labels, all_preds, labels=[0, 1]),
-                "learning_rate": optimizer.param_groups[0]['lr']
+                "learning_rate": optimizer.param_groups[0]['lr'],
+                # "epoch": epoch + 1
             })
 
-        # Update scheduler
+        # Early stopping check
         scheduler.step()
-
-        # Print hasil di console
-        print(f"\nEpoch {epoch+1}/{args.epochs}")
+        
+        # Print results
+        print(f"Epoch {epoch+1}/{args.epochs}")
         print(f"Learning Rate: {optimizer.param_groups[0]['lr']:.6f}")
         print(f"Train Loss: {avg_train_loss:.4f}, Accuracy: {train_accuracy:.2f}%")
         print(f"Val Loss: {avg_val_loss:.4f}, Accuracy: {val_accuracy:.2f}%")
-        print(f"Precision: {precision:.4f}, Recall: {recall:.4f}, F1-Score: {f1:.4f}")
-        # print(f"Confusion Matrix:\n{cm}")
 
-        # Early stopping
+        # 🔽 Early stopping check
         if early_stopping(avg_val_loss):
             print(f"Early stopping triggered at epoch {epoch+1}.")
             break
     
-    # Save model jika diperlukan
+    # Save model if required
     if args.output_model:
         model_save_path = os.path.join(output_dir, f"fold_{args.fold+1}_model.pth")
         torch.save(model.state_dict(), model_save_path)
 
     return model
-
 
 def get_device():
     """Get the device to use (GPU if available, else CPU)"""

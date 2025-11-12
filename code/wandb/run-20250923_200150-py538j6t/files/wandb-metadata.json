@@ -1,0 +1,36 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.12.4",
+  "startedAt": "2025-09-23T13:01:50.301283Z",
+  "args": [
+    "--epochs",
+    "50",
+    "--use_wandb"
+  ],
+  "program": "C:\\Users\\nikol\\OneDrive\\Tugas Akhir\\code\\train.py",
+  "codePath": "code\\train.py",
+  "git": {
+    "remote": "https://github.com/nikolaarinanda/tugas-akhir.git",
+    "commit": "00902260f89ef5d60fbd0dc9a9c3eb8c60a8e7a6"
+  },
+  "email": "nikolaarinanda01@gmail.com",
+  "root": "C:\\Users\\nikol\\OneDrive\\Tugas Akhir\\code",
+  "host": "Nikola",
+  "executable": "C:\\Users\\nikol\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "codePathLocal": "train.py",
+  "cpu_count": 6,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "510263627776",
+      "used": "413718937600"
+    }
+  },
+  "memory": {
+    "total": "25131859968"
+  },
+  "cpu": {
+    "count": 6,
+    "countLogical": 12
+  }
+}

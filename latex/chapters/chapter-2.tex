@@ -1,113 +1,397 @@
 \newpage
 \chapter{TINJAUAN PUSTAKA} \label{Bab II}
 
-\section{Tinjauan Pustaka} \label{II.Tinjauan}
+\section{Tinjauan Pustaka}\label{II.Tinjauan}
 
-Penulis  melakukan  pencarian  referensi  terkait beberapa penelitian serupa yang pernah dilakukan sebagai dasar penelitian. Penelitian-penelitian yang menjadi referensi penulis dijabarkan pada Tabel \ref{table:2.literasi}. \par
+Penelitian ini mengacu serta menggunakan beberapa jurnal penelitian dan berbagai literatur yang diperoleh dari berbagai sumber sebagai dasar  proses riset dan penulisan tugas akhir. Tinjauan pustaka akan mencakup berbagai informasi dan teori yang relevan dengan penelitian serta penulisan tugas akhir ini. Tinjauan Pustaka ini dapat dilihat pada Tabel \ref{table:2.tinjauan-pustaka} Tinjauan Pustaka.
 
-\begin{enumerate}
-    \item Prameswari et al. (2023) melakukan penelitian dengan tujuan mengembangkan model prediksi untuk mendeteksi komentar bernuansa cyberbullying di platform TikTok. Data yang digunakan berjumlah 1.508 komentar TikTok yang dikumpulkan dan diberi label secara manual menjadi dua kelas, yaitu \textit{cyberbullying} dan \textit{non-cyberbullying}. Model yang digunakan dalam penelitian ini adalah arsitektur BERT (Bidirectional Encoder Representations from Transformers), sebuah model deep learning berbasis representasi kontekstual kata. \\
-    Model BERT ini mampu menangkap makna dan konteks dalam komentar, dan hasil eksperimen menunjukkan bahwa model mampu mencapai akurasi validasi sebesar 63\%. Meskipun demikian, terdapat indikasi \textit{overfitting} dalam pelatihan yang membuat performa pada data validasi tidak meningkat secara signifikan. Penelitian ini menunjukkan pentingnya pengembangan model prediktif untuk mendeteksi perilaku cyberbullying secara otomatis, khususnya pada platform yang memiliki tingkat interaksi tinggi seperti TikTok. Temuan ini menjadi dasar bahwa analisis sentimen dapat dijadikan pendekatan awal dalam memahami dan mengklasifikasikan konten berbahaya di media sosial.
+Penelitian yang dilakukan oleh B.A. Prameswari \textit{et al}. (2023) yaitu membangun model prediksi untuk mendeteksi komentar \textit{cyberbullying} dari media sosial TikTok. Penulis secara independen mengumpulkan dan memberi label pada 1.510 komentar TikTok menjadi kategori \textit{cyberbullying} (CB) dan \textit{non-cyberbullying} (Non\_CB). Pendekatan \textit{deep learning} digunakan dalam penelitian ini, khususnya arsitektur \textit{Bidirectional Encoder Representations from Transformers} (BERT), untuk proses analisis sentimen pada dataset. Setelah \textit{fine-tuning}, model prediksi mencapai akurasi validasi 0,63 pada epoch kesembilan. Studi ini menekankan pentingnya membangun model prediksi untuk mendeteksi komentar \textit{cyberbullying} dan berkontribusi pada pemahaman serta pencegahan perilaku ini di platform media sosial.\par
 
-    \item Yoon Kim (2014) melakukan penelitian untuk memperkenalkan arsitektur \textit{TextCNN}, yaitu model konvolusional sederhana yang digunakan untuk klasifikasi teks pada tingkat kalimat. Model ini bekerja dengan menerapkan beberapa filter konvolusi pada representasi vektor kata dari kalimat untuk mengekstrak fitur penting secara lokal. Selanjutnya, fitur terbaik dari masing-masing filter diambil melalui teknik \textit{max-over-time pooling} dan diproses ke dalam lapisan \textit{fully connected} untuk klasifikasi. \\
-    Penelitian ini menunjukkan bahwa meskipun arsitekturnya sederhana dan minim \textit{hyperparameter tuning}, model TextCNN mampu memberikan hasil yang kompetitif pada berbagai \textit{benchmark} NLP seperti analisis sentimen dan klasifikasi pertanyaan. Keunggulan utamanya terletak pada efisiensi dan kemampuannya dalam menangkap informasi semantik lokal tanpa memerlukan struktur kalimat yang kompleks seperti \textit{parsing}. Temuan dari Kim ini menunjukkan bahwa TextCNN layak dijadikan alternatif model yang ringan namun tetap akurat untuk tugas klasifikasi komentar, seperti dalam konteks deteksi cyberbullying di media sosial seperti TikTok.
-\end{enumerate}
+Penelitian yang dilakukan oleh D. Nugraha dan P. Astuti (2023) bertujuan untuk mengukur tingkat \textit{cyberbullying} di Indonesia dengan menganalisis komentar di media sosial Instagram menggunakan algoritma \textit{Support Vector Machine} (SVM). Penelitian ini mengumpulkan 400 data komentar \textit{cyberbullying} dari Instagram, yang dibagi rata menjadi 200 data positif dan 200 data negatif. Data diproses melalui tahapan preprocessing seperti \textit{cleansing, transform case, tokenize, stem, filter stopword,} dan \textit{filter tokens} by length menggunakan alat RapidMiner. Model klasifikasi yang dihasilkan menggunakan 400 dataset untuk pelatihan menunjukkan akurasi sebesar 84,25\%, presisi 80,22\%, recall 92,50\%, dan nilai AUC sebesar 0,928.\par
+
+Penelitian yang dilakukan oleh A.Z. Abdullah \textit{et al}. (2025) bertujuan menganalisis sentimen publik terhadap Tweet Pemilu Presiden Indonesia 2024. Penulis mengumpulkan 62.955 entri dari Twitter, 126.673 dari IndoNews, dan dataset gabungan berjumlah 189.628 entri, yang kemudian diberi label positif, netral, dan negatif. Pendekatan model hibrida \textit{Convolutional Neural Network} (CNN)-\textit{Long Short-Term Memory} (LSTM) dengan perluasan fitur \textit{Word2Vec} dan optimasi \textit{Genetic Algorithm} (GA) digunakan untuk analisis sentimen. Model hibrida CNN-LSTM yang dioptimalkan dengan GA mencapai akurasi tertinggi 84,78\% untuk data berita, menunjukkan peningkatan 3,59\%. Studi ini mengilustrasikan penerapan inovatif model hibrida CNN-LSTM untuk analisis sentimen dalam konteks pemilihan nasional, meningkatkan akurasi dan efisiensi dalam memahami opini publik dan dinamika politik. \par
+
+Penelitian yang dilakukan oleh S.A. Ardiyansa \textit{et al}. (2024) bertujuan mengklasifikasi sentimen tweet berbahasa Indonesia pada platform Twitter. Penulis mengumpulkan 6.137 tweet dengan 5 jenis label berbeda (joy, sadness, fear, love, dan anger). Proses pra-pemrosesan data mencakup pembersihan, pengubahan ekspresi/emoji menjadi kata, \textit{stemming}, dan \textit{embedding} kata. Penelitian ini membandingkan beberapa arsitektur, termasuk BERT, LSTM, CNN, serta arsitektur gabungan Transformer-LSTM, LSTM-CNN, dan Transformer-CNN. Model \textit{Transformer-CNN} menunjukkan performa paling unggul dengan akurasi 85,71\% pada data uji dan 99,90\% pada data latih. Akurasi ini lebih baik dibandingkan arsitektur lainnya. Meskipun waktu pelatihannya 30,17 menit lebih lama dari beberapa model lain, \textit{Transformer-CNN} juga sudah konvergen pada iterasi ke-5. Studi ini menyimpulkan bahwa \textit{Transformer-CNN} adalah pilihan terbaik untuk klasifikasi sentimen yang membutuhkan akurasi tinggi. \par
+
+Penelitian yang dilakukan oleh S. Chen (2025) mengeksplorasi evolusi teknik analisis sentimen dari model tradisional hingga pendekatan \textit{deep learning} yang lebih canggih. Penulis menggunakan dataset IMDb yang berisi 50.000 ulasan film untuk klasifikasi sentimen biner (positif atau negatif), dengan 20\% data pelatihan digunakan untuk validasi. Metodologi melibatkan perbandingan kinerja model seperti CNN, RNN, LSTM, LSTM-CNN, dan BERT menggunakan metrik \textit{F-Score, Precision, Accuracy,} dan \textit{Recall}. Model CNN dan BERT mencapai akurasi tertinggi 0,90, dengan CNN unggul dalam Recall (0,95) dan BERT menunjukkan kinerja seimbang. Model RNN memiliki akurasi terendah 0,68. Studi ini menyimpulkan bahwa CNN dan BERT adalah model \textit{deep learning} yang berkinerja lebih baik untuk analisis sentimen dan menyoroti potensi serta tantangan analisis sentimen di masa depan, termasuk penanganan multi-bahasa dan isu etika. \par
 
 \renewcommand{\arraystretch}{1.0} % Mengatur spasi antar baris menjadi 1
 
-% \begin{landscape}
 \begin{sidewaystable}
+\begin{longtable}{|c|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.105\linewidth}|p{0.1\linewidth}|p{0.15\linewidth}|}
+    \caption{Literasi Penelitian Terdahulu}\label{table:2.tinjauan-pustaka}\\
+    \hline
+    \textbf{No.} 
+    & \textbf{Peneliti (tahun)} 
+    & \textbf{Judul Penelitian [sitasi]} 
+    & \textbf{Permasalahan} 
+    & \textbf{Ekstraksi Fitur}
+    & \textbf{Metode Klasifikasi}
+    & \textbf{Hasil Penelitian} \\
+    \hline
+    \endfirsthead
+    %   \hline
+    %   \textbf{No.} 
+    %     & \textbf{Peneliti (tahun)} 
+    %     & \textbf{Judul Penelitian [sitasi]} 
+    %     & \textbf{Permasalahan} 
+    %     & \textbf{Ekstraksi Fitur}
+    %     & \textbf{Metode Klasifikasi}
+    %     & \textbf{Hasil Penelitian} \\
+    %   \hline
+    % \endhead 
+    %   \hline
+    % \endfoot
 
-\begin{longtable}{|c|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|}
-  \caption{Literasi Penelitian Terdahulu}\label{table:2.literasi}\\
-  \hline
-  \textbf{No.} 
-    & \textbf{Peneliti (tahun)} 
-    & \textbf{Judul Penelitian [sitasi]} 
-    & \textbf{Permasalahan} 
-    & \textbf{Ekstraksi Fitur}
-    & \textbf{Metode Klasifikasi}
-    & \textbf{Hasil Penelitian} \\
-  \hline
-\endfirsthead
-  \hline
-  \textbf{No.} 
-    & \textbf{Peneliti (tahun)} 
-    & \textbf{Judul Penelitian [sitasi]} 
-    & \textbf{Permasalahan} 
-    & \textbf{Ekstraksi Fitur}
-    & \textbf{Metode Klasifikasi}
-    & \textbf{Hasil Penelitian} \\
-  \hline
-\endhead 
-  \hline
-\endfoot
-  \hline
-\endlastfoot
-  1. & Yoon Kim (2014) & Convolutional Neural Networks for Sentence Classification & Permasalahan: Penelitian ini berfokus pada tugas klasifikasi tingkat kalimat (sentence-level classification tasks), termasuk analisis sentimen dan klasifikasi pertanyaan. & Fitur diekstrak menggunakan vektor kata pra-terlatih (pre-trained word vectors) yang diperoleh dari model bahasa saraf tak terawasi (unsupervised neural language model). Vektor kata yang digunakan dilatih pada 100 miliar kata dari Google News. & Penelitian ini menggunakan Jaringan Saraf Tiruan Konvolusional (CNN) yang sederhana dengan satu lapisan konvolusi di atas vektor kata. Arsitektur model ini menggunakan lapisan konvolusi, operasi max-over-time pooling, dan lapisan fully connected softmax dengan dropout. & Model CNN yang sederhana dengan vektor statis menunjukkan hasil yang sangat baik pada beberapa tolok ukur, dan kinerjanya ditingkatkan lebih lanjut melalui fine-tuning. Secara keseluruhan, model ini mengungguli model  \\
-  \hline
-  2. & Bunga Aura Prameswari et al. (2023) & Building Prediction Model for Detecting Cyberbullying using TikTok Comments & Deteksi cyberbullying pada komentar TikTok. & Analisis konten tekstual dari komentar TikTok. Komentar diklasifikasikan berdasarkan kriteria seperti bahasa yang merendahkan, ancaman, atau body-shaming. & Model deep learning BERT (Bidirectional Encoder Representations from Transformers) & Akurasi validasi model mencapai 0.63 pada epoch kesembilan \\
-  \hline
+    %   \hline
+    % \endlastfoot
+    1. & B.A. Prameswari \textit{et al} (2023) \cite{prameswari2023cyberbullying} & \textit{Building Prediction Model for Detecting Cyberbullying using TikTok Comments} & Deteksi cyberbullying pada komentar TikTok dengan arsitektur BERT & IndoBERT & BERT & Akurasi validasi model mencapai 0.63 pada epoch kesembilan \\
+    \hline
+    2. & D. Nugraha dan P. Astuti (2023) \cite{nugraha2023analisis} & Analisis Sentimen \textit{Cyberbullying} Pada Sosial Media Instagram Menggunakan Metode \textit{Support Vector Machine} & Menganalisis sentimen \textit{bullying online} di kolom komentar Instagram & TF-IDF & \textit{Support Vector Machine} & Akurasi sebesar 84,25\%, presisi 80,22\%, recall 92,50\%, dan nilai AUC sebesar 0,928 \\
+    \hline
+    3. & A.Z. Abdullah \textit{et al}. (2025) \cite{abdullah2025sentiment} & \textit{Sentiment Analysis Accuracy for 2024 Indonesian Election Tweets Using CNN-LSTM With Genetic Algorithm Optimization} & Menganalisis sentimen publik terhadap Tweet Pemilu Presiden Indonesia 2024 untuk wawasan opini publik yang lebih dalam & \textit{Word2Vec}, \textit{TF-IDF} & \textit{Hybrid CNN-LSTM}, \textit{Genetic Algorithm} (optimasi) & Akurasi tertinggi 84,78\% untuk data berita (peningkatan 3,59\%) \\
+    \hline
 \end{longtable}
 
+\
 \end{sidewaystable}
-% \end{landscape}
 
-\clearpage %
+\clearpage
+
+\begin{sidewaystable}
+\begin{longtable}{|c|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.105\linewidth}|p{0.1\linewidth}|p{0.15\linewidth}|}
+    \caption{Literasi Penelitian Terdahulu}\label{table:2.literasi}\\
+    \hline
+    \textbf{No.} 
+    & \textbf{Peneliti (tahun)} 
+    & \textbf{Judul Penelitian [sitasi]} 
+    & \textbf{Permasalahan} 
+    & \textbf{Ekstraksi Fitur}
+    & \textbf{Metode Klasifikasi}
+    & \textbf{Hasil Penelitian} \\
+    \hline
+    4. & S.A. Ardiyansa \textit{et al}. (2024) \cite{ardiyansa2025klasifikasi} & \textit{Klasifikasi Sentimen Tweet dengan Arsitektur Hybrid Transformers-CNN pada Platform Twitter} & Mengklasifikasi sentimen tweet berbahasa Indonesia dengan akurasi tinggi, mengatasi tantangan volume data besar dan kompleksitas bahasa informal & IndoBERT & \textit{Hybrid Transformer-CNN} & Akurasi 85,71\% pada data uji dan 99,90\% pada data latih. Konvergen pada iterasi ke-5. \\
+    \hline
+    5. & S. Chen (2025) \cite{chen2025analysis} & \textit{Sentiment Analysis Techniques for Deep Learning Classification and Comparison} & Membandingkan performa CNN, RNN, LSTM, LSTM-CNN, dan BERT pada tugas analisis sentimen biner menggunakan dataset IMDb. & Word2Vec & CNN, RNN, LSTM, LSTM-CNN dan BERT & Model CNN secara umum memperoleh \textit{confussion matrix} yang lebih baik dari model lain dengan akurasi 90\%, presisi 87\%, recall 95\%, specificity 84\%, dan F1-score 91\% \\
+    \hline
+\end{longtable}
+\end{sidewaystable}
+
+\clearpage
+
+% \begin{sidewaystable}
+% \begin{longtable}{|c|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.105\linewidth}|p{0.1\linewidth}|p{0.15\linewidth}|}
+%     \caption{Literasi Penelitian Terdahulu}\label{table:2.literasi}\\
+%     \hline
+%     \textbf{No.} 
+%     & \textbf{Peneliti (tahun)} 
+%     & \textbf{Judul Penelitian [sitasi]} 
+%     & \textbf{Permasalahan} 
+%     & \textbf{Ekstraksi Fitur}
+%     & \textbf{Metode Klasifikasi}
+%     & \textbf{Hasil Penelitian} \\
+%     \hline
+%         5.& W.A. Luqyana \textit{et al} (2018) \cite{luqyana2018analisis} & Analisis Sentimen \textit{Cyberbullying} pada Komentar Instagram dengan Metode Klasifikasi \textit{Support Vector Machine}  & Menganalisis sentimen bullying online di kolom komentar Instagram & TF-IDF & \textit{Support Vector Machine} & Akurasi tertinggi sebesar 90\% dicapai pada komposisi data latih 50\% dan data uji 50\% tanpa mengimplementasikan \textit{Lexicon Based Features} \\
+%     \hline
+% \end{longtable}
+
+
+% \end{sidewaystable}
+
+% \clearpage %
 
 \section{Dasar Teori} \label{II.Teori}
+Penelitian ini didasarkan pada beberapa dasar teori yang berperan sebagai acuan dalam proses analisis dan pengembangan. Berikut adalah beberapa dasar teori yang digunakan sebagai acuan dalam pelaksanaan penelitian ini.
 
-\subsection{Media Sosial} \label
+\subsection{ \textit{Cyberbullying}}
+\textit{Cyberbullying} merupakan bentuk perundungan yang terjadi di ranah digital, dengan pelaku biasanya menyembunyikan identitas di balik akun anonim. Tindakan ini dapat berupa hinaan, ancaman, pelecehan verbal, atau penyebaran informasi yang merugikan korban melalui berbagai media sosial dan platform digital \cite{qolbya2023empati}. Berbeda dengan \textit{bullying} yang terjadi secara fisik, \textit{cyberbullying} bersifat persisten, karena jejak digital yang ditinggalkan dapat bertahan dalam waktu lama dan menyebar lebih cepat.
 
-Media sosial telah menjadi fenomena global yang mengubah cara manusia berinteraksi dan berkomunikasi. Platform-platform seperti Facebook, Twitter, Instagram, dan TikTok menyediakan ruang virtual yang memungkinkan penggunanya untuk saling terhubung tanpa batasan geografis. Kehadiran fitur interaktif seperti komentar, like, dan berbagi konten mendorong terciptanya budaya partisipatif yang tinggi dalam masyarakat digital \cite{sari2019literasi}.
+\subsection{Media Sosial}
+Media sosial adalah bentuk aplikasi berbasis internet yang memungkinkan penggunanya untuk menciptakan, berbagi, dan bertukar informasi secara interaktif dalam ruang digital \cite{sari2019literasi}. Media sosial merupakan produk dari perkembangan Web 2.0 yang menekankan pada konten yang dihasilkan pengguna (user generated content) dan keterhubungan antarpengguna. Karakteristik utama media sosial meliputi interaktivitas, keterhubungan, serta visibilitas konten, sehingga ia tidak hanya berfungsi sebagai sarana komunikasi, tetapi juga sebagai ruang publik baru yang membentuk pola interaksi, identitas, dan komunitas dalam masyarakat digital.
 
-Namun, seiring dengan pertumbuhan pengguna yang sangat pesat, muncul pula tantangan serius. Salah satunya adalah potensi penyalahgunaan media sosial sebagai sarana untuk menyebarkan ujaran kebencian, pelecehan, dan bahkan perundungan digital atau cyberbullying. Komentar-komentar yang awalnya ditujukan sebagai bentuk ekspresi sering kali berubah menjadi alat untuk menyerang dan menjatuhkan orang lain secara psikologis.
+\subsubsection{TikTok}
+Menurut We Are Social, pada tahun 2025 TikTok adalah salah satu platform media sosial yang paling banyak digunakan di indonesia \cite{wearesocial2025}. Platform ini memungkinkan penggunanya untuk mengekspresikan kreativitas dalam pembuatan video dengan berbagai konten. Banyak pengguna, utamanya generasi muda, menilai TikTok sebagai media hiburan untuk melihat video-video kreatif yang menghibur. Konten yang ditampilkan di TikTok beragam, dan penggunanya dapat mengunggah atau melihat video yang terkadang sesuai umur maupun yang tidak sesuai umur. Sebagai media sosial, TikTok juga melibatkan elemen seperti teks, gambar, dan video \cite{rosiana2023analisis}.
 
-\subsection{ Cyberbullying} \label
+\subsection{\textit{Natural Language Processing} (NLP)}
+\textit{Natural Language Processing} (NLP) adalah cabang dari kecerdasan buatan yang mempelajari bagaimana komputer dapat memahami, memproses, dan menghasilkan bahasa manusia, baik dalam bentuk teks maupun ucapan. NLP menggabungkan teknik dari linguistik, ilmu komputer, dan pembelajaran mesin untuk mengubah data bahasa alami menjadi informasi yang dapat diolah oleh sistem. Ruang lingkupnya mencakup berbagai tugas, seperti penerjemahan otomatis, analisis sentimen, pengenalan suara, ringkasan teks, dan penjawaban pertanyaan. Proses NLP umumnya melibatkan tahapan seperti tokenisasi, penghapusan kata umum (stopword removal), stemming atau lemmatisasi, serta analisis sintaksis dan semantik untuk memahami struktur dan makna bahasa secara lebih mendalam \cite{liao2018some}.
 
-Cyberbullying merupakan bentuk perundungan yang terjadi di ranah digital, dengan pelaku biasanya menyembunyikan identitas di balik akun anonim. Tindakan ini dapat berupa hinaan, ancaman, pelecehan verbal, atau penyebaran informasi yang merugikan korban melalui berbagai media sosial dan platform digital \cite{qolbya2023empati}. Berbeda dengan perundungan tradisional yang terjadi secara fisik, cyberbullying bersifat persisten, karena jejak digital yang ditinggalkan dapat bertahan dalam waktu lama dan menyebar lebih cepat.
+\subsection{Analisis Sentimen}
+Analisis sentimen atau sentiment analysis adalah suatu teknik dalam \textit{Natural Language Processing} (NLP) yang bertujuan untuk mengetahui emosi, sikap, atau opini yang terkandung dalam suatu teks. Teknik ini berperan penting dalam memahami respons pengguna terhadap suatu topik, produk, atau layanan. Analisis sentimen ini dapat menganalisis komentar, ulasan, atau teks yang ditulis oleh pengguna, sistem dapat mengkategorikan apakah teks tersebut bersifat positif, negatif, atau netral \cite{pambudi2021effect}. Hasil klasifikasi ini dapat dimanfaatkan untuk pengambilan keputusan, evaluasi layanan, hingga perancangan strategi yang lebih tepat sasaran.
 
-Korban cyberbullying sering mengalami tekanan emosional dan psikologis yang berat, termasuk depresi, rasa takut berlebihan, isolasi sosial, bahkan dorongan untuk menyakiti diri sendiri atau bunuh diri \cite{hafifah2024perubahan}. Oleh karena itu, identifikasi dan deteksi otomatis terhadap komentar bernuansa cyberbullying menjadi upaya penting dalam mendukung lingkungan digital yang sehat dan aman.
+\subsection{\textit{Text Pre-processing}}
 
-\subsection{Analisis Sentimen} \label
+\textit{Text pre-processing} mencakup berbagai teknik untuk meningkatkan 
+kualitas data agar lebih sesuai dalam proses analisis dan pelatihan model.
 
-Analisis sentimen atau sentiment analysis adalah suatu teknik dalam pemrosesan bahasa alami yang bertujuan untuk mengetahui emosi atau opini dalam suatu teks. Dengan menganalisis komentar atau teks yang ditulis oleh pengguna, sistem dapat mengkategorikan apakah teks tersebut bersifat positif, negatif, atau netral \cite{pambudi2021effect}.
+\subsubsection{\textit{Normalization}}
+\textit{Normalization} adalah proses menyederhanakan dan menyeragamkan teks agar sesuai dengan kaidah bahasa standar. Tahap ini bertujuan untuk mengurangi variasi penulisan yang tidak relevan sehingga analisis data menjadi lebih konsisten dan akurat. Proses normalisasi mencakup berbagai langkah, seperti mengubah seluruh huruf kapital menjadi huruf kecil (case folding), menghapus tanda baca atau karakter khusus yang tidak diperlukan, menghilangkan spasi berlebih, serta mengonversi kata tidak baku atau singkatan menjadi bentuk baku \cite{wang2019convolutional}. Dengan melakukan normalisasi, data teks menjadi lebih terstruktur dan siap diproses pada tahap analisis berikutnya.
 
-Pada konteks penelitian ini, analisis sentimen digunakan untuk mengidentifikasi komentar negatif yang mengandung unsur cyberbullying. Untuk itu, digunakan pendekatan klasifikasi biner (binary classification), yaitu pengelompokan komentar menjadi dua kategori: komentar yang mengandung cyberbullying dan komentar yang tidak mengandungnya. Teknik klasifikasi ini bertujuan menghasilkan sistem yang dapat mengotomatisasi proses identifikasi komentar secara efisien, mengingat komentar di media sosial jumlahnya sangat besar dan terus bertambah setiap detik.
+\subsubsection{IndoBERT Tokenizer}
+IndoBERT Tokenizer adalah komponen pra-pemrosesan teks yang dikembangkan khusus untuk bahasa Indonesia sebagai bagian dari model IndoBERT. Tokenizer ini berfungsi untuk memecah teks bahasa Indonesia menjadi token-token yang dapat dipahami oleh model, dengan mempertimbangkan karakteristik linguistik khusus bahasa Indonesia. Proses tokenisasi melibatkan pemisahan teks menjadi subkata (subword) menggunakan algoritma WordPiece, yang memungkinkan penanganan kata-kata yang jarang muncul dengan lebih efektif. IndoBERT Tokenizer juga menangani berbagai fitur bahasa Indonesia seperti imbuhan, partikel, dan struktur morfologi yang kompleks, serta mampu mengkonversi teks ke dalam representasi numerik dengan menambahkan token khusus seperti [CLS] di awal dan [SEP] di akhir kalimat untuk keperluan klasifikasi dan pemisahan segmen teks.
 
-\subsection{Natural Language Processing (NLP)} \label
+% \subsubsection{\textit{Tokenization}}
+% \textit{Tokenization} adalah proses memecah teks menjadi unit-unit yang lebih kecil yang disebut token, yang dapat berupa kata, frasa, atau bahkan karakter tunggal, tergantung pada kebutuhan analisis. Tahap ini merupakan langkah awal yang penting dalam pemrosesan bahasa alami karena membantu sistem memahami struktur dan isi teks. Tokenisasi dapat dilakukan dengan berbagai metode, mulai dari pemisahan sederhana berdasarkan spasi dan tanda baca hingga teknik yang lebih kompleks yang mempertimbangkan aturan linguistik dan konteks bahasa \cite{wang2019convolutional}. Dengan adanya tokenisasi, teks mentah dapat diubah menjadi format yang lebih terstruktur sehingga memudahkan proses analisis dan pemrosesan lebih lanjut.
 
-Natural Language Processing (NLP) adalah cabang dari kecerdasan buatan yang berfokus pada interaksi antara komputer dan bahasa manusia. NLP memungkinkan sistem untuk membaca, memahami, dan menganalisis teks atau ucapan dengan cara yang menyerupai cara kerja otak manusia \cite{liao2018some}. Dalam konteks analisis komentar di media sosial, NLP memainkan peran krusial dalam memproses data mentah berupa teks informal agar dapat diolah secara sistematis oleh model klasifikasi.
+\subsubsection{\textit{Augmentation}}
+\textit{Augmentation} adalah proses meningkatkan variasi data pelatihan dengan cara menghasilkan data baru yang berasal dari data yang sudah ada, tanpa mengubah makna dasarnya. Teknik ini banyak digunakan dalam bidang \textit{machine learning} untuk memperkaya set data dan meningkatkan kemampuan generalisasi model. Beberapa metode augmentasi yang umum diterapkan antara lain penggantian kata dengan sinonim (\textit{synonym replacement}), pertukaran posisi kata (\textit{word swapping}), penghapusan kata tertentu (\textit{random deletion}), atau penerjemahan bolak-balik (\textit{back translation}) untuk menghasilkan variasi kalimat dari teks asli \cite{wei2019eda}. Dengan menambahkan keragaman data, augmentasi dapat mengurangi risiko \textit{overfitting} dan membantu model belajar pola yang lebih umum, terutama pada kasus di mana set data tidak seimbang atau jumlah data terbatas.
 
-Proses dalam NLP mencakup berbagai tahap seperti tokenisasi (memecah kalimat menjadi kata-kata), normalisasi (standarisasi teks), penghapusan kata-kata tidak penting (stopword removal), dan transformasi teks ke dalam bentuk numerik. Setiap tahap ini diperlukan untuk memastikan bahwa model pembelajaran mesin menerima data yang bersih dan relevan.
+\subsection{\textit{Word Embedding}}
+\textit{Word embedding} adalah proses merubah kata-kata menjadi representasi numerik agar dapat dipahami dan diolah oleh komputer. Word embedding merupakan teknik representasi kata dalam bentuk vektor berdimensi tetap, di mana setiap vektor menyimpan informasi tentang makna semantik serta hubungan antar kata dalam suatu ruang vektor \cite{mikolov2013distributed}. Dengan pendekatan ini, kata-kata yang memiliki makna serupa akan direpresentasikan oleh vektor yang posisinya saling berdekatan, sehingga memungkinkan model untuk mengenali kesamaan konteks dan hubungan linguistik secara lebih efektif. Teknik word embedding dapat dilatih dari awal menggunakan dataset tertentu atau memanfaatkan model pra-latih seperti Word2Vec, GloVe, dan FastText yang telah dibangun dari korpus besar untuk meningkatkan kinerja model.
 
-\subsection{Text Pre-processing} \label
+\subsubsection{Trainable Word Embedding}
+Trainable word embedding adalah representasi kata dalam bentuk vektor berdimensi rendah yang dibangun secara langsung melalui proses pelatihan model. Berbeda dengan pretrained embedding seperti Word2Vec atau GloVe yang sudah dilatih sebelumnya di korpus besar, \textit{trainable embedding} biasanya diinisialisasi secara acak dan nilainya diperbarui melalui mekanisme \textit{backpropagation} selama model belajar dari data. Dengan cara ini, \textit{embedding} yang dihasilkan bersifat adaptif dan spesifik terhadap tugas (task-specific), misalnya klasifikasi sentimen atau deteksi topik, sehingga mampu menangkap pola distribusi kata yang relevan dengan konteks dataset yang digunakan.
 
-Sebelum teks dianalisis oleh model pembelajaran mesin atau deep learning, diperlukan tahap pemrosesan awal atau text pre-processing. Tahapan ini bertujuan untuk mengubah komentar yang tidak terstruktur menjadi bentuk yang lebih teratur dan konsisten.
+\subsection{Deep Learning}
+\textit{Deep learning} adalah pendekatan dalam pembelajaran mesin yang memanfaatkan jaringan saraf tiruan berlapis-lapis untuk mempelajari representasi data secara otomatis. Teknik ini mampu mengenali pola yang kompleks dan abstrak pada berbagai jenis data, termasuk teks, tanpa memerlukan perancangan fitur secara manual \cite{goodfellow2016deep}. Dalam pemrosesan bahasa alami, deep learning telah melahirkan berbagai arsitektur model yang efektif, seperti Recurrent Neural Network (RNN), Long Short-Term Memory (LSTM), Transformer, serta varian berbasis Convolutional Neural Network (CNN) seperti TextCNN. Setiap arsitektur memiliki keunggulan masing-masing, mulai dari kemampuan memahami urutan kata, mempertahankan konteks jangka panjang, hingga memproses teks secara paralel untuk efisiensi yang lebih tinggi.
 
-Salah satu tahapan utama dalam pre-processing adalah normalisasi, yaitu proses menyederhanakan teks agar sesuai dengan kaidah bahasa standar. Normalisasi mencakup pengubahan huruf kapital menjadi huruf kecil, penghapusan tanda baca atau karakter khusus, serta konversi kata tidak baku menjadi bentuk baku \cite{wang2019convolutional}. Hal ini sangat penting mengingat komentar di media sosial seringkali menggunakan bahasa yang singkat, penuh dengan singkatan, dan tidak mengikuti struktur kalimat yang formal.
+\subsection{ TextCNN}
+TextCNN adalah varian dari arsitektur \textit{Convolutional Neural Network} (CNN) yang merupkan bagian dari algoritma \textit{deep learning} \cite{collobert2011natural}. CNN adalah algoritma yang digunakan untuk memahami fitur atau karakteristik visual dalam gambar, sehingga dapat membedakan setiap gambar berdasarkan fitur yang sudah dikenali \cite{liao2017cnn}. CNN tidak hanya dapat digunakan pada gambar namun juga dapat digunakan pada teks dengan beberapa penyesuaian seperti perubahan dari konvolusi 2 dimensi menjadi konvolusi 1 dimensi yang merepresentasikan setiap kalimat \cite{collobert2011natural}.
 
-Selain normalisasi, teknik augmentasi teks juga sering digunakan, terutama ketika jumlah data yang tersedia terbatas. Augmentasi memungkinkan peningkatan variasi data pelatihan dengan menghasilkan data baru dari data yang sudah ada. Beberapa teknik augmentasi yang umum digunakan antara lain penggantian kata dengan sinonim (synonym replacement), pertukaran posisi kata, atau penerjemahan bolak-balik (back translation) untuk menciptakan versi lain dari kalimat asli \cite{wei2019eda}. Augmentasi sangat membantu dalam mencegah overfitting pada model pembelajaran, terutama ketika dataset tidak seimbang atau jumlah data yang tersedia tidak mencukupi.
+\begin{figure}[H] % Penggunaan H agar posisi gambar tepat dibawah teks 
+    \centering
+    \includegraphics[width=1\textwidth]{figure/contoh-arsitektur-cnn.png}
+    \caption{Arsitektur model TextCNN}
+    \label{fig:3.ref_gbr}
+    % {\footnotesize Sumber: internet}
+\end{figure}
 
-\subsection{Word Embedding} \label
+\begin{enumerate}
+    \item \textit{Convolutional Layer}\\
+    CNN merupakan jenis deep learning yang memanfaatkan convolutional layer sebagai penyusun neural network yang dibangun. Convolutional layer merupakan lapisan pertama dari tahap dalam arsitektur CNN [38]. Convolutional layer menggunakan pendekatan sliding window dan weight sharing untuk menyederhanakan proses perhitungan sehingga mempercepat proses pelatihan.\par
+    \vspace{1em}
 
-Setelah teks diproses, langkah selanjutnya adalah mengubah kata-kata menjadi representasi numerik agar bisa dipahami oleh komputer. Proses ini dikenal sebagai word embedding. Word embedding mengubah kata menjadi vektor berdimensi tetap yang dapat menangkap makna semantik serta hubungan antar kata dalam suatu ruang vektor \cite{mikolov2013distributed}.
+    \begin{equationcaptioned}[eq:2.convol_layer]{
+		\begin{split} 
+			c_i = f\left( \mathbf{w} \cdot \mathbf{x}_{i:i+h-1} + b \right)
+		\end{split}
+	}{
+		\textit{Convolution Operation}
+	}
+    \end{equationcaptioned}
+    
+    % \begin{equation}
+    %     c_i = f\left( \mathbf{w} \cdot \mathbf{x}_{i:i+h-1} + b \right)
+    %     \label{eq:conv1d_vector}
+    % \end{equation}
+    % \vspace{1em}
 
-Berbeda dengan metode lama seperti one-hot encoding yang menghasilkan vektor biner yang sangat jarang (sparse), embedding memungkinkan sistem mengenali bahwa kata “marah” memiliki makna yang lebih dekat dengan “kesal” dibandingkan dengan “makan”. Beberapa metode populer dalam word embedding adalah Word2Vec, GloVe, dan FastText.
+    \noindent{Keterangan:}
+    \begin{flushleft}
+        $c_i$ = Hasil konvolusi pada posisi ke-$i$ \par
+        $f(\cdot)$ = Fungsi aktivasi non-linear (misalnya ReLU) \par
+        $\mathbf{w}$ = Vektor bobot filter (\textit{kernel}) \par
+        $\mathbf{x}_{i:i+h-1}$ = Potongan vektor input dari posisi $i$ hingga $i+h-1$ \par
+        $b$ = Bias yang ditambahkan setelah operasi konvolusi
+    \end{flushleft}
+    \vspace{1em}
 
-\subsection{Deep Learning Dalam Pemrosesan Teks} \label
+    Pada lapisan ini digunakan fungsi aktivasi non-linear, seperti Rectified Linear Unit (ReLU), untuk menambahkan sifat non-linear sehingga jaringan dapat mempelajari pola yang lebih kompleks. Fungsi ini bekerja dengan memberikan keluaran nol apabila nilai masukan $\mathbf{x} \leq 0$, dan mengembalikan nilai masukan itu sendiri apabila $\mathbf{x} \geq 0$.
+    \vspace{1em}
 
-Deep learning adalah pendekatan modern dalam pembelajaran mesin yang menggunakan jaringan saraf tiruan dengan banyak lapisan untuk mempelajari representasi dari data. Dalam bidang pemrosesan bahasa alami, deep learning memberikan hasil yang sangat baik karena kemampuannya dalam mengenali pola kompleks dalam teks, bahkan tanpa perlu fitur yang dirancang secara manual \cite{goodfellow2016deep}.
+    \item \textit{Max Pooling Layer}\\
+        Max Pooling layer adalah komponen penting kedua dalam CNN setelah convolution layer. Lapisan ini berfungsi melakukan down-sampling secara non-linear untuk mereduksi ukuran data. Tujuannya adalah mengekstrak informasi yang paling relevan dari feature map dengan mengabaikan nilai-nilai yang kurang signifikan, sehingga beban komputasi dapat berkurang. Pada tugas akhir ini digunakan metode pooling, khususnya max pooling yang banyak diaplikasikan dalam pemrosesan bahasa alami (NLP). Max pooling bekerja dengan memilih nilai maksimum dari setiap area pada feature map. \par
+        \vspace{1em}
 
-Model deep learning seperti Recurrent Neural Network (RNN), Long Short-Term Memory (LSTM), dan Transformer telah banyak digunakan dalam tugas-tugas NLP. Namun, untuk teks pendek seperti komentar media sosial, arsitektur yang lebih sederhana namun efektif seperti CNN untuk teks atau TextCNN sering kali menjadi pilihan yang lebih tepat.
+    \item \textit{Fully Connecter Softmax layer}\\
+        Setelah lapisan \textit{fully connected} memproses fitur, fungsi softmax diterapkan pada output untuk mengubah skor menjadi distribusi probabilitas. Proses ini menghitung setiap skor secara eksponensial lalu menormalkannya dengan jumlah seluruh skor. Hasil akhirnya adalah probabilitas untuk tiap kelas dengan total selalu bernilai satu. Fungsi ini menghasilkan total probabilitas setiap kelas sejumlah 1 sehingga efektif untuk klasifikasi multi-kelas.\par
+        \vspace{1em}
 
-\subsection{ TextCNN} \label
+        \begin{equationcaptioned}[eq:2.softmax]{
+            \begin{split} 
+                \sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}, \quad i = 1, 2, \dots, K
+            \end{split}
+        }{
+            \textit{Softmax Function}
+        }
+        \end{equationcaptioned}
 
-TextCNN adalah varian dari Convolutional Neural Network (CNN) yang dikembangkan secara khusus untuk klasifikasi teks. Berbeda dengan CNN pada gambar, TextCNN bekerja dengan cara menerapkan filter konvolusi pada urutan kata (yang telah diubah menjadi vektor embedding) untuk menangkap pola lokal seperti n-gram yang mengandung informasi penting \cite{kim2014convolutional}.
+        \noindent{Keterangan:}
+        \begin{flushleft}
+            $\mathbf{z}$ = Vektor skor input (logit) sebelum normalisasi \par
+            $z_i$ = Skor input untuk kelas ke-$i$ \par
+            $K$ = Jumlah kelas \par
+            $\sigma(\mathbf{z})_i$ = Probabilitas kelas ke-$i$ setelah normalisasi \par
+            $e$ = Bilangan eksponensial alami ($\approx 2.71828$)
+        \end{flushleft}
+        \vspace{1em}
+        
+        Ini berarti bahwa setelah lapisan fully connected memproses fitur-fitur yang dihasilkan dari lapisan sebelumnya, sebuah fungsi softmax diterapkan pada outputnya. Fungsi softmax ini bertugas mengubah nilai-nilai numerik (skor) menjadi distribusi probabilitas dari label atau kelas yang ada. Proses ini dilakukan dengan mengekspresikan setiap skor dalam bentuk nilai eksponensial, lalu menormalkannya terhadap jumlah seluruh nilai eksponensial, sehingga diperoleh probabilitas yang proporsional. Output akhirnya adalah probabilitas untuk setiap kategori, yang menunjukkan seberapa besar kemungkinan input termasuk dalam kategori tertentu. Dengan demikian, jumlah total probabilitas untuk semua kelas akan selalu bernilai satu, menjadikan softmax sangat berguna pada tugas klasifikasi multi-kelas.\par
+\end{enumerate}
 
-Arsitektur TextCNN umumnya terdiri atas lapisan embedding sebagai input, dilanjutkan dengan beberapa filter konvolusi berukuran berbed, kemudian diteruskan ke lapisan max-pooling untuk mengekstraksi fitur paling penting dari setiap filter. Hasil pooling kemudian digabungkan dan dilewatkan ke fully connected layer untuk menghasilkan output berupa klasifikasi biner.
+\subsubsection{\textit{Hyperparameter Tuning CNN}}
+    Pemilihan hyperparameter yang tepat merupakan langkah krusial dalam membangun model deep learning yang efektif. Hyperparameter adalah parameter yang ditentukan sebelum proses pelatihan dimulai dan memiliki pengaruh signifikan terhadap performa model. Nilai hyperparameter yang digunakan masih mengacu pada pengaturan default yang diambil dari jurnal terdahulu \cite{kim2014convolutional}. Penelitian ini tetap melakukan proses hyperparameter tuning untuk mencari kombinasi nilai terbaik guna meningkatkan performa model. Pemilihan kombinasi dilakukan secara bertahap dengan mempertimbangkan hasil evaluasi dari masing-masing percobaan. Pada Tabel 3.1 adalah Hyperparameter yang akan digunakan.
 
-Keunggulan utama TextCNN terletak pada kesederhanaan dan efisiensinya. Ia tidak hanya mampu menangkap pola-pola lokal dalam teks secara efektif, tetapi juga lebih ringan dibandingkan model berbasis transformer seperti BERT, serta tidak memerlukan data pelatihan dalam jumlah besar. Hal ini menjadikan TextCNN sebagai pilihan ideal untuk klasifikasi komentar pendek di media sosial seperti TikTok.
+    \begin{longtable}{|c|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.105\linewidth}|p{0.1\linewidth}|p{0.15\linewidth}|}
+      \caption{Literasi Penelitian Terdahulu}\label{table:2.literasi}\\
+      \hline
+      \textbf{\textit{Kernel Size}} 
+        & \textbf{\textit{Learning Rate}} 
+        & \textbf{Batch Size} 
+        & \textbf{Epoch} \\
+      \hline
+    % \endfirsthead
+    %   \hline
+    %   \textbf{\textit{Filter Size}} 
+    %     & \textbf{\textit{Kernel Size}} 
+    %     & \textbf{\textit{Learning Rate}} 
+    %     & \textbf{Batch Size} 
+    %     & \textbf{Epoch} \\
+    %   \hline
+    % \endhead 
+    %   \hline
+    % \endfoot
+    %   \hline
+    % \endlastfoot
+      [3, 4] & 0.0001 & 16 & [50] \\
+      \hline
+    \end{longtable}
+
+    Berikut adalah penjelasan mengenai masing-masing hyperparameter yang digunakan:
+
+    \begin{enumerate}
+        \item \textit{Kernel Size}\\
+            % \lipsum[1]
+            \textit{Kernel size} adalah ukuran dimensi \textit{kernel} atau jendela konvolusi yang digunakan untuk memproses data input. Ukuran ini menunjukkan jumlah elemen \textit{input} yang dipertimbangkan secara bersamaan pada setiap operasi konvolusi, di mana \textit{kernel} akan bergerak melintasi \textit{input} sesuai dengan langkah pergeseran (\textit{stride}) yang ditentukan. Ukuran \textit{kernel} memengaruhi jumlah nilai \textit{input} yang digunakan untuk menghasilkan satu nilai keluaran pada \textit{feature map}. Pada arsitektur TextCNN ini akan menggunakan dua kernel size yaitu 3 dan 4 untuk menangkap \textit{feature map} yang berbeda dari setiap teks. Disini digunakan nilai awal \textit{kernel size} 3 dan 4 karena mampu menangkap detail halus dari komentar TikTok yang kebanyakan berupa kalimat singkat.
+        \vspace{1em}
+        \item \textit{Learning Rate}\\
+            % \lipsum[1]
+            \textit{Learning rate} adalah salah satu \textit{hyperparameter} pada proses pelatihan model yang mengatur besar langkah pembaruan bobot pada setiap iterasi. Nilai \textit{learning rate} menentukan seberapa cepat atau lambat model menyesuaikan bobotnya selama proses pembelajaran. Pada penelitian ini menggunakan nilai \textit{learning rate} awal 0.0001 untuk dapat memperoleh optimum global yang sulit dicapai jika \textit{learning rate} terlalu besar dan lama dicapai jika menggunakan \textit{learning rate} yang terlalu kecil.
+        \vspace{1em}
+        \item \textit{Batch Size}\\
+            % \lipsum[1]
+            \textit{Batch size} adalah jumlah sampel data yang diproses dalam satu iterasi selama pelatihan model. \textit{Batch size} kecil dapat mempercepat proses pelatihan, namun berpotensi menurunkan akurasi model. Sebaliknya, \textit{batch size} besar umumnya dapat meningkatkan akurasi, tetapi memerlukan waktu pelatihan yang lebih lama. Pada penelitian ini nilai batch size awal yang digunakan adalah 16, ini dilakukan agar proses training tidak terlalu lama dan nilai akurasi yang diperoleh juga cukup baik.
+        \vspace{1em}
+        \item \textit{Epoch}\\
+            % \lipsum[1]
+            \textit{Epoch} adalah satu siklus penuh pelatihan model terhadap seluruh dataset. Semakin besar jumlah \textit{epoch}, semakin banyak peluang model untuk mempelajari informasi dari data. Namun, jumlah epoch yang terlalu tinggi dapat menyebabkan \textit{overfitting}, yaitu kondisi saat model terlalu menghafal data latih sehingga kesulitan mengenali pola pada data baru. Sebaliknya, jumlah epoch yang terlalu sedikit dapat mengakibatkan \textit{underfitting}, di mana model belum cukup mempelajari pola yang terdapat pada data pelatihan. Di penelitian ini menggunakan nilai awal \textit{epoch} 50 untuk memberi ruang agar terhindar dari optimum lokal yang dapat terjadi jika nilai epoch terlalu kecil.
+    \end{enumerate}
+
+\subsection{\textit{Confusion Matrix}}
+    \textit{Confusion matrix} merupakan salah satu metode evaluasi yang sering digunakan dalam analisis sentimen. Metode ini berbentuk tabel yang berfungsi menilai kinerja model dengan membandingkan hasil prediksi terhadap nilai aktual dari dataset. Pada klasifikasi biner, confusion matrix terdiri dari empat komponen utama, yaitu true positive (TP), true negative (TN), false positive (FP), dan false negative (FN). Berdasarkan confusion matrix, berbagai metrik evaluasi seperti akurasi, presisi, recall, dan F1-score dapat dihitung untuk mengukur performa model secara lebih mendetail.\par
+    
+    Dalam evaluasi model klasifikasi biner, perhitungan metrik seperti precision, recall, dan F1-score dilakukan secara langsung berdasarkan nilai TP, TN, FP, dan FN tanpa perlu menggunakan metode rata-rata seperti pada kasus multi-kelas. Pendekatan ini memberikan hasil evaluasi yang lebih sederhana dan jelas, karena hanya terdapat dua kelas yang dianalisis. Evaluasi pada klasifikasi biner dapat lebih fokus dalam menilai kemampuan model membedakan antara kelas positif dan negatif.\par
+
+    \begin{longtable}{|c|c|c|}
+    \caption{Confusion Matrix untuk Klasifikasi Biner} \label{table:confusion_binary} \\
+    \hline
+        \multirow{2}{*}{\textbf{Aktual}} & \multicolumn{2}{c|}{\textbf{Prediksi}} \\ \cline{2-3}
+         & \textbf{Positif} & \textbf{Negatif} \\ \hline
+        \endfirsthead
+    \hline
+        \multirow{2}{*}{\textbf{Aktual}} & \multicolumn{2}{c|}{\textbf{Prediksi}} \\ \cline{2-3}
+         & \textbf{Positif} & \textbf{Negatif} \\ \hline
+        \endhead
+        \textbf{Positif} & \textit{True Positive (TP)} & \textit{False Negative (FN)} \\ \hline
+        \textbf{Negatif} & \textit{False Positive (FP)} & \textit{True Negative (TN)} \\ 
+    \hline
+    \end{longtable}
+
+    Berdasarkan Tabel 2.2, berikut adalah penjelasannya:
+    \begin{enumerate}%[leftmargin=1.5cm]
+        \item \textit{True Positive} (TP): Banyaknya data yang memang termasuk kategori positif dan berhasil diidentifikasi dengan benar sebagai positif oleh model.
+        \item \textit{True Negative} (TN): Banyaknya data yang sebenarnya tergolong negatif dan berhasil dikenali dengan tepat sebagai negatif oleh model.
+        \item \textit{False Positive} (FP): Banyaknya data yang sebenarnya negatif namun salah diklasifikasikan oleh model sebagai positif.
+        \item \textit{False Negative} (FN): Banyaknya data yang sebenarnya positif namun keliru diprediksi oleh model sebagai negatif.
+    \end{enumerate}
+    \vspace{1em}
+
+    Pada penelitian ini digunakan parameter tersebut untuk mengukur \textit{accuracy}, \textit{precission}, \textit{recall} dan f1-score dengan rumus sebagai berikut.
+    \begin{enumerate}
+        \item \textit{Accuracy}\\
+        \textit{Accuracy} merupakan ukuran yang menunjukkan sejauh mana model mampu mengklasifikasikan data dengan tepat. Metode ini sering digunakan untuk memberikan gambaran umum tentang kinerja model secara keseluruhan. Nilai \textit{accuracy} dihitung dengan membandingkan jumlah prediksi yang benar dengan total jumlah data uji yang tersedia. Semakin besar persentase \textit{accuracy}, semakin baik pula kemampuan model dalam mengenali dan memprediksi pola dari data yang dianalisis.\par
+        
+        Klasifikasi biner:\\
+        \vspace{1em}
+        \begin{equationcaptioned}[eq:2.accuracy]{
+            \begin{split} 
+                \textit{Accuracy} = \frac{TP + TN}{TP + FP + FN + TN}
+            \end{split}
+        }{
+            \textit{Accuracy Formula}
+        }
+        \end{equationcaptioned}
+
+        \vspace{1em}
+        
+        \noindent{Keterangan:}
+        \begin{flushleft}
+            $TP$ = \textit{True Positive}\par
+            $FP$ = \textit{False Positive}\par
+            $TN$ = \textit{True Negative}\par
+        \end{flushleft}
+        \vspace{1em}
+
+        \item \textit{Precision}\\
+        \textit{Precision} adalah ukuran yang menunjukkan tingkat ketepatan model dalam mengklasifikasikan data positif. Metode ini menilai seberapa banyak prediksi positif yang benar dibandingkan dengan seluruh data yang diprediksi sebagai positif oleh model. Nilai \textit{precision} yang tinggi mengindikasikan bahwa sebagian besar prediksi positif memang benar positif. Dengan demikian, \textit{precision} membantu menilai seberapa andal model dalam menghindari kesalahan klasifikasi positif palsu.\par
+
+        \textit{Precision} Biner:\\
+        \vspace{1em}
+        \begin{equationcaptioned}[eq:2.precision]{
+            \begin{split} 
+                \textit{Precision} = \frac{TP}{TP + FP}
+            \end{split}
+        }{
+            \textit{Precision Formula}
+        }
+        \end{equationcaptioned}
+        \vspace{1em}
+
+        \noindent{Keterangan:}
+        \begin{flushleft}
+            $TP$ = \textit{True Positive}\par
+            $FP$ = \textit{False Positive}\par
+        \end{flushleft}
+        \vspace{1em}
+        
+        \item \textit{Recall}\\
+        Recall merupakan ukuran yang menunjukkan kemampuan model dalam mengenali data yang benar pada suatu kelas tertentu. Pengukuran ini menilai sejauh mana model dapat menemukan seluruh data relevan yang termasuk dalam kelas tersebut. Nilainya diperoleh dengan membandingkan jumlah data yang berhasil diklasifikasikan dengan benar dengan total data aktual pada kelas tersebut. Semakin tinggi nilai recall, semakin baik model dalam menangkap seluruh data positif yang seharusnya terdeteksi.\par
+
+        \textit{Recall} Biner:\\
+        \vspace{1em}
+        \begin{equationcaptioned}[eq:2.recall]{
+            \begin{split} 
+                \text{Recall} = \frac{TP}{TP + FN}
+            \end{split}
+        }{
+            \textit{Recall Formula}
+        }
+        \end{equationcaptioned}
+        \vspace{1em}
+
+        \noindent{Keterangan:}
+        \begin{flushleft}
+            $TP$ = \textit{True Positive}\par
+            $FN$ = \textit{False Negative}\par
+        \end{flushleft}
+        \vspace{1em}
+        
+        \item F1-\textit{score}\\
+        F1-\textit{score} adalah ukuran yang menggabungkan precision dan recall menjadi satu nilai tunggal. Metrik ini menghitung rata-rata tertimbang dari kedua nilai tersebut agar keseimbangan keduanya dapat dinilai. Tujuan F1-\textit{score} adalah untuk memberikan gambaran performa model secara keseluruhan, khususnya ketika ketepatan dan kemampuan deteksi perlu diseimbangkan. Dengan demikian, F1-\textit{score} menjadi indikator penting dalam evaluasi model klasifikasi.
+
+        F1-\textit{Score} Biner:\\
+        \vspace{1em}
+        % \begin{equation}
+        %     \textit{F1-Score} = 2 \times \frac{\textit{Precision} \times \textit{Recall}}{\textit{Precision} + \textit{Recall}}
+        %     \label{eq:f1-score}
+        % \end{equation}
+        \begin{equationcaptioned}[eq:2.f1score]{
+            \begin{split} 
+                \textit{F1-Score} = 2 \times \frac{\textit{Precision} \times \textit{Recall}}{\textit{Precision} + \textit{Recall}}
+            \end{split}
+        }{
+            \textit{F1-Score Formula}
+        }
+        \end{equationcaptioned}
+        \vspace{1em}
+
+        \noindent{Keterangan:}
+        \begin{flushleft}
+            $Precission$ = Tingkat ketepatan prediksi positif yang dihasilkan model\par
+            $Recall$ = Tingkat keberhasilan model dalam menemukan seluruh data positif
+        \end{flushleft}
+        \vspace{1em}
+    \end{enumerate}
+
 
 % \subsection{\textit{Gambar}} \label{II.teori2}
 % \lipsum[1-2] % Menampilkan paragraf 1 sampai 2 dari lorem ipsum

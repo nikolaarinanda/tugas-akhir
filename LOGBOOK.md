@@ -70,3 +70,12 @@
 
 - Penulisan laporan bab 3
 - Perubahan salah satu sitasi utama dari tesis ke paper
+
+# 2025-10-01 to 2025-10-31
+
+- Mengulik terkait proses data preprocessing 'terbaik'serta memperbaiki kendala yang ada didalam dataset yang digunakan
+
+# 2025-10-31 to 2025-11-12
+
+- Mencoba Augmentasi AEDA dan menghapus augmentasi frasa serta sinonim
+- Membuat arsitektur model modifikasi

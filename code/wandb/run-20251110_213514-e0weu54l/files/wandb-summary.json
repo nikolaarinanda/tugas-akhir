@@ -1,0 +1,1 @@
+{"val_accuracy":88.14814814814815,"val_f1_score":0.8809876543209877,"_wandb":{"runtime":234},"_step":24,"learning_rate":0.00125,"_timestamp":1.7627855490097544e+09,"val_loss":0.44483935616581755,"train_loss":0.037507746057278434,"train_f1_score":0.9861105276199017,"train_accuracy":98.61111111111111,"_runtime":234.3389319}

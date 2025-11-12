@@ -1,17 +1,15 @@
-import pandas as pd
-import numpy as np
 import random
 import re
 import os
 import json
 import nltk
-from nltk.corpus import stopwords
-# from nltk.tokenize import word_tokenize
-# from nltk.stem import WordNetLemmatizer
 import torch
-from torch.utils.data import Dataset, DataLoader
+import pandas as pd
+# import numpy as np
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from torch.utils.data import Dataset
 from sklearn.model_selection import StratifiedKFold
-# from typing import List, Dict, Tuple, Optional, Union
 from transformers import AutoTokenizer
 
 # Download resource NLTK yang diperlukan
@@ -32,9 +30,9 @@ STOPWORDS = set(stopwords.words('english'))
 class CyberbullyingDataset(Dataset):
     def __init__(
             self,
-            file_path="../dataset/Dataset-Research.csv",
+            file_path="../dataset/cyberbullying.csv",
             tokenizer_name="indobenchmark/indobert-base-p1",
-            folds_file="cyberbullying_folds.json",
+            folds_file="k_folds.json",
             random_state=29082002,
             split="train",
             fold=0,
@@ -43,7 +41,6 @@ class CyberbullyingDataset(Dataset):
             augmentasi_file="../dataset/dictionary/augmentation.json",
             slang_word_file="../dataset/dictionary/slang-word-specific.json",
     ):        
-        # self.file_path = file_path
         self.file_path = file_path
         self.folds_file = folds_file
         self.random_state = random_state
@@ -104,6 +101,8 @@ class CyberbullyingDataset(Dataset):
         with open('slang_dictionary.json', 'r') as file:
             slang_dict = json.load(file)
 
+    # Augmentation functions
+
     def random_typo(self, text):
         words = text.split()
         if len(words) < 1:
@@ -157,6 +156,8 @@ class CyberbullyingDataset(Dataset):
             text = self.random_delete(text)
         return text
 
+    #
+
     def normalization(self, words):        
         # Normalisasi setiap kata
         normalized_words = []
@@ -174,16 +175,10 @@ class CyberbullyingDataset(Dataset):
         # Konversi ke huruf kecil
         text = text.lower()
 
-        # Hapus URL
-        text = re.sub(r"http\S+|www\S+|https\S+", "", text, flags=re.MULTILINE)
-
-        # Hapus mention (@...) dan hashtag (#...)
+        # Hapus mention (@...) dan hashtag (#...) => ada kolom comment yang #VALUE!
         text = re.sub(r'@\w+|#\w+', '', text)
 
-        # Menghapus special characters
-        text = re.sub(r'[^\w\s]', '', text)
-
-        # Hapus emoji dan karakter non-ASCII
+        # # Hapus emoji dan karakter non-ASCII
         text = re.sub(r'[^\x00-\x7F]+', '', text)
 
         # Augmentasi
@@ -193,7 +188,11 @@ class CyberbullyingDataset(Dataset):
         words = nltk.word_tokenize(text)
 
         # Normalisasi
-        words = self.normalization(words)
+        # words = self.normalization(words)
+
+        # Stemming atau Lemmatization (gunakan salah satu)
+        lemmatizer = WordNetLemmatizer()
+        words = [lemmatizer.lemmatize(word) for word in words]
 
         # Menghapus stopwords
         words = [word for word in words if word not in STOPWORDS]
@@ -236,8 +235,13 @@ class CyberbullyingDataset(Dataset):
         '''
         print(f"Membuat n-fold CV dengan random state {self.random_state}")
         skf = StratifiedKFold(n_splits=self.n_folds, shuffle=True, random_state=self.random_state)
+
+        # print("\nStratified k-fold positif samples per fold:")
+        # for _, val_idx in skf.split(self.df, self.df['sentiment']):
+        #     print(f"{np.sum(self.df['sentiment'].iloc[val_idx] == 1)} out of {len(val_idx)}")
+
         fold_indices = {}
-        for fold, (train_idx, val_idx) in enumerate(skf.split(self.df, self.df['label'])):
+        for fold, (train_idx, val_idx) in enumerate(skf.split(self.df, self.df['sentiment'])):
             fold_indices[f"fold_{fold}"] = {
                 'train_indices': train_idx.tolist(),
                 'val_indices': val_idx.tolist()
@@ -278,7 +282,7 @@ class CyberbullyingDataset(Dataset):
 
 if __name__ == "__main__":
     dataset = CyberbullyingDataset(fold=0, split="train")
-    data = dataset[8]
+    data = dataset[0]
     print(data)
 
     # dataset = CyberbullyingDataset(fold=random.randint(0, 4), split=random.choice(["train", "val"])) # Instansiasi kelas dengan fold dan split acak

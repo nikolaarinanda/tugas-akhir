@@ -3,11 +3,11 @@
 
 \section{Alur Penelitian} \label{III.Alur}
 % Pada penelitian ini, alur dirancang untuk memastikan setiap tahapan pemrosesan dilakukan secara sistematis dan efisien. Alur penelitian ini mencerminkan langkah-langkah utama yang dilakukan pada penelitian ini, dapat dilihat pada Gambar \ref{fig:3.alur}. \par
-Penelitian ini dilakukan dengan pendekatan kuantitatif eksperimental yang berfokus pada penerapan metode deep learning, khususnya arsitektur Text CNN, untuk klasifikasi sentimen komentar cyberbullying. Secara umum, alur penelitian ini terdiri dari beberapa tahapan utama, yaitu: \par
+Penelitian ini disusun melalui serangkaian langkah yang terstruktur untuk mencapai tujuan yang telah ditetapkan. Fokus utama penelitian adalah memberikan solusi yang dapat diterapkan terhadap permasalahan yang ada, yaitu dengan merancang dan mengimplementasikan sistem klasifikasi komentar \textit{cyberbullying} pada platform TikTok. Pendekatan yang digunakan mengombinasikan metode \textit{Text Convolutional Neural Network} (TextCNN), di mana TextCNN dimanfaatkan untuk mengekstraksi fitur-fitur penting dari teks komentar, sekaligus mempelajari pola sekuensial dalam teks guna meningkatkan akurasi klasifikasi. Set data pada penelitian ini akan melalui beberapa tahap pemrosesan, meliputi prapemrosesan teks, ekstraksi fitur, serta pelatihan model. Alur lengkap dari proses penelitian ini dapat dilihat pada Gambar \ref{fig:3.alur}.\par
 
 \begin{figure}[H] % Kalau menggunakan H, posisi gambar akan tepat dibawah teks
     \centering
-    \includegraphics[width=0.3\textwidth]{figure/sistematika-penelitian.jpg}
+    \includegraphics[width=1\textwidth]{figure/alur-penelitian.png}
     \caption{Alur Penelitian}
     \label{fig:3.alur}
 \end{figure}
@@ -16,63 +16,609 @@ Penelitian ini dilakukan dengan pendekatan kuantitatif eksperimental yang berfok
 Untuk memperjelas setiap langkah-langkah yang telah didefinisikan pada Gambar \ref{fig:3.alur}, berikut ini akan dijelaskan secara rinci tahapan-tahapan yang dilakukan dalam penelitian ini.
 
 \subsection{Identifikasi Masalah} \label{III.Identifikasi_masalah}
-% \lipsum[1] % Menampilkan paragraf 1 sampai 2 dari lorem ipsum
+Tahap awal dalam penelitian ini dimulai dengan melakukan identifikasi terhadap permasalahan yang menjadi fokus utama. Penelitian ini bertujuan untuk mengklasifikasikan komentar \textit{cyberbullying} berdasarkan data yang diperoleh dari media sosial \textit{TikTok} dengan menggunakan metode \textit{TextCNN}. Permasalahan utama yang diangkat adalah kesulitan dalam mengenali komentar \textit{cyberbullying} pada kolom komentar \textit{TikTok}, mengingat gaya bahasa yang digunakan di media sosial umumnya bersifat informal, singkat, dan sering kali ambigu. 
 
+Seiring meningkatnya penggunaan \textit{TikTok} sebagai sarana berekspresi, risiko munculnya tindakan \textit{cyberbullying} pun semakin besar, sehingga diperlukan sebuah model yang mampu mempelajari pola bahasa untuk melakukan klasifikasi komentar \textit{cyberbullying}. Penelitian ini bertujuan untuk mengembangkan model klasifikasi yang dapat memetakan konten teks ke dalam dua kategori, yaitu \textit{cyberbullying} dan \textit{non-cyberbullying}. 
+
+Data yang digunakan pada penelitian ini diperoleh dari penelitian sebelumnya yang dilakukan oleh B.A. Prameswari \textit{et al.}, yang menyediakan kumpulan komentar \textit{TikTok} dengan dua label, yakni \textit{cyberbullying} dan \textit{non-cyberbullying} \cite{prameswari2023cyberbullying}. Pengembangan model dilakukan menggunakan metode \textit{TextCNN}, yang berperan dalam mengekstraksi fitur penting dari teks dan mempelajari hubungan sekuensial antar kata dalam kalimat untuk kemudian mengklasifikasikannya ke dalam dua label tersebut. Model ini akan dilatih menggunakan data yang telah melalui proses prapemrosesan, sehingga diharapkan dapat memberikan prediksi yang lebih akurat dalam mengklasifikasikan komentar \textit{cyberbullying} berdasarkan pola bahasa yang digunakan oleh pengguna \textit{TikTok}.
+\par
+
+\subsection{Tinjauan Pustaka} \label{III.Tinjauan_pustaka}
+Pada tahap ini, dilakukan tinjauan terhadap berbagai penelitian terdahulu yang membahas klasifikasi komentar \textit{cyberbullying} berbasis media sosial, serta penelitian lain yang menggunakan metode serupa, khususnya dengan penerapan model \textit{TextCNN}. Tinjauan ini melibatkan beragam sumber referensi, termasuk \textit{paper}, jurnal, dan laporan penelitian yang relevan. Hasil dari studi literatur tersebut menjadi landasan penting bagi peneliti dalam memahami konsep, merancang metodologi, serta memperkuat kerangka teori yang mendasari penelitian ini.
+\par
+
+\subsection{Pengumpulan Dataset} \label{III.Pengumpulan_dataset}
+Pada penelitian ini, proses pengumpulan data tidak dilakukan secara langsung, melainkan menggunakan \textit{dataset} sekunder yang diperoleh dari penelitian sebelumnya oleh Prameswari \textit{et al.}~\cite{prameswari2023cyberbullying}. \textit{Dataset} tersebut terdiri atas 1.510 baris data dengan dua kolom utama, yaitu kolom \textit{sentiment} yang memuat dua label enumerasi: -1 untuk kategori \textit{cyberbullying} dan 1 untuk kategori \textit{non-cyberbullying}, serta kolom \textit{comment} yang berisi teks komentar. Contoh data pada Tabel \ref{table3:dataset} diambil dari berbagai baris data untuk representasi data yang lebih baik. Data ini selanjutnya akan diolah dan dimanfaatkan sebagai dasar dalam proses pelatihan model \textit{CNN-LSTM} untuk melakukan klasifikasi emosi pada unggahan di media sosial.\par
+
+    \begin{longtable}{|c|c|c|}
+    \caption{Sample Isi Dataset} \label{table3:dataset} \\
+    \hline
+        \textbf{No Baris}
+        & \textbf{Sentiment} 
+        & \textbf{Comment}\\
+    \hline
+    \endfirsthead
+      \hline
+        \textbf{No Baris}
+        & \textbf{Sentiment} 
+        & \textbf{Comment}\\
+      \hline
+    \endhead 
+        1 & -1 & Makannya segentong buset\\
+        \hline
+        2 & -1 & Mirip ursula di little mermaid\\
+        \hline
+        474 & 1 & Pede dulu, glow up belakangan\\
+        \hline
+        538 & 1 & Dihh keren banget\\
+        \hline
+        550 & 1& Pentingnya peradaban juga sis\\
+    \hline
+    \end{longtable}
+
+\subsection{Prapemrosesan Data}
+\label{III.Prapemrosesan_data}
+Data dari \textit{dataset} yang diperoleh melalui sumber sekunder diproses terlebih dahulu melalui tahap prapemrosesan sebelum dilakukan analisis. Tahap prapemrosesan ini mencakup serangkaian teknik yang bertujuan untuk meningkatkan kualitas data sehingga lebih optimal digunakan dalam proses analisis dan pelatihan model. Beberapa langkah yang dilakukan meliputi \textit{case folding} untuk mengonversi seluruh teks menjadi huruf kecil, \textit{text cleaning} untuk menghapus karakter atau simbol yang tidak diperlukan, serta \textit{normalization} untuk menormalkan penggunaan kata tidak baku atau \textit{slang} dan menyeragamkan format kata. Selain itu, dilakukan pula \textit{stopword removal} guna menghilangkan kata-kata yang tidak memberikan makna signifikan pada analisis. Setelah tahap prapemrosesan selesai, data kemudian dibagi menjadi dua bagian, yaitu 80\% untuk pelatihan (\textit{training}) dan 20\% untuk pengujian (\textit{testing}).\par
+
+\subsection{\textit{Word Embedding}}
+\label{III.Word_embedding}
+Data yang telah melewati tahap prapemrosesan selanjutnya diproses menggunakan teknik \textit{word embedding} untuk mengubah teks menjadi representasi numerik yang dapat dipahami oleh model pembelajaran mesin. Pada penelitian ini, \textit{word embedding} diimplementasikan menggunakan kelas \texttt{torch.nn.Embedding} dari pustaka PyTorch. Lapisan \texttt{Embedding} ini bekerja dengan memetakan setiap kata dalam \textit{dataset} ke dalam representasi vektor berdimensi tetap berdasarkan indeks kata. 
+
+Proses dimulai dengan membangun \textit{vocabulary}, yaitu daftar kata unik yang diperoleh dari \textit{dataset}. Setiap kata dalam \textit{vocabulary} diberikan indeks numerik, kemudian indeks tersebut dimasukkan ke dalam lapisan \texttt{Embedding} untuk mendapatkan representasi vektor. Bobot awal pada lapisan \texttt{Embedding} diinisialisasi secara acak dan akan diperbarui selama proses pelatihan model, sehingga representasi vektor yang dihasilkan dapat menyesuaikan dengan pola data dan meningkatkan kinerja model dalam klasifikasi.
+
+\subsection{\textit{Modelling} (TextCNN)}
+\label{III.Modelling}
+Pada tahap ini, dilakukan proses klasifikasi terhadap data yang telah melewati tahap ekstraksi fitur agar model dapat mengenali pola-pola penting yang berkaitan dengan klasifikasi emosi. Proses klasifikasi dilakukan menggunakan arsitektur \textit{TextCNN}, yang dirancang khusus untuk menangani data teks. 
+
+TextCNN bekerja melalui beberapa tahapan utama. Pertama, dilakukan proses \textit{convolution} menggunakan beberapa filter dengan ukuran kernel yang berbeda untuk mengekstraksi berbagai fitur penting dari data teks. Setiap filter bertujuan untuk menangkap pola kata dan frasa yang memiliki peran signifikan dalam penentuan kelas. Selanjutnya, hasil konvolusi melewati proses \textit{max-pooling} yang berfungsi untuk mereduksi dimensi fitur tanpa kehilangan informasi esensial, sehingga membuat model lebih efisien dan fokus pada fitur paling relevan. 
+
+Setelah tahap \textit{pooling}, hasilnya digabungkan dan diteruskan ke lapisan \textit{fully connected} untuk menghasilkan prediksi akhir. Dataset dibagi menjadi dua bagian, yaitu \textit{training data} yang digunakan untuk melatih model, serta \textit{testing data} yang digunakan untuk mengevaluasi kinerja model dalam mengklasifikasikan data baru.
+
+\subsection{Evaluasi Model}
+\label{III.Evaluasi_model}
+Setelah model berhasil dibangun, tahap berikutnya adalah melakukan proses evaluasi untuk menilai kinerjanya dalam mengklasifikasikan emosi pada data berbasis media sosial. Evaluasi dilakukan dengan menghitung beberapa metrik utama, yaitu \textit{accuracy}, \textit{precision}, \textit{recall}, dan \textit{F1-score}. 
+
+\textit{Accuracy} digunakan untuk mengukur sejauh mana model mampu mengklasifikasikan data secara benar secara keseluruhan. \textit{Precision} menilai tingkat ketepatan model dalam memprediksi data yang termasuk dalam kategori tertentu, sedangkan \textit{recall} mengukur sejauh mana model dapat menangkap seluruh data yang seharusnya termasuk dalam kategori tersebut. Sementara itu, \textit{F1-score} merupakan nilai harmonisasi antara \textit{precision} dan \textit{recall}, sehingga memberikan gambaran yang lebih seimbang mengenai performa model.
 
 \section{Alat dan Bahan Tugas Akhir} \label{III.Alat dan Bahan}
-Dalam menjalani penelitian, beberapa alat dan bahan digunakan untuk memastikan penelitian berjalan dengan baik.\par
+Adapun alat dan bahan yang digunakan dalam penelitian ini adalah 
+sebagai berikut:
 
 \subsection{Alat} \label{III.Alat}
-Dalam menganalisis sentimen komentar cyberbullying pada TikTok menggunakan arsitektur Text CNN, berikut adalah alat-alat yang digunakan: \par
-
-\subsubsection{Perangkat Lunak}
-\begin{enumerate}[noitemsep]
-    \item \textit{Visual Studio Code} sebagai \textit{text editor}.
-    \item Torch versi 2.3.1
-    \item transformers versi 4.51.2
-    \item NumPy versi 1.26.2
-    \item Pandas versi 2.2.3
-    \item Scikit-learn versi 1.7.0
-    \item Matplotlib versi 3.9.0
-    \item Wandb versi 0.19.11
-    \item Tqdm versi 4.66.5
-    \item Muon-optimizer versi 0.1.0
+Berikut adalah alat yang digunakan dalam penelitian ini:
+\begin{enumerate}
+    \item Pada penelitian ini penulis menggunakan laptop dengan spesifikasi Sistem Operasi Windows 11 Home, AMD Ryzen 5 5600H, Memori 24GB DDR4, SSD 500GB.
+    \item \textit{Visual Studio Code} v1.101.2, Miniconda v24.5.0, Python v3.12.4
 \end{enumerate}
 
-\subsubsection{Perangkat Keras}
-\begin{itemize}[noitemsep]
-	\item Asus Vivobook 14x m1403qa
-    \item Processor AMD Ryzen 5 5600H with Radeon Graphics    
-    \item RAM 24 GB
-    \item AMD Radeon (TM) Graphics
-    \item Sistem operasi Windows 11 Home 64-bit
-\end{itemize}
-
 \subsection{Bahan} \label{III.Bahan}
-Dataset yang digunakan pada penelitian ini merupakan dataset komentar TikTok yang diperoleh dari repositori GitHub penelitian Prameswari et al \cite{10468424}. Dataset ini berisi komentar-komentar TikTok yang telah dilabeli dengan kategori sentimen positif dan negatif. Dataset ini berisi 1.508 data komentar TikTok yang telah dilabeli. Dataset ini digunakan untuk melatih dan menguji model Text CNN dalam mengklasifikasikan sentimen komentar TikTok yang mengandung unsur cyberbullying.
+Berikut adalah bahan yang digunakan dalam penelitian ini:
+\begin{enumerate}
+    \item \textit{Dataset} yang digunakan dalam penelitian ini merupakan \textit{dataset} sekunder yang diambil dari penelitian yang dilakukan oleh B.A. Prameswari \textit{el al}., dengan judul \textit{Building Prediction Model for Detecting Cyberbullying using TikTok Comments} \cite{prameswari2023cyberbullying}.
 
-\section{Ilustrasi Perhitungan Metode} \label{III.Ilustrasi}
-Metode yang digunakan dalam penelitian ini adalah Text CNN (Text Convolutional Neural Network), yaitu arsitektur CNN yang diadaptasi untuk klasifikasi teks. Berikut tahapan dan ilustrasi metode: \par
+    \item Jurnal penelitian dari studi sebelumnya digunakan sebagai acuan untuk memberikan landasan teori, serta menyusun konsep dan gagasan yang mendukung pelaksanaan penelitian ini. 
+\end{enumerate}
 
-\subsection{Embedding Layer}
-Komentar yang telah diproses diubah menjadi vektor representasi kata (menggunakan Word2Vec, GloVe, atau embedding trainable). \par
-Misal: \texttt{"kamu jelek"} → \texttt{[[0.2, -0.4], [0.5, 0.7]]}
+\section{Metode Pengembangan}
+\label{III.Metode_pengembangan}
+Seluruh proses yang akan dilakukan dalam 
+klasifikasi emosi menggunakan TextCNN dapat dilihat pada Gambar \ref{fig:3.metode_pengembangan}.
 
-\subsection{Convolutional Layer}
-Filter konvolusi diterapkan untuk mengekstrak pola n-gram.
-Misal filter size: 2, 3, 4.
+\begin{figure}[H] % Kalau menggunakan H, posisi gambar akan tepat dibawah teks
+    \centering
+    \includegraphics[width=1\textwidth]{figure/metode-pengembangan.png}
+    \caption{Metode Pengembangan}
+    \label{fig:3.metode_pengembangan}
+\end{figure}
 
-\subsection{ReLU Activation Function}
-Fungsi aktivasi ReLU digunakan untuk menambah non-linearitas.
+\section{Penjabaran Langkah Penelitian}
+Langkah penelitian ini diuraikan berdasarkan gambar ... diatas.
+\subsection{\textit{Data Collecting}}
+Dataset yang digunakan pada penelitian ini terdiri dari 1.510 baris komentar TikTok yang diklasifikasikan ke dalam dua kategori sentimen, yaitu \textit{cyberbullying} dan \textit{non-cyberbullying}. Dataset tersebut disajikan dalam format berkas \textit{CSV}. Setiap baris data berisi komentar \textit{TikTok} beserta label sentimen dalam bentuk nilai enumerasi, di mana nilai \texttt{-1} menunjukkan \textit{cyberbullying} dan nilai \texttt{1} menunjukkan \textit{non-cyberbullying}. Gambaran umum mengenai dataset dapat dilihat pada Tabel \ref{table3:sample_dataset_awal} yang menampilkan contoh data awal.
 
-\subsection{Max Pooling}
-Memilih nilai fitur tertinggi dari hasil konvolusi untuk mempertahankan fitur paling signifikan.
 
-\subsection{Fully Connected Layer}
-Output pooling digabung dan diteruskan ke dense layer.
 
-\subsection{Output Layer}
-Fungsi aktivasi softmax digunakan untuk mengklasifikasikan komentar ke dalam salah satu kelas: positif, netral, atau negatif.
+    \newpage
+    \begin{longtable}{|c|c|}
+    \caption{Sample Dataset Awal} \label{table3:sample_dataset_awal} \\
+    \hline
+        \textbf{Sentiment} 
+        & \textbf{Comment}\\
+    \hline
+        -1 & Makannya segentong buset\\
+        \hline
+        -1 & Mirip ursula di little mermaid\\
+        \hline
+        ... & ...\\
+        \hline
+        1 & Pentingnya peradaban juga sis\\
+        \hline
+        1 & Pede dulu, glow up belakangan\\
+    \hline
+    \end{longtable}
+
+\section{Validasi Dataset}
+Validasi dataset merupakan proses pemeriksaan dan evaluasi untuk memastikan kualitas serta kelayakan data yang digunakan dalam penelitian. Tahap ini bertujuan untuk menjamin bahwa dataset bebas dari kesalahan yang berpotensi memengaruhi hasil analisis maupun kinerja model.
+
+\section{Prapemrosesan Data}
+Prapemrosesan data merupakan serangkaian tahapan yang dirancang untuk mempersiapkan serta meningkatkan kualitas data teks agar siap digunakan pada proses analisis lebih lanjut. Tahapan ini umumnya mencakup konversi seluruh huruf menjadi huruf kecil (\textit{case folding}), penghapusan karakter atau simbol yang tidak diperlukan (\textit{text cleaning}), penambahan variasi data melalui proses augmentasi (\textit{data augmentation}), pemecahan teks menjadi satuan-satuan kata atau token (\textit{tokenization}), penyeragaman ejaan kata tidak baku atau slang (\textit{normalization}), serta penghapusan kata-kata yang kurang relevan terhadap analisis (\textit{stopword removal}).
+
+\begin{enumerate} [left=2pt]
+    \item \textit{Case Folding} \\
+    % \hangindent=2em
+    \textit{Case folding} merupakan proses penyamaan format huruf pada teks dengan cara mengonversi seluruh karakter berhuruf besar (\textit{uppercase}) menjadi huruf kecil (\textit{lowercase}).
+
+    \begin{longtable}{|c|p{4cm}|p{4cm}|}
+    \caption{Tahapan \textit{Case Folding}} \label{table3:tahapan_case_folding} \\
+    \hline
+        \textbf{Sentiment} 
+        & \textbf{Comment}
+        & \textbf{Hasil} \\
+    \endfirsthead
+    \hline
+        \textbf{Sentiment} 
+        & \textbf{Comment}
+        & \textbf{Hasil} \\
+    \endhead 
+    \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    \hline
+        -1 & Cowo paling alay lebay se antero selebgram WKWKW NGAKAK & cowo paling alay lebay se antero selebgram wkwk ngakak \\
+        \hline
+        -1 & KU KIRA MUKA TERNYATA AMPELA & ku kira muka ternyata ampela\\
+    \hline
+    \end{longtable}
+    
+    \item \textit{Text Cleaning}\\
+    \textit{Text Cleaning} merupakan proses pembersihan teks dengan cara menghilangkan kata, karakter, atau elemen yang tidak diperlukan. Pada tahap ini, komponen yang dianggap tidak relevan atau dapat mengganggu analisis, seperti simbol, tanda baca, emoji, dan \textit{hashtag}, akan dihapus dari teks.
+
+    \begin{longtable}{|c|p{4cm}|p{4cm}|}
+    \caption{Tahapan \textit{Text Cleaning}} \label{table3:text_cleaning} \\
+    \hline
+        \textbf{Sentiment} 
+        & \textbf{Comment}
+        & \textbf{Hasil} \\
+    \endfirsthead
+    \hline
+        \textbf{Sentiment} 
+        & \textbf{Comment}
+        & \textbf{Hasil} \\
+    \endhead 
+    \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    \hline
+        -1 & udah sok tau salah pula \textbf{@}Ibnu Wardani \textbf{????} & udah sok tau salah pula ibnu wardani \\
+        \hline
+        1 & Old money tapi masih pedro sama coach becanda abangnya nih?? & old money tapi masih pedro sama coach becanda abangnya nih\\
+    \hline
+    \end{longtable}    
+
+    \item \textit{Augmentation}\\
+    \textit{Augmentation} merupakan teknik yang digunakan untuk memperbanyak jumlah data dengan cara memodifikasi data yang sudah ada tanpa mengubah makna utamanya. Dalam konteks pemrosesan teks, metode ini dapat dilakukan melalui beberapa cara, seperti sinonimisasi (mengganti kata dengan sinonimnya), penghapusan kata tertentu, penambahan kata, atau penyusunan ulang kata dalam kalimat. Tujuan dari \textit{augmentation} adalah meningkatkan variasi data sehingga model dapat belajar lebih baik dan menghasilkan performa klasifikasi yang lebih akurat.
+
+    \begin{longtable}{|c|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+    \caption{Tahapan \textit{Augmentation}} \label{table3:augmentation} \\
+    \hline
+        \multirow{2}{*}{\textbf{Sentiment}} 
+        & \multirow{2}{*}{\textbf{Comment}} 
+        & \multirow{2}{*}{\textbf{Hasil}} 
+        & \multicolumn{2}{c|}{\textbf{Kata/Frasa yang Diubah}} \\ \cline{4-5}
+         &  &  & \textbf{Kata Asli} & \textbf{Kata Hasil} \\ 
+    \hline
+    \endfirsthead
+    
+    \hline
+        \multirow{2}{*}{\textbf{Sentiment}} 
+        & \multirow{2}{*}{\textbf{Comment}} 
+        & \multirow{2}{*}{\textbf{Hasil}} 
+        & \multicolumn{2}{c|}{\textbf{Kata/Frasa yang Diubah}} \\ \cline{4-5}
+         &  &  & \textbf{Kata Asli} & \textbf{Kata Hasil} \\ 
+    \hline
+    \endhead
+    
+    \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    
+        -1 & ngeliat mukanya aja udah gedeg & ngeliat mukanya aja udah kesal & gedeg & kesal \\
+        \hline
+        1 & gue gapaham dr dulu fashion style dia kyk gmna wkwkwk & gue gapaham dr duul fashion style dia kyk gmna wkwkwk & dulu & duul \\
+        \hline
+        -1 & sebelum mangap di sikat dulu kale & sebelm mangap di sikat dulu kale & sebelum & sebelm \\
+        \hline
+        1 & ya begitulah kalo kita bekerja sama orang arab atau keturunan timur tengah & ya begitluah kalo kita bekerja sama orang arab atau keturunan timur tengah & begitulah & begitluah \\
+        \hline
+        -1 & rama gak usah ganggu aku sama karya ya tolong & rama gausah ganggu aku sama karya ya tolong & gak usah & gausah\\
+        
+    \hline
+    \end{longtable}
+
+    \item \textit{Tokenization}\\
+    \textit{Tokenizing} merupakan tahap pemecahan teks menjadi unit-unit terkecil, seperti kata, frasa, atau kalimat. Tahapan ini berperan penting dalam membantu sistem komputer memahami struktur dan makna dari teks yang sedang dianalisis.
+
+    \begin{longtable}{|c|p{4cm}|p{4cm}|}
+        \caption{Tahapan \textit{Tokenization}} \label{table3:tokenization} \\
+        \hline
+        \textbf{Sentiment} & \textbf{Comment} & \textbf{Hasil} \\
+        \hline
+        \endfirsthead
+    
+        \hline
+        \textbf{Sentiment} & \textbf{Comment} & \textbf{Hasil} \\
+        \hline
+        \endhead
+    
+        \hline
+        \endfoot
+    
+        \hline
+        \endlastfoot
+    
+        -1 & ngeliat mukanya aja udah kesal & 'ngeliat', 'mukanya', 'aja', 'udah', 'kesal' \\
+        \hline
+        1 & aku penggemar mi burung dara enaknya nyambung terus & 'aku', 'penggemar', 'mi', 'burung', 'dara', 'enaknya', 'nyambung', 'terus' \\
+        \hline
+    \end{longtable}
+
+    \item \textit{Normalization} \\
+    \textit{Normalization} adalah proses penyesuaian dan perbaikan ejaan pada kata-kata. Kata-kata yang tidak baku, termasuk singkatan, bahasa gaul, dan istilah slang, akan diubah menjadi bentuk yang sesuai dengan kaidah penulisan Bahasa Indonesia yang benar, merujuk pada pedoman yang tercantum dalam Kamus Besar Bahasa Indonesia (KBBI).
+
+    \begin{longtable}{|c|p{4cm}|p{4cm}|}
+        \caption{Tahapan \textit{Normalization}} \label{table3:normalization} \\
+        \hline
+        \textbf{Sentiment} & \textbf{Comment} & \textbf{Hasil} \\
+        \hline
+        \endfirsthead
+    
+        \hline
+        \textbf{Sentiment} & \textbf{Comment} & \textbf{Hasil} \\
+        \hline
+        \endhead
+    
+        \hline
+        \endfoot
+    
+        \hline
+        \endlastfoot
+    
+        -1 & gue gapaham dr dulu fashion style dia kyk gmna wkwkwk & saya tahu dari dulu fashion style dia seperti apa wkwkwk \\
+        \hline
+        1 & Kalen Kalen Pada Jahad Ma Aku & kalian kalian pada jahat kepada saya \\
+        \hline
+    \end{longtable}
+
+    \item \textit{Stopword Removal}\\
+    \textit{Stopword removal} merupakan proses penghapusan kata-kata yang sering muncul dalam jumlah banyak namun dianggap tidak memiliki makna penting. Kata-kata yang umum tetapi kurang relevan, seperti konjungsi, kata kepunyaan, dan kata ganti orang, akan dihapus dari teks.
+
+    \begin{longtable}{|c|p{3cm}|p{3cm}|p{2cm}|}
+        \caption{Tahapan \textit{Stopword Removal}} \label{table3:stopword_removal} \\
+        \hline
+        \textbf{Sentiment} & \textbf{Comment} & \textbf{Hasil} & \textbf{Kata yang Dihapus} \\
+        \hline
+        \endfirsthead
+    
+        \hline
+        \textbf{Sentiment} & \textbf{Comment} & \textbf{Hasil} & \textbf{Kata yang Dihapus} \\
+        \hline
+        \endhead
+    
+        \hline
+        \endfoot
+    
+        \hline
+        \endlastfoot
+    
+        1 & buatlah cita cita kamu setinggi bintang di langit tetapi jangan lupa untuk membuat anak tangga perencanaannya 
+        & buatlah cita cita setinggi bintang langit jangan lupa membuat anak tangga perencanaannya 
+        & 'kamu', 'di', 'tetapi', 'untuk' \\
+        \hline
+        -1 & minimal cuci muka lah goblok bikin sakit mata liatnya 
+        & minimal cuci muka goblok bikin sakit mata liatnya 
+        & 'lah' \\
+        \hline
+    \end{longtable}
+
+    % \item{Torch \textit{Embedding}}    \label{III.penjabaranLangkahPenelitian_torchEmbedding}
+    
+    
+    
+\end{enumerate}
+
+\section{Pembagian Data}
+\label{III.Pembagian_data}
+
+\begin{figure}[H] % H agar posisi gambar tepat dibawah teks
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/pembagian-data.png}
+    \caption{Pembagian Data}
+    \label{fig:3.pembagian_data}
+\end{figure}
+
+Pada Gambar \ref{fig:3.pembagian_data} menunjukkan pembagian dataset dilakukan dengan rasio 80\% untuk data latih dan 20\% untuk data validasi. Data latih digunakan untuk melatih model, sementara data validasi berfungsi untuk menguji kinerja model yang telah dilatih. Pembagian data menggunakan k-fold cross-validation dapat diperoleh evaluasi yang lebih akurat mengenai seberapa baik model dapat melakukan generalisasi terhadap data yang belum pernah dilihat sebelumnya.
+
+\section{Arsitektur Model TextCNN}
+\label{III.Arsitektur_model_TextCNN}
+
+TextCNN merupakan model klasifikasi teks berbasis algoritma \textit{Convolutional Neural Network} (CNN) yang dirancang khusus untuk memproses data teks. Pada arsitektur ini, representasi teks terlebih dahulu dikonversi ke dalam bentuk vektor melalui \textit{embedding layer}, kemudian diproses menggunakan beberapa filter konvolusi dengan ukuran berbeda untuk mengekstraksi fitur penting dari teks. Hasil ekstraksi fitur ini kemudian diringkas menggunakan \textit{max-pooling layer} sebelum diteruskan ke \textit{fully connected layer} dan diakhiri dengan lapisan \textit{output} untuk menghasilkan prediksi. Berikut penjelasan rinci setiap lapisan:
+
+\begin{enumerate}
+    \item \textit{Embedding Layer}\\
+    Lapisan \textit{embedding} berfungsi untuk mengonversi representasi kata berbentuk indeks menjadi vektor berdimensi kontinu yang merepresentasikan makna semantik kata. Misalnya, kata sedih'' dan depresi'' akan dipetakan menjadi vektor-vektor yang posisinya berdekatan dalam ruang vektor. Pada penelitian ini, digunakan modul \texttt{torch.nn.Embedding} dari \textit{PyTorch} untuk membangun representasi kata. Pendekatan ini melakukan pelatihan \textit{embedding} secara end-to-end bersamaan dengan pelatihan model utama sehingga representasi kata yang dihasilkan lebih kontekstual dan menyesuaikan dengan karakteristik data yang digunakan.
+
+    \item \textit{Convolutional Layer}\\
+    Tahapan awal pada proses feedforward adalah lapisan konvolusi satu dimensi (Conv1D). Pada tahap ini, data masukan yang telah direpresentasikan dalam bentuk vektor kata dari lapisan \textit{embedding} akan diproses menggunakan operasi konvolusi satu dimensi untuk mengekstraksi fitur-fitur penting dari urutan kata. Setiap \textit{filter} pada Conv1D akan menghasilkan \textit{feature map} yang menyoroti pola-pola tertentu dalam teks, seperti kombinasi kata atau frasa yang memiliki makna semantik serupa. Setelah itu, fungsi aktivasi ReLU (Rectified Linear Unit) diterapkan untuk menambahkan sifat non-linearitas serta memastikan hanya fitur-fitur yang paling relevan yang dipertahankan. Pendekatan ini membuat model mampu menangkap ciri-ciri lokal dalam teks tanpa terlalu bergantung pada posisi absolut kata dalam kalimat.
+
+    \item \textit{Activation Layer (ReLU)}\\
+    Setelah data teks diproses melalui lapisan konvolusi satu dimensi (Conv1D), hasil ekstraksi fitur langsung diteruskan ke fungsi aktivasi ReLU (Rectified Linear Unit). Pada tahap ini, nilai keluaran dari konvolusi yang bernilai negatif akan diubah menjadi nol, sedangkan nilai positif dibiarkan apa adanya. Pendekatan ini membuat model mampu mempelajari pola-pola non-linear dan mempertahankan fitur-fitur yang paling relevan.
+    Pada implementasi model, proses aktivasi ReLU diterapkan bersamaan dengan Max-Pooling. Operasi ini memilih nilai fitur maksimum pada setiap feature map, sehingga hanya informasi paling dominan yang dipertahankan dari setiap filter konvolusi. Dengan cara ini, model dapat mengekstraksi representasi paling informatif dari teks sebelum hasilnya digabungkan (concatenate) dan diteruskan ke lapisan berikutnya.
+
+    \item \textit{Max-Pooling Layer}\\
+    Setelah melalui tahap konvolusi dan fungsi aktivasi ReLU, proses feedforward dilanjutkan dengan lapisan max-pooling. Pada tahap ini, digunakan metode Max-Pooling yang berfungsi untuk memilih nilai maksimum dari setiap \textit{feature map} yang dihasilkan oleh lapisan konvolusi. Operasi ini dilakukan menggunakan perintah .max(dim=2), di mana nilai maksimum diambil pada dimensi urutan kata (sequence length).
+    Pendekatan ini memastikan bahwa hanya fitur paling dominan dari setiap filter konvolusi yang dipertahankan, sementara fitur-fitur dengan nilai lebih rendah diabaikan. Dengan cara ini, model menjadi lebih fokus pada informasi yang paling penting dan tidak bergantung pada posisi kata dalam teks. Selain itu, penggunaan Max-Pooling juga mengurangi dimensi data secara signifikan, sehingga proses komputasi pada lapisan berikutnya, seperti Concatenate Layer dan Fully Connected Layer, menjadi lebih efisien.
+
+    \item \textit{Concatenate Layer}\\
+    Setelah melalui tahap Max-Pooling, setiap filter konvolusi menghasilkan vektor representasi yang menggambarkan fitur paling dominan dari masing-masing ukuran kernel. Karena model ini menggunakan beberapa ukuran kernel konvolusi, diperlukan tahap concatenate untuk menggabungkan seluruh vektor hasil ekstraksi fitur menjadi satu representasi tunggal.
+    Proses penggabungan ini memungkinkan model untuk mengintegrasikan informasi dari berbagai pola n-gram yang ditangkap oleh setiap filter Conv1D. Misalnya, satu filter dapat mengekstraksi pola dua kata (bigram), sedangkan filter lainnya dapat menangkap pola tiga kata (trigram) atau lebih. Dengan melakukan concatenate, model dapat memanfaatkan seluruh fitur penting yang diperoleh dari berbagai tingkat konteks, sehingga representasi teks menjadi lebih kaya dan informatif.
+    Vektor gabungan ini kemudian diteruskan ke lapisan fully connected (dense layer) untuk tahap klasifikasi akhir. Dengan cara ini, Concatenate Layer berperan penting dalam mengintegrasikan hasil ekstraksi fitur dari berbagai jalur konvolusi menjadi satu kesatuan informasi sebelum diproses lebih lanjut.
+
+    \item \textit{Dropout Layer}\\
+    Setelah melalui tahap concatenate, model dilanjutkan dengan lapisan dropout. Lapisan ini berfungsi untuk mengurangi overfitting dengan cara secara acak menonaktifkan sejumlah neuron selama proses pelatihan. Dengan demikian, model diharapkan dapat belajar representasi yang lebih robust dan generalizable.
+    
+    \item \textit{Fully Connected Layer}\\
+    Setelah melalui tahap \textit{concatenate} dan \textit{dropout}, data kemudian diteruskan ke lapisan \textit{fully connected (dense layer)}. Pada tahap ini, seluruh fitur yang telah diekstraksi dan digabungkan sebelumnya akan diproses untuk menghasilkan prediksi akhir. Lapisan \textit{fully connected} berfungsi untuk mengintegrasikan informasi dari seluruh fitur yang ada dan menentukan kelas output berdasarkan pola-pola yang telah dipelajari selama pelatihan.
+
+    \item \textit{Output Layer}\\
+    Lapisan output merupakan tahap akhir dalam arsitektur model TextCNN. Pada tahap ini, hasil dari lapisan fully connected akan diproses untuk menghasilkan prediksi akhir mengenai kelas sentimen dari teks yang dianalisis. Dalam konteks klasifikasi biner, seperti pada penelitian ini yang membedakan antara kategori \textit{cyberbullying} dan \textit{non-cyberbullying}, lapisan output biasanya menggunakan fungsi aktivasi sigmoid. Fungsi ini mengubah nilai keluaran menjadi probabilitas antara 0 dan 1, di mana nilai mendekati 1 menunjukkan prediksi positif (misalnya, \textit{non-cyberbullying}), sedangkan nilai mendekati 0 menunjukkan prediksi negatif (misalnya, \textit{cyberbullying}). Dengan demikian, lapisan output berperan penting dalam menentukan hasil akhir klasifikasi berdasarkan fitur-fitur yang telah diekstraksi dan diproses oleh lapisan-lapisan sebelumnya.
+\end{enumerate}
+
+\section{Ilustrai Perhitungan Metode}
+\label{III.Ilustrasi_perhitungan_metode}
+Pada tahap ini, dilakukan ilustrasi perhitungan metode \textit{TextCNN} yang digunakan dalam penelitian ini. Ilustrasi ini mencakup langkah-langkah utama dalam proses klasifikasi teks, mulai dari representasi kata hingga prediksi akhir.
+
+\subsection{\textit{Input Layer}}
+    Komentar ditokenisasi menggunakan \textit{tokenizer} IndoBERT sehingga menghasilkan deretan token ID.
+    \textit{Contoh:}
+
+    \begin{equation*}
+        \text{"Makannya segentong buset"} \;\;\mapsto\;\; [245, 678, 934]
+    \end{equation*}
+
+\subsection{\textit{Embedding Layer}}
+    Proses \textit{word embedding} memproyeksikan setiap token ID kedalam ruang vektor berdimensi 300. Berikut perhitungannya:
+
+    \begin{equation*}
+		% \begin{split} 
+			245 \;\;\mapsto\;\; \mathbf{x}_1 \in \mathbb{R}^{300}, 
+            \quad 
+            678 \;\;\mapsto\;\; \mathbf{x}_2 \in \mathbb{R}^{300}, 
+            \;\;\ldots
+		% \end{split}
+    \end{equation*}
+
+    \vspace{2em}
+
+    Hasil embedding seluruh token ID akan membentuk matriks:
+
+    \vspace{1em}
+
+    \begin{equation*}
+        X = 
+        \begin{bmatrix}
+            \mathbf{x}_1 \\
+            \mathbf{x}_2 \\
+            \mathbf{x}_3
+        \end{bmatrix},
+        \quad
+        X \in \mathbb{R}^{3 \times 300}
+    \end{equation*}
+
+\subsection{\textit{Permute Operation}}
+    Agar sesuai dengan format Conv1D PyTorch, matriks embedding diubah dari bentuk (\textit{seq\_len, embed\_dim}) menjadi (\textit{embed\_dim, seq\_len}):
+
+    \begin{equation*}
+        X' \in \mathbb{R}^{300 \times 3}
+    \end{equation*}
+
+\subsection{\textit{Convolutional Layer}}
+    Filter konvolusi dengan kernel size 2 dan 4 diterapkan pada $X'$. Misalnya untuk kernel size $= 2$:
+
+    \begin{equation*}
+        s_i = W \cdot x_{i:i+1} + b
+    \end{equation*}
+
+    \vspace{2em}
+
+    dengan $W \in \mathbb{R}^{2 \times 300}$.
+
+\subsection{\textit{Activation Layer (ReLU)}}
+    Untuk mengeliminasi nilai negatif dan mempertahankan nilai positif, hasil konvolusi $s_i$ dilewatkan ke fungsi aktivasi ReLU:
+
+    \begin{equation*}
+        c_i = f(s_i) = \max(0, s_i)
+    \end{equation*}
+
+    \vspace{2em}
+
+    Contoh hasil \textit{feature map} setelah ReLU:
+
+    \begin{equation*}
+        \begin{split}
+            % \text{Kernel 2} \;\rightarrow\; [0.2,\, 0.9,\, 0.5] \\
+            % \text{Kernel 4} \;\rightarrow\; [0.4,\, 0.7,\, 0.2]
+            C_1 = [0.2,\, 0.9,\, 0.5] \\
+            C_2 = [0.4,\, 0.7,\, 0.2]
+        \end{split}
+    \end{equation*}
+
+\subsection{\textit{Max-Pooling Layer}}
+    Ambil nilai maksimum dari setiap \textit{feature map} untuk merangkum informasi paling penting:
+    \vspace{1em}
+
+    \begin{equation*}
+        \begin{split}
+            % \text{Kernel 2} &\;\rightarrow\; \max([0.2,\, 0.9,\, 0.5]) = 0.9 \\
+            % \text{Kernel 4} &\;\rightarrow\; \max([0.4,\, 0.7,\, 0.2]) = 0.7
+            \text{MaxPool}(C_1) = \max(0.2, 0.9, 0.5) = 0.9 \\
+            \text{MaxPool}(C_2) = \max(0.4, 0.7, 0.2) = 0.7
+        \end{split}
+    \end{equation*}
+    \vspace{2em}
+
+    Sehingga output pooling adalah:
+    \vspace{1em}
+
+    \begin{equation*}
+        \begin{bmatrix}
+            0.9 \\
+            0.7
+        \end{bmatrix}
+    \end{equation*}
+
+\subsection{\textit{Concatenation Layer}}
+    Gabungkan hasil pooling dari semua filter menjadi satu vektor fitur gabungan:
+
+    \vspace{1em}
+
+    \[
+        \text{Fitur Gabungan} = 
+        \begin{bmatrix}
+            0.9 \\
+            0.7
+        \end{bmatrix} =
+        [0.9, 0.7]
+    \]
+
+    \vspace{2em}
+
+    Jika ada lebih banyak filter, tambahkan hasil pooling mereka ke vektor ini.
+
+\subsection{\textit{Dropout Layer}}
+    Dengan dropout rate 0.1 (10\% neuron dimatikan acak saat training).
+
+    \[
+        \text{Fitur Gabungan Setelah Dropout} = [0.9, 0.7]
+    \]
+
+\subsection{\textit{Fully Connected Layer}}
+    Vektor dropout $z$ diproyeksikan dengan bobot $W$ dan bias $b$:
+
+    \begin{equation*}
+        \text{Output} = W \cdot z + b
+    \end{equation*}
+    \vspace{2em}
+
+    Misalnya hasil perhitungan adalah:
+    \vspace{1em}
+
+    \begin{equation*}
+        \text{Output} = 
+        \begin{bmatrix}
+        1.086 \\
+        0.888
+        \end{bmatrix}
+    \end{equation*}
+
+\subsection{\textit{Output Layer}}
+    Aktivasi sigmoid diterapkan untuk mendapatkan probabilitas kelas:
+
+    \begin{equation*}
+        % \hat{y} = \sigma(\text{Output}) = 
+        % \begin{bmatrix}
+        % 0.747 \\
+        % 0.708
+        % \end{bmatrix}
+        \begin{split}
+                    \sigma(1.086) &\approx 0.747 \rightarrow \;\;\; \text{kelas 1 (cyberbullying)} \\
+                    \sigma(0.888) &\approx 0.708 \rightarrow \;\;\; \text{kelas 0 (non-cyberbullying)}
+        \end{split}
+    \end{equation*}
+
+    \vspace{2em}
+    Kelas prediksi adalah kelas dengan probabilitas tertinggi, yaitu kelas 1 (\textit{cyberbullying}) dengan probabilitas 0.747.
+
+\section{Rancangan Pengujian}
+\label{III.Pengujian}
+ Rancangan pengujian dilakukan secara sistematis agar hasil evaluasi bersifat andal, terukur, dan dapat direplikasi.
+
+% \subsection{Konsep Studi Ablasi}
+% Studi ablasi dilakukan untuk menilai kontribusi masing-masing komponen dalam arsitektur model TextCNN. Pada tahap ini, setiap komponen utama, seperti \textit{embedding layer}, \textit{convolutional layer}, \textit{pooling layer}, dan \textit{fully connected layer}, akan dihapus satu per satu. Setelah itu, model akan dilatih ulang dan dievaluasi menggunakan metrik yang sama seperti pada model lengkap. Dengan membandingkan kinerja model tanpa komponen tertentu dengan model lengkap, dapat diketahui seberapa besar pengaruh masing-masing komponen terhadap performa keseluruhan. Hasil dari studi ablasi ini memberikan wawasan penting mengenai bagian-bagian mana yang paling krusial dalam arsitektur TextCNN untuk tugas klasifikasi teks.
+
+ \subsection{Skema Pengujian}
+Pada tahap ini, dilakukan proses pengujian untuk menilai kinerja model yang telah dibangun. Pengujian dilakukan dengan menggunakan 5 fold data yang telah dipisahkan sebelumnya sebagai data latih dan data validasi. Hasil prediksi dari model akan dibandingkan dengan label asli untuk menghitung metrik evaluasi seperti \textit{accuracy} yang dihitung berdasarkan rumus \ref{eq:2.accuracy}, \textit{precision} yang dihitung berdasarkan rumus \ref{eq:2.precision}, \textit{recall} yang dihitung berdasarkan rumus \ref{eq:2.recall}, dan \textit{F1-score} yang dihitung berdasarkan rumus \ref{eq:2.f1score}. Metrik-metrik ini memberikan gambaran mengenai seberapa baik model dalam mengklasifikasikan data baru dan membantu mengidentifikasi area yang perlu ditingkatkan.
+% Disini diasumsikan \textit{confusion matrix} seperti pada Gambar \ref{fig:3.hasil_prediksi} dan Tabel \ref{table:hasil_prediksi}.
+
+% \begin{figure}[H] % H digunakan agar posisi gambar tepat berada dibawah teks 
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{figure/hasil-prediksi.png}
+%     \caption{Inisialisasi \textit{Confusion Matrix}}
+%     \label{fig:3.hasil_prediksi}
+%     % {\footnotesize Sumber: dokumen pribadi}
+% \end{figure}
+
+% \begin{longtable}{|c|c|c|c|}
+%     \caption{Inisialisasi \textit{Confusion Matrix}} \label{table:hasil_prediksi} \\
+%     \hline
+%         \multirow{2}{*}{\textbf{Aktual}} & \multicolumn{2}{c|}{\textbf{Prediksi}} \\ \cline{2-3}
+%          & \textbf{Positif} & \textbf{Negatif} & \textbf{Total Prediksi} \\ \hline
+%         \endfirsthead
+%     \hline
+%         \multirow{2}{*}{\textbf{Aktual}} & \multicolumn{2}{c|}{\textbf{Prediksi}} \\ \cline{2-3}
+%          & \textbf{Positif} & \textbf{Negatif} & \textbf{Total Prediksi} \\ \hline
+%         \endhead
+%         \textbf{Positif} & 94 & 48 & 142 \\ \hline
+%         \textbf{Negatif} & 27 & 102 & 129 \\  \hline
+%         \textbf{Total Aktual} & 121 & 150 & 271 \\
+%     \hline
+% \end{longtable}
+
+% Berdasarkan \textit{confusion matrix} pada Gambar \ref{fig:3.hasil_prediksi} dan Tabel \ref{table:hasil_prediksi} dapat ditarik beberapa kesimpulan. Dari total 142 data dengan label asli \textit{Cyberbullying}, sebanyak 94 data berhasil diklasifikasikan dengan benar (True Positive). Sementara itu, terdapat 48 data yang salah diklasifikasikan sebagai \textit{Non-Cyberbullying} (False Negative). selanjutnya, dari total 129 data dengan label asli \textit{Non-Cyberbullying}, sebanyak 102 data berhasil diklasifikasikan dengan benar (True Negative), sedangkan 27 data salah diklasifikasikan sebagai \textit{Cyberbullying} (False Positive).  Dengan informasi ini, dapat dihitung metrik evaluasi seperti \textit{accuracy}, \textit{precision}, \textit{recall}, dan \textit{F1-score} untuk menilai kinerja model dalam mengklasifikasikan data. Berikut adalah perhitungan metrik evaluasi berdasarkan nilai-nilai pada \textit{confusion matrix} di atas: \\
+% TP = 94 \\
+% FN = 48 \\
+% FP = 27 \\
+% TN = 102
+
+% \begin{equation*}
+%     \textit{Accuracy} = \frac{TP + TN}{TP + FP + FN + TN} = \frac{94 + 102}{94 + 27 + 48 + 102} = \frac{196}{271} = 0.7236
+% \end{equation*}
+
+% \vspace{1cm}
+    
+% \begin{equation*}
+%     \textit{Precision} = \frac{TP}{TP + FP} = \frac{94}{94 + 27} = \frac{94}{121} = 0.7777
+% \end{equation*}
+
+% \vspace{1cm}
+
+% \begin{equation*}
+%     \textit{Recall} = \frac{TP}{TP + FN} = \frac{94}{94 + 48} = \frac{94}{142} = 0.6611
+% \end{equation*}
+
+% \vspace{1cm}
+
+% \begin{equation*}
+%     \textit{F1-Score} = 2 \times \frac{\textit{Precision} \times \textit{Recall}}{\textit{Precision} + \textit{Recall}} = 2 \times \frac{0.7777 \times 0.6611}{0.7777 + 0.6611} = 0.7156
+% \end{equation*}
+
+% \vspace{1cm}
+
+% Berdasarkan nilai-nilai tersebut, diperoleh nilai accuracy sebesar 0,7236, yang mengindikasikan bahwa 72,36\% dari semua prediksi adalah benar. Nilai precision sebesar 0,7777, yang mengindikasikan bahwa 77,77\% dari semua prediksi Cyberbullying adalah benar. Nilai recall sebesar 0,6611 menunjukkan bahwa model berhasil mengidentifikasi 66,11\% dari seluruh data kelas Cyberbullying secara tepat. Nilai F1-score, yaitu rata-rata harmonis dari precision dan recall, berada pada angka 0,7156.
+
+% \begin{longtable}{|c|c|c|c|c|}
+%     % \caption{Tahapan \textit{Stopword Removal}} \label{table3:stopword_removal} \\
+%     \hline
+%     \textbf{Kelas} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+%     \hline
+%     \endfirsthead
+%         1 & 0.7236 & 0.7777 & 0.6611 & 0.7156 \\
+%     \hline
+% \end{longtable}
+
+% \subsection{Map Pengujian}
 
 % Dalam penelitian ini, hasil perhitungan dari program akan melalui serangkaian pengujian untuk mengevaluasi tingkat keakuratan model yang digunakan. Data dummy tersebut dapat dilihat pada Tabel \ref{table:3.dummy}. \par
 % \begin{longtable}{|c|c|c|c|c|c|c|c|c|}
