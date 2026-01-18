@@ -1,6 +1,8 @@
 references/
-document/
+ta-document/
 ta-contoh/
+code/__pycache__/
+code/model_outputs/
 kendali-bimbingan.docx
 CONSULT.md
 
