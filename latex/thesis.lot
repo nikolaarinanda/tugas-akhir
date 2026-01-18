@@ -3,14 +3,41 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {2.1}{\ignorespaces Literasi Penelitian Terdahulu}}{10}{table.2.1}%
 \contentsline {table}{\numberline {2.2}{\ignorespaces Literasi Penelitian Terdahulu}}{11}{table.2.2}%
-\contentsline {table}{\numberline {2.3}{\ignorespaces Literasi Penelitian Terdahulu}}{20}{table.2.3}%
-\contentsline {table}{\numberline {2.4}{\ignorespaces Confusion Matrix untuk Klasifikasi Biner}}{22}{table.2.4}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces \textit {Confusion Matrix} untuk Klasifikasi Biner}}{22}{table.caption.16}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Sample Isi Dataset}}{28}{table.3.1}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Sample Dataset Awal}}{33}{table.3.2}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Sample Dataset Awal}}{32}{table.3.2}%
 \contentsline {table}{\numberline {3.3}{\ignorespaces Tahapan \textit {Case Folding}}}{34}{table.3.3}%
 \contentsline {table}{\numberline {3.4}{\ignorespaces Tahapan \textit {Text Cleaning}}}{34}{table.3.4}%
 \contentsline {table}{\numberline {3.5}{\ignorespaces Tahapan \textit {Augmentation}}}{35}{table.3.5}%
 \contentsline {table}{\numberline {3.6}{\ignorespaces Tahapan \textit {Tokenization}}}{36}{table.3.6}%
-\contentsline {table}{\numberline {3.7}{\ignorespaces Tahapan \textit {Normalization}}}{37}{table.3.7}%
-\contentsline {table}{\numberline {3.8}{\ignorespaces Tahapan \textit {Stopword Removal}}}{37}{table.3.8}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Tahapan \textit {Stopword Removal}}}{36}{table.3.7}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces Sample Dataset Awal}}{46}{table.3.8}%
+\contentsline {table}{\numberline {3.9}{\ignorespaces Inisialisasi \textit {Confusion Matrix}}}{51}{table.3.9}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Contoh Data pada Dataset}}{54}{table.caption.24}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Distribusi Data pada Masing-masing Kelas}}{55}{table.caption.25}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Hasil Case Folding pada Beberapa Komentar}}{56}{table.caption.26}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Hasil Text Cleaning pada Beberapa Komentar}}{57}{table.caption.27}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Hasil Augmentation pada Beberapa Komentar}}{59}{table.caption.28}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Hasil Tokenizing pada Beberapa Komentar}}{59}{table.caption.29}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Hasil Stopword Removal pada Beberapa Komentar}}{60}{table.caption.30}%
+\contentsline {table}{\numberline {4.8}{\ignorespaces Hasil pembagian \textit {K-Fold} pada dataset}}{62}{table.caption.31}%
+\contentsline {table}{\numberline {4.9}{\ignorespaces Konfigurasi \textit {hyperparameter} default pada model TextCNN Ringan}}{67}{table.caption.32}%
+\contentsline {table}{\numberline {4.10}{\ignorespaces Hasil evaluasi model TextCNN ringan dengan \textit {hyperparameter default}}}{68}{table.caption.33}%
+\contentsline {table}{\numberline {4.11}{\ignorespaces Konfigurasi \textit {hyperparameter} default pada model TextCNN Sedang}}{70}{table.caption.35}%
+\contentsline {table}{\numberline {4.12}{\ignorespaces Hasil evaluasi model TextCNN sedang dengan \textit {hyperparameter default}}}{70}{table.caption.36}%
+\contentsline {table}{\numberline {4.13}{\ignorespaces Konfigurasi \textit {hyperparameter} default pada model TextCNN Berat}}{72}{table.caption.38}%
+\contentsline {table}{\numberline {4.14}{\ignorespaces Hasil evaluasi model TextCNN berat dengan \textit {hyperparameter default}}}{73}{table.caption.39}%
+\contentsline {table}{\numberline {4.15}{\ignorespaces Konfigurasi \textit {hyperparameter} default pada model SEDepthwise TextCNN}}{75}{table.caption.41}%
+\contentsline {table}{\numberline {4.16}{\ignorespaces Hasil evaluasi model SEDepthwise TextCNN dengan \textit {hyperparameter default}}}{75}{table.caption.42}%
+\contentsline {table}{\numberline {4.17}{\ignorespaces Hasil studi ablasi \textit {optimizer}}}{79}{table.caption.44}%
+\contentsline {table}{\numberline {4.18}{\ignorespaces Hasil studi ablasi \textit {batch size}}}{80}{table.caption.45}%
+\contentsline {table}{\numberline {4.19}{\ignorespaces Hasil studi ablasi \textit {learning rate}}}{81}{table.caption.46}%
+\contentsline {table}{\numberline {4.20}{\ignorespaces Hasil studi ablasi \textit {embedding dimension}}}{81}{table.caption.47}%
+\contentsline {table}{\numberline {4.21}{\ignorespaces Hasil studi ablasi \textit {kernel size}}}{82}{table.caption.48}%
+\contentsline {table}{\numberline {4.22}{\ignorespaces Hasil studi ablasi \textit {convolution filters}}}{83}{table.caption.49}%
+\contentsline {table}{\numberline {4.23}{\ignorespaces Hasil studi ablasi \textit {dropout rate}}}{83}{table.caption.50}%
+\contentsline {table}{\numberline {4.24}{\ignorespaces Perbandingan Konfigurasi \textit {hyperparameter Default} dan hasil Studi Ablasi}}{84}{table.caption.51}%
+\contentsline {table}{\numberline {4.25}{\ignorespaces Hasil evaluasi dengan \textit {hyperparameter} default dan hasil studi ablasi}}{84}{table.caption.52}%
+\contentsline {table}{\numberline {4.26}{\ignorespaces Perbandingan Hasil evaluasi konfigurasi \textit {hyperparameter} default dan studi ablasi}}{85}{table.caption.53}%

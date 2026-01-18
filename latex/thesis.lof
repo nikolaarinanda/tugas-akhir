@@ -1,8 +1,18 @@
 \babel@toc {bahasa}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Arsitektur model TextCNN}}{17}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Ilustrasi \textit {Deep Learning}}}{17}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Arsitektur model TextCNN}}{17}{figure.caption.15}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Alur Penelitian}}{26}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Metode Pengembangan}}{32}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Pembagian Data}}{38}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Alur Penelitian}}{26}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Metode Pengembangan}}{32}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Pembagian Data}}{37}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Arsitektur model TextCNN}}{37}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Pembagian Data}}{39}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Pembagian Data}}{43}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Inisialisasi \textit {Confusion Matrix}}}{51}{figure.caption.23}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces F1-Score Model TextCNN Ringan dengan \textit {Hyperparameter Default}}}{69}{figure.caption.34}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Grafik Rata-rata F1-Score Model TextCNN Sedang dengan \textit {Hyperparameter Default}}}{71}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Grafik Rata-rata F1-Score Model TextCNN Berat dengan \textit {Hyperparameter Default}}}{74}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Grafik rata-rata F1-score model SEDepthwise TextCNN dengan \textit {hyperparameter default}}}{76}{figure.caption.43}%

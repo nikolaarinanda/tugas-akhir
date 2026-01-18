@@ -1,0 +1,110 @@
+_wandb:
+    value:
+        cli_version: 0.22.3
+        e:
+            r3di9t1nghv22qn4crpa7ywtz629v2c5:
+                args:
+                    - --use_wandb
+                    - --batch_size
+                    - "50"
+                    - --lr
+                    - "5e-3"
+                    - --tokenizer
+                    - AdamW
+                    - --embed_dim
+                    - "100"
+                    - --kernel_size
+                    - "3"
+                    - --conv_filters
+                    - "50"
+                    - --dropout
+                    - "0.5"
+                    - --wandb_group
+                    - LightTextCNN kernel_size ablation
+                    - --wandb_note
+                    - LightTextCNN kernel_size ablation
+                codePath: code\merge.py
+                codePathLocal: merge.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "510263627776"
+                        used: "484488716288"
+                email: nikolaarinanda01@gmail.com
+                executable: C:\Users\nikol\miniconda3\envs\ta\python.exe
+                git:
+                    commit: 3ace9b4ee4f034258b8903472667a69ccc049d7d
+                    remote: https://github.com/nikolaarinanda/tugas-akhir.git
+                host: Nikola
+                memory:
+                    total: "25131765760"
+                os: Windows-11-10.0.26100-SP0
+                program: C:\Users\nikol\OneDrive\Tugas Akhir\code\merge.py
+                python: CPython 3.13.7
+                root: C:\Users\nikol\OneDrive\Tugas Akhir\code
+                startedAt: "2026-01-15T14:47:11.880620Z"
+                writerId: r3di9t1nghv22qn4crpa7ywtz629v2c5
+        m: []
+        python_version: 3.13.7
+        t:
+            "1":
+                - 1
+                - 5
+                - 11
+                - 49
+                - 53
+            "2":
+                - 1
+                - 5
+                - 11
+                - 49
+                - 53
+            "3":
+                - 13
+                - 16
+            "4": 3.13.7
+            "5": 0.22.3
+            "6": 4.56.2
+            "8":
+                - 3
+            "12": 0.22.3
+            "13": windows-amd64
+batch_size:
+    value: 50
+conv_filters:
+    value: 50
+dataset_path:
+    value: ../dataset/cyberbullying.csv
+dropout:
+    value: 0.5
+embed_dim:
+    value: 100
+epochs:
+    value: 100
+kernel_size:
+    value: 3
+lr:
+    value: 0.005
+max_length:
+    value: 128
+n_folds:
+    value: 5
+num_classes:
+    value: 2
+output_dir:
+    value: model_outputs
+output_model:
+    value: true
+patience:
+    value: 5
+seed:
+    value: 29082002
+tokenizer:
+    value: AdamW
+use_wandb:
+    value: true
+wandb_group:
+    value: LightTextCNN kernel_size ablation
+wandb_note:
+    value: LightTextCNN kernel_size ablation

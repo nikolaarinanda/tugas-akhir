@@ -5,28 +5,27 @@
 \chapter{PENDAHULUAN} \label{Bab I}
 
 \section{Latar Belakang} \label{I.Latar Belakang}
-
 Perkembangan teknologi informasi yang pesat telah membawa perubahan signifikan dalam cara manusia beraktivitas, khususnya dalam berkomunikasi. Berbagai teknologi baru bermunculan, seperti internet dan media sosial, yang memberikan kemudahan dalam berinteraksi. Namun, di balik kemudahan tersebut, muncul pula tantangan serius, salah satunya terkait dampaknya terhadap kesehatan mental \cite{sembiring2024dampak}. Salah satu gangguan kesehatan mental yang muncul seiring kemajuan teknologi komunikasi, khususnya media sosial, adalah \textit{cyberbullying}.\par
 
 \textit{Cyberbullying} adalah tindakan agresif yang disengaja dan berulang kali dilakukan menggunakan perangkat elektronik terhadap korban yang sulit membela diri \cite{putri2023cyberbullying}. Berdasarkan studi yang dilakukan oleh S. Hinduja \textit{et al.}, \textit{cyberbullying} memiliki beberapa kriteria, yaitu disengaja, berulang, dan berbahaya \cite{hinduja10role}. Dampak dari \textit{cyberbullying} meliputi rasa malu, takut, dan terintimidasi yang dapat mengganggu kesehatan mental korban serta berpotensi menimbulkan depresi berlebih. Perilaku \textit{cyberbullying} diamati sering terjadi di berbagai platform media sosial.\par
  
-Perkembangan internet dalam bidang teknologi informasi telah menghadirkan berbagai alternatif media komunikasi, salah satunya media sosial. Salah satu platform sosial media yang paling populer adalah TikTok, yang dikembangkan oleh ByteDance dan menggunakan format video pendek sebagai media utama, sehingga memberikan pengalaman baru dibandingkan dengan media sosial lainnya. Berdasarkan laporan We Are Social tahun 2025, TikTok menempati peringkat ke-4 sebagai platform media sosial yang paling banyak digunakan di Indonesia \cite{wearesocial2025}. Popularitasnya membuat TikTok digunakan oleh jutaan orang dari berbagai usia, latar belakang, dan budaya \cite{rosiana2023analisis}. Namun, seperti media sosial pada umumnya, karakteristik penggunaan bahasa di TikTok cenderung singkat, tidak baku, dan informal. Hal ini menimbulkan tantangan tersendiri dalam mendeteksi adanya komentar \textit{cyberbullying}, karena proses identifikasi secara manual memerlukan waktu dan usaha yang besar.\par
+Perkembangan internet dalam bidang teknologi informasi telah menghadirkan berbagai alternatif media komunikasi, salah satunya media sosial. Salah satu platform media sosial yang paling populer adalah TikTok, yang dikembangkan oleh ByteDance dan menggunakan format video pendek sebagai media utama, sehingga memberikan pengalaman baru dibandingkan dengan media sosial lainnya. Berdasarkan laporan We Are Social tahun 2025, TikTok menempati peringkat ke-4 sebagai platform media sosial yang paling banyak digunakan di Indonesia \cite{wearesocial2025}. Popularitasnya membuat TikTok digunakan oleh jutaan orang dari berbagai usia, latar belakang, dan budaya \cite{rosiana2023analisis}. Namun, seperti media sosial pada umumnya, karakteristik penggunaan bahasa di TikTok cenderung singkat, tidak baku, dan informal. Hal ini menimbulkan tantangan tersendiri dalam mendeteksi adanya komentar \textit{cyberbullying}, karena proses identifikasi secara manual memerlukan waktu dan usaha yang besar.\par
 
-Mengatasi masalah tersebut, B.A. Prameswari \textit{et al} (2023) melalui penelitiannya menawarkan solusi berupa model analisis sentimen yang mampu mengklasifikasikan komentar \textit{cyberbullying} dan \textit{non-cyberbullying} \cite{prameswari2023cyberbullying}. Analisis sentimen memungkinkan proses identifikasi sentimen dalam teks, yang dapat dikategorikan menjadi sentimen positif dan negatif. Pendekatan modern dalam analisis sentimen banyak mengandalkan teknik \textit{deep learning}. Metode ini, yang merupakan bagian dari \textit{machine learning} dengan jaringan saraf tiruan berlapis-lapis, memiliki kemampuan yang baik dalam membaca pola kompleks dari data yang tidak terstruktur, termasuk data teks, tanpa perlu fitur yang dirancang secara manual \cite{liao2017cnn}. Dengan kemampuan tersebut, model dapat menganalisis dan memahami teks secara lebih akurat secara otomatis.\par
+Mengatasi masalah tersebut, B.A. Prameswari \textit{et al} melalui penelitiannya menawarkan solusi berupa model analisis sentimen yang mampu mengklasifikasikan komentar \textit{cyberbullying} dan \textit{non-cyberbullying} \cite{prameswari2023cyberbullying}. Analisis sentimen memungkinkan proses identifikasi sentimen dalam teks, yang dapat dikategorikan menjadi sentimen positif dan negatif. Pendekatan modern dalam analisis sentimen banyak mengandalkan teknik \textit{deep learning}. Metode ini, yang merupakan bagian dari \textit{machine learning} dengan jaringan saraf tiruan berlapis-lapis, memiliki kemampuan yang baik dalam membaca pola kompleks dari data yang tidak terstruktur, termasuk data teks, tanpa perlu fitur yang dirancang secara manual \cite{liao2017cnn}. Dengan kemampuan tersebut, model dapat menganalisis dan memahami teks secara lebih akurat secara otomatis.\par
 
 Seiring dengan meningkatnya penggunaan \textit{deep learning} dalam analisis sentimen, peran \textit{Natural Language Processing} (NLP) juga menjadi krusial. NLP berfokus pada interaksi antara komputer dan bahasa manusia, memungkinkan mesin untuk memproses, menganalisis, memahami, dan menghasilkan bahasa alami. Hal ini sangat penting untuk mengurai makna di balik komentar-komentar pengguna dan mengidentifikasi sentimen yang terkandung di dalamnya \cite{prameswari2023cyberbullying}. Selain itu, kemajuan dalam arsitektur model \textit{deep learning} telah meningkatkan kemampuan NLP dalam menangkap konteks dan nuansa bahasa yang kompleks. Implementasi NLP pada analisis sentimen tidak hanya membantu dalam klasifikasi polaritas teks, tetapi juga dapat digunakan untuk mendeteksi pola bahasa yang berpotensi mengarah pada perilaku tertentu seperti \textit{cyberbullying}.\par
 
-Penelitian sebelumnya juga telah mencoba mengatasi masalah analisis sentimen \textit{cyberbullying} dengan menggunakan arsitektur canggih seperti \textit{Bidirectional Encoder Representations from Transformers} (BERT) melalui proses \textit{fine-tuning} pada dataset spesifik. Model-model berbasis transformer seperti BERT memang menunjukkan performa tinggi dalam banyak tugas \textit{Natural Language Processing} (NLP) \cite{prameswari2023cyberbullying}. Namun, hasil penelitian sebelumnya menunjukkan kecenderungan terjadinya \textit{overfitting}, di mana model menjadi terlalu spesifik terhadap data pelatihan sehingga performanya menurun pada data baru yang belum pernah dilihat sebelumnya, terutama pada dataset dengan ukuran terbatas atau distribusi data yang tidak seimbang \cite{ying2019overview}.\par
+Penelitian sebelumnya juga telah mencoba mengatasi masalah analisis sentimen \textit{cyberbullying} dengan menggunakan arsitektur canggih seperti \textit{Bidirectional Encoder Representations from Transformers} (BERT) melalui proses \textit{fine-tuning} pada dataset spesifik. Model-model berbasis transformer seperti BERT memang menunjukkan performa tinggi dalam banyak tugas NLP \cite{prameswari2023cyberbullying}. Namun, hasil penelitian sebelumnya menunjukkan kecenderungan terjadinya \textit{overfitting}, di mana model menjadi terlalu spesifik terhadap data pelatihan sehingga performanya menurun pada data baru yang belum pernah dilihat sebelumnya, terutama pada dataset dengan ukuran terbatas atau distribusi data yang tidak seimbang \cite{ying2019overview}.\par
 
 Melihat tantangan tersebut, arsitektur TextCNN muncul sebagai alternatif yang menjanjikan. Penelitian terdahulu terkait TextCNN telah membuktikan keunggulannya dalam mengekstraksi fitur penting dari rangkaian kata dan telah banyak digunakan dalam berbagai tugas klasifikasi teks, termasuk analisis sentimen serta deteksi spam atau misinformasi. Keunggulan utamanya adalah kemampuannya dalam mempelajari representasi fitur secara otomatis melalui \textit{convolution layer}, yang efektif menangkap pola lokal dan global dalam teks \cite{kim2014convolutional}. Temuan ini menegaskan potensi penggunaan arsitektur TextCNN dalam melakukan analisis sentimen, khususnya untuk klasifikasi komentar \textit{cyberbullying} di platform media sosial TikTok.
 
 
 \section{Rumusan Masalah} \label{I.Rumusan Masalah}
-
 Berdasarkan latar belakang yang telah diuraikan di atas, maka permasalahan penelitian dirumuskan sebagai berikut: \par
 
 \begin{enumerate}[noitemsep]
     \item Bagaimana mengklasifikan komentar yang termasuk dan tidak termasuk \textit{cyberbullying} pada platform TikTok dengan arsitektur TextCNN?
+    % Poin 2 sepertinya perlu dirubah ?
     \item Bagaimana menguji performa model TextCNN dalam mengklasifikasikan komentar yang termasuk dan tidak termasuk \textit{cyberbullying}?
 \end{enumerate}
 
@@ -35,6 +34,7 @@ Berdasarkan rumusan masalah yang telah diuraikan di atas, maka tujuan dari penel
 
 \begin{enumerate}[noitemsep]
     \item Mengembangkan model klasifikasi untuk mendeteksi komentar yang termasuk dan tidak termasuk \textit{cyberbullying} pada platform TikTok menggunakan arsitektur TextCNN.
+    % Poin 2 sepertinya perlu dirubah ?
     \item Melakukan pengujian dan evaluasi performa model TextCNN dalam mengklasifikasikan komentar \textit{cyberbullying} dan komentar non-\textit{cyberbullying} menggunakan matriks evaluasi berdasarkan \textit{confusion matrix}.
 \end{enumerate}
 
@@ -45,7 +45,7 @@ Adapun batasan masalah dari penelitian ini agar sesuai dengan yang diharapkan ad
 \begin{enumerate}[noitemsep]
     \item Penelitian ini hanya menggunakan data komentar yang berasal dari platform TikTok.
     \item Dataset komentar TikTok yang digunakan dalam penelitian ini diambil dari dataset yang telah dikumpulkan dan dipublikasikan oleh B.A. Prameswari \textit{et al} (2023) \cite{prameswari2023cyberbullying}.
-    \item Data yang dianalisis berjumlah 1.510 komentar dan seluruhnya menggunakan bahasa Indonesia.
+    \item Data yang dianalisis berjumlah 1.505 komentar dan seluruhnya menggunakan bahasa Indonesia.
 \end{enumerate}
 
 \section{Manfaat Penelitian} \label{I.Manfaat}
@@ -65,17 +65,13 @@ Sistematika penulisan berisi pembahasan apa yang akan ditulis disetiap Bab. Sist
 Bab ini membahas latar belakang yang melandasi penelitian, perumusan masalah yang ingin diselesaikan, serta tujuan yang ingin dicapai. Selain itu, dijelaskan juga batasan masalah, manfaat dari penelitian, dan sistematika penulisan sebagai panduan struktur laporan.
 
 \subsection{Bab II Tinjauan Pustaka}
-
 Bab ini menguraikan teori-teori yang menjadi dasar penelitian, seperti konsep \textit{cyberbullying}, analisis sentimen, dan text processing. Juga dijelaskan arsitektur model TextCNN yang digunakan dalam penelitian ini.
 
 \subsection{Bab III}
-
 Bab ini menjelaskan metode yang digunakan dalam penelitian, mulai dari teknik pengumpulan data hingga tahapan prapemrosesan data. Selain itu, dibahas pula perancangan model TextCNN serta metode evaluasi performa model.
 
 \subsection{Bab IV}
-
 Bab ini menyajikan hasil pelatihan dan pengujian model yang telah dibangun. Dilengkapi dengan analisis performa dan interpretasi hasil klasifikasi sentimen untuk menilai keberhasilan model.
 
 \subsection{Bab V}
-
 Bab terakhir ini berisi kesimpulan dari hasil penelitian yang telah dilakukan. Penulis juga memberikan saran sebagai masukan untuk pengembangan penelitian di masa mendatang.

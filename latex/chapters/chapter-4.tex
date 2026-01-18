@@ -1,6 +1,985 @@
-% \newpage
-% \chapter{HASIL DAN PEMBAHASAN} \label{Bab IV}
+\newpage
+\chapter{HASIL DAN PEMBAHASAN} \label{Bab IV}
 
+\section{Hasil Implementasi}
+\label{IV.Hasil Implementasi}
+    Penelitian ini dilakukan melalui serangkaian tahapan sebagaimana yang ditunjukkan pada Gambar \ref{fig:3.alur}. Hasil luaran utama berupa model \textit{deep learning} untuk klasifikasi biner dengan arsitektur TextCNN yang dibangun dari scratch menggunakan dataset komentar \textit{cyberbullying}, dimana model mampu mengklasifikan suatu komentar kedalam kelas \textit{cyberbullying} ataupun \textit{non-cyberbullying}. Uraian lebih rinci mengenai proses pengembangan serta hasil penelitian dipaparkan pada bagian berikut.
+
+    \subsection{Analisis Dataset}
+    \label{IV.Analisis Dataset}
+        Dataset yang digunakan dalam penelitian ini adalah dataset komentar \textit{cyberbullying} berbahasa Indonesia yang diperoleh dari \textit{repository} Github Titus Rangga Wicaksono yang digunakan pada paper 'Building Prediction Model for Detecting Cyberbullying using TikTok Comments' \cite{prameswari2023cyberbullying}. Dataset ini berisi komentar-komentar yang diambil dari platform sosial media TikTok dengan total 1.505 komentar yang telah dilabeli kedalam dua kelas \textit{label encoding}, yaitu kelas \textit{cyberbullying} (-1)  dan kelas \textit{non-cyberbullying} (1). Beberapa contoh data dari dataset dapat dilihat pada Tabel \ref{tab:4.contoh-dataset}.
+
+        \begin{table}[H]
+            \centering
+            \caption{Contoh Data pada Dataset}
+            \label{tab:4.contoh-dataset}
+            \begin{tabular}{|c|p{8cm}|}
+                \hline
+                \textbf{Label} & \textbf{Komentar} \\
+                \hline
+                -1 & Cowo paling alay lebay seantero selebgram WKWKW NGAKAK \\
+                \hline
+                1 & aku penggemar mi burung dara enaknya nyambung terus \\
+                \hline
+                -1 & KU KIRA MUKA TERNYATA AMPELA \\
+                \hline
+                1 & buatlah cita cita kamu setinggi bintang di langit tetapi jangan lupa untuk membuat anak tangga perencanaannya \\
+                \hline
+            \end{tabular}
+        \end{table}
+
+        Dataset ini telah melalui proses pembersihan data (data cleaning) dan prapemrosesan (preprocessing) sehingga siap untuk digunakan dalam pelatihan model \textit{deep learning}. Distribusi data pada masing-masing kelas dapat dilihat pada Tabel \ref{tab:4.distribusi-data}.
+
+        \begin{table}[H]
+            \centering
+            \caption{Distribusi Data pada Masing-masing Kelas}
+            \label{tab:4.distribusi-data}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Label} & \textbf{Jumlah Data} & \textbf{Persentase} \\
+                \hline
+                \textit{Cyberbullying} & 675 & 44.85\% \\
+                \hline
+                \textit{Non-cyberbullying} & 830 & 55.15\% \\
+                \hline
+            \end{tabular}
+        \end{table}
+
+        Dari Tabel \ref{tab:4.distribusi-data}, dapat dilihat bahwa jumlah data pada masing-masing kelas tidak seimbang, dimana kelas \textit{non-cyberbullying} memiliki jumlah data yang lebih banyak dibandingkan dengan kelas \textit{cyberbullying}. Ketidakseimbangan yang terjadi tergolong ringan, sehingga tidak memerlukan penanganan khusus seperti \textit{oversampling} atau \textit{undersampling}. Namun, hal ini tetap menjadi perhatian dalam proses pelatihan model agar tidak terjadi \textit{overfitting} pada kelas mayoritas.
+
+    \subsection{Prapemrosesan Data}
+    \label{IV.Prapemrosesan Data}
+        Pada bagian ini akan dipaparkan hasil dari proses prapemrosesan dataset. Proses prapemrosesan meliputi beberapa tahapan, seperti \textit{case folding}, \textit{text cleaning}, \textit{augmentation}, \textit{tokenizing} dan \textit{stopword removal}. Hasil dari proses processing adalah dataset yang telah siap untuk digunakan dalam pelatihan model \textit{deep learning}.
+
+        \subsubsection{\textit{Case Folding}}
+        \label{IV.Case Folding}
+            Tahap \textit{case folding} adalah tahap awal dalam prapemrosesan teks dimana seluruh karakter dalam teks diubah menjadi huruf kecil. Hal ini bertujuan untuk mengurangi variasi kata yang sama yang ditulis dengan huruf kapital dan huruf kecil, sehingga memudahkan proses analisis selanjutnya. Implementasi kode untuk tahap \textit{case folding} dapat dilihat pada \cref{code:4.case_folding}.
+
+            \begin{lstlisting}[language=Python, caption={Case Folding}, label={code:4.case_folding}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+def preprocess(self, text):
+    # Konversi ke huruf kecil
+    text = text.lower()
+            \end{lstlisting}
+
+            Pada \cref{code:4.case_folding}, fungsi \textit{preprocess} menerima input berupa teks komentar dan mengubah seluruh karakter menjadi huruf kecil menggunakan metode \textit{lower()} dari tipe data string di Python. Hasil dari tahap \textit{case folding} dapat dilihat pada Tabel \ref{tab:4.hasil-case-folding}.
+
+            \begin{table}[H]
+                \centering
+                \caption{Hasil Case Folding pada Beberapa Komentar}
+                \label{tab:4.hasil-case-folding}
+                \begin{tabular}{|c|p{4cm}|p{4cm}|}
+                    \hline
+                    \textbf{Label} & \textbf{Komentar Asli} & \textbf{Hasil Case Folding} \\
+                    \hline
+                    -1 & Cowo paling alay lebay seantero selebgram WKWKW NGAKAK & cowo paling alay lebay seantero selebgram wkwkw ngakak \\
+                    \hline
+                    -1 & KU KIRA MUKA TERNYATA AMPELA & ku kira muka ternyata ampela \\
+                    \hline
+                \end{tabular}
+            \end{table}
+
+        \subsubsection{\textit{Text Cleaning}}
+        \label{IV.Text Cleaning}
+            Tahap \textit{text cleaning} adalah proses pembersihan teks dari karakter-karakter yang tidak diperlukan seperti emoji dan karakter khusus. Proses ini bertujuan untuk menyederhanakan teks sehingga hanya mengandung kata-kata yang relevan untuk analisis. Implementasi kode untuk tahap \textit{text cleaning} dapat dilihat pada \cref{code:4.text_cleaning}.
+
+            \begin{lstlisting}[language=Python, caption={Text Cleaning}, label={code:4.text_cleaning}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+# Hapus mention (@) dan hashtag (#)
+text = re.sub(r'@\w+|#\w+', '', text)
+
+# # Hapus emoji dan karakter non-ASCII
+text = re.sub(r'[^\x00-\x7F]+', '', text)
+            \end{lstlisting}
+
+            Pada \cref{code:4.text_cleaning}, fungsi \textit{preprocess} menggunakan modul \textit{re} untuk menghapus mention dan hashtag dengan pola reguler, serta menghapus emoji dan karakter non-ASCII. Hasil dari tahap \textit{text cleaning} dapat dilihat pada Tabel \ref{tab:4.hasil-text-cleaning}.
+
+            \begin{table}[H]
+                \centering
+                \caption{Hasil Text Cleaning pada Beberapa Komentar}
+                \label{tab:4.hasil-text-cleaning}
+                \begin{tabular}{|c|p{4cm}|p{4cm}|}
+                    \hline
+                    \textbf{Label} & \textbf{Komentar Asli} & \textbf{Hasil Text Cleaning} \\
+                    \hline
+                    -1 & udah sok tau salah pula @IbnuWardani ???? & udah sok tau salah pula ????  \\
+                    \hline
+                    -1 & yukk hesteg \#hujatjeje & yukk hesteg \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            
+        \subsubsection{\textit{Augmentation}}
+        \label{IV.Augmentation}
+            Tahap \textit{augmentation} adalah proses penambahan variasi pada data teks untuk meningkatkan jumlah data pelatihan dan memperkaya representasi kata. Teknik yang digunakan adalah \textit{An Easier Data Augmentation} (AEDA), \textit{random swap}, dan \textit{random delete}. Implementasi kode untuk tahap \textit{augmentation} dapat dilihat pada \cref{code:4.augmentation}.
+
+            \begin{lstlisting}[language=Python, caption={Augmentation}, label={code:4.augmentation}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+def aeda_augment(self, text):
+    # Tanda baca augmentasi AEDA
+    punctuations = [".", ";", "?", ":", "!", ","]
+    words = text.split()
+    if len(words) == 0:
+        return text
+    # Pilih posisi acak untuk sisipan
+    position = random.randint(0, len(words) - 1)
+    # Pilih tanda baca acak
+    punct = random.choice(punctuations)
+    # Sisipkan tanda baca ke dalam list kata
+    words.insert(position, punct)
+    return " ".join(words)
+
+def random_typo(self, text):
+    words = text.split()
+    if len(words) < 1:
+        return text
+    # Pilih satu kata secara acak untuk dimodifikasi 
+    idx = random.randint(0, len(words) - 1)
+    word = words[idx]
+    if len(word) > 1:
+        char_list = list(word)
+        # Pilih posisi acak untuk swap
+        i = random.randint(0, len(char_list) - 2)
+        # swap 2 huruf berdekatan
+        char_list[i], char_list[i+1] = char_list[i+1], char_list[i] 
+        words[idx] = ''.join(char_list)
+    return ' '.join(words)
+
+def random_delete(self, text):
+    words = text.split()
+    if len(words) <= 1:
+        return text
+    # Pilih satu kata secara acak untuk dihapus
+    idx = random.randint(0, len(words) - 1)
+    # Hapus kata tersebut
+    del words[idx]
+    return ' '.join(words)
+
+def augmentation_text(self, text, probability=0.5):
+    # Hanya lakukan augmentasi dengan probabilitas tertentu
+    if random.random() > probability:
+        return text
+    # Daftar augmentasi
+    augmentations = [
+        self.aeda_augment,
+        self.random_typo,
+        self.random_swap,
+        self.random_delete
+    ]
+    # Pecah kalimat menjadi kumpulan kata
+    words = text.split()
+    # Menentukan jumlah augmentasi yang dilakukan
+    n_insert = random.randint(1, max(1, len(words) // 3))
+    # Perulangan augmentasi
+    for i in range(n_insert):
+        # Pilih satu augmentasi secara acak
+        augmentation_func = random.choice(augmentations)
+        # Terapkan augmentasi yang dipilih
+        text = augmentation_func(text)
+
+    return text
+
+def preprocess(self, text):
+    # ... Other Code
+
+    # Augmentasi
+    text = self.augmentation_text(text)
+            \end{lstlisting}
+
+            Pada \cref{code:4.augmentation}, terdapat beberapa fungsi untuk melakukan augmentasi teks, yaitu \textit{aeda\_augment} untuk menyisipkan tanda baca secara acak, \textit{random\_typo} untuk melakukan kesalahan ketik dengan menukar dua huruf berdekatan, dan \textit{random\_delete} untuk menghapus satu kata secara acak. Fungsi \textit{augmentation\_text} menggabungkan ketiga teknik augmentasi tersebut dengan probabilitas tertentu. Hasil dari tahap \textit{augmentation} dapat dilihat pada Tabel \ref{tab:4.hasil-augmentation}.
+
+            \begin{table}[H]
+                \centering
+                \caption{Hasil Augmentation pada Beberapa Komentar}
+                \label{tab:4.hasil-augmentation}
+                \begin{tabular}{|c|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+                    \hline
+                    \multirow{2}{*}{\textbf{Label}} & \multirow{2}{*}{\textbf{Comment}} & \multirow{2}{*}{\textbf{Hasil}} & \multicolumn{2}{c|}{\textbf{Kata/Frasa yang Diubah}} \\
+                    \cline{4-5} &  &  & \textbf{Kata Asli} & \textbf{Kata Hasil} \\
+                    \hline
+                    -1 & ngeliat mukanya aja udah gedeg & ngeliat mukanya aja udah kesal & ngeliat mukanya aja udah gedeg & mukanya aja, udah gedeg! \\
+                    \hline
+                    1 & gue gapaham dr dulu fashion style dia kyk gmna wkwkwk & gue gapaham dr duul fashion style dia kyk gmna wkwkwk & dulu & duul \\
+                    \hline
+                    -1 & sebelum mangap di sikat dulu kale & sebelm mangap di sikat dulu kale & sebelum & sebelm \\
+                    \hline
+                \end{tabular}
+            \end{table}
+
+        \subsubsection{\textit{Tokenizing}}
+        \label{IV.Tokenizing}
+            Tahap \textit{tokenizing} adalah proses pemecahan teks menjadi unit-unit yang lebih kecil yang disebut token. Token ini biasanya berupa kata atau frasa yang akan digunakan sebagai input untuk model \textit{deep learning}. Implementasi kode untuk tahap \textit{tokenizing} dapat dilihat pada \cref{code:4.tokenizing}.
+
+            \begin{lstlisting}[language=Python, caption={Tokenizing}, label={code:4.tokenizing}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+def preprocess(self, text):
+    # ... Other Code
+
+    # Tokenizing
+    tokens = word_tokenize(text)
+    return tokens
+            \end{lstlisting}
+
+            Pada \cref{code:4.tokenizing}, fungsi \textit{preprocess} menggunakan modul \textit{nltk} untuk memecah teks menjadi token menggunakan metode \textit{word\_tokenize()}. Hasil dari tahap \textit{tokenizing} dapat dilihat pada Tabel \ref{tab:4.hasil-tokenizing}.
+
+            \begin{table}[H]
+                \centering
+                \caption{Hasil Tokenizing pada Beberapa Komentar}
+                \label{tab:4.hasil-tokenizing}
+                \begin{tabular}{|c|p{4cm}|p{4cm}|}
+                    \hline
+                    \textbf{Label} & \textbf{Comment} & \textbf{Hasil} \\
+                    \hline
+                    1 & aku penggemar mi burung dara enaknya nyambung terus & 'aku', 'penggemar', 'mi', 'burung', 'dara', 'enaknya', 'nyambung', 'terus' \\
+                    \hline
+                \end{tabular}
+            \end{table}
+
+        \subsubsection{\textit{Stopword Removal}}S
+        \label{IV.Stopword Removal}
+            Tahap \textit{stopword removal} adalah proses penghapusan kata-kata yang dianggap tidak memiliki makna penting dalam analisis teks, seperti kata hubung dan kata depan. Implementasi kode untuk tahap \textit{stopword removal} dapat dilihat pada \cref{code:4.stopword_removal}.
+            \begin{lstlisting}[language=Python, caption={Stopword Removal}, label={code:4.stopword_removal}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+stop_words = set(stopwords.words('indonesian'))
+
+def preprocess(self, text):
+    # ... Other Code
+
+    # Stopword Removal
+    tokens = [word for word in tokens if word not in stop_words]
+    return tokens
+            \end{lstlisting}
+
+            Pada \cref{code:4.stopword_removal}, fungsi \textit{preprocess} menggunakan modul \textit{nltk} untuk menghapus kata-kata yang terdapat dalam daftar \textit{stopwords} bahasa Indonesia. Hasil dari tahap \textit{stopword removal} dapat dilihat pada Tabel \ref{tab:4.hasil-stopword-removal}.
+
+            \begin{table}[H]
+                \centering
+                \caption{Hasil Stopword Removal pada Beberapa Komentar}
+                \label{tab:4.hasil-stopword-removal}
+                \begin{tabular}{|c|p{3cm}|p{3cm}|p{3cm}|}
+                    \hline
+                    \textbf{Label} & \textbf{Comment} & \textbf{Hasil} & \textbf{Kata yang Dihapus} \\
+                    \hline
+                    1 & buatlah cita cita kamu setinggi bintang di langit tetapi jangan lupa untuk membuat anak tangga perencanaannya & buatlah cita cita setinggi bintang langit jangan lupa membuat anak tangga perencanaannya & 'kamu', 'di', 'tetapi', 'untuk' \\
+                    \hline
+                \end{tabular}
+            \end{table}
+
+    \subsection{Pembagian \textit{K-Fold} Pada Dataset}
+    \label{IV.Pembagian K-Fold Pada Dataset}
+        \begin{lstlisting}[language=Python, caption={Pembagian \textit{k-fold}}, label={code:4.pembagian_kfold}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+def create_folds(self):
+    print(f"Membuat n-fold CV dengan random state {self.random_state}")
+    skf = StratifiedKFold(n_splits=self.n_folds, shuffle=True, random_state=self.random_state)
+    fold_indices = {}
+    for fold, (train_idx, val_idx) in enumerate(skf.split(self.df, self.df['sentiment'])):
+        fold_indices[f"fold_{fold}"] = {
+            'train_indices': train_idx.tolist(),
+            'val_indices': val_idx.tolist()
+        }
+    
+    # Simpan fold ke file
+    with open(self.folds_file, 'w') as f:
+        json.dump({
+            'fold_indices': fold_indices,
+            'n_samples': len(self.df),
+            'n_folds': self.n_folds,
+            'random_state': self.random_state
+        }, f)
+        self.fold_indices = fold_indices
+        print(f'Created {self.n_folds}-fold indices and saved to {self.folds_file}')
+        \end{lstlisting}
+
+        Fungsi generate kfold splits pada Kode \ref{code:4.pembagian_kfold} membangun skema validasi silang berbasis kelompok untuk mencegah kebocoran data antar kelompok. Metode ini menginisialisasi proses pembagian data menggunakan teknik \textit{Stratified K-Fold Cross Validation} dengan \textit{random state} yang telah ditentukan untuk menjamin reproduksibilitas eksperimen. Proses pembagian dilakukan pada tingkat baris \textit{dataframe} dengan merujuk pada kolom \textit{sentiment} sebagai dasar stratifikasi, sehingga setiap \textit{fold} memiliki distribusi kelas yang seimbang dan representatif terhadap keseluruhan \textit{dataset}. Hal ini memastikan bahwa evaluasi model memberikan hasil yang objektif karena proporsi kategori sentimen pada setiap \textit{subset training} dan \textit{validation} tetap konsisten.
+        Hasil akhir dari fungsi ini adalah sebuah struktur data berbentuk kamus yang menyimpan daftar indeks \textit{train} dan \textit{val} untuk setiap \textit{fold}. Seluruh informasi pembagian ini, beserta metadata pendukung seperti jumlah sampel dan konfigurasi \textit{random state}, disimpan ke dalam sebuah berkas \textit{.json} eksternal. Prosedur penyimpanan ini memungkinkan sistem untuk memuat kembali (\textit{load}) pembagian data yang identik pada tahap pelatihan model berikutnya, sehingga memastikan konsistensi data yang digunakan di seluruh tahapan penelitian.
+
+        \begin{table}[H]
+            \centering
+            \caption{Hasil pembagian \textit{K-Fold} pada dataset}
+            \label{tab:4.hasil-pembagian-k-fold-pada-dataset}
+            \begin{tabular}{|c|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{2cm}|p{2cm}|}
+                \hline
+                \multirow{2}{*}{\textbf{Iterasi}} & \multicolumn{5}{c|}{\textbf{\textit{K-Fold } per Folder}} & \multirow{2}{*}{\textbf{Data Latih}} & \multirow{2}{*}{\textbf{Data Evaluasi}} \\
+                \cline{2-6} 
+                &  \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5}
+                & & \\
+                \hline
+                1 & \cellcolor{yellow!50}301 & 301 & 301 & 301 & 301 & 1204 & 301 \\
+                \hline
+                2 & 301 & \cellcolor{yellow!50}301 & 301 & 301 & 301 & 1204 & 301 \\
+                \hline
+                3 & 301 & 301 & \cellcolor{yellow!50}301 & 301 & 301 & 1204 & 301 \\
+                \hline
+                4 & 301 & 301 & 301 & \cellcolor{yellow!50}301 & 301 & 1204 & 301 \\
+                \hline
+                5 & 301 & 301 & 301 & 301 & \cellcolor{yellow!50}301 & 1204 & 301 \\
+                \hline
+                % \multicolumn{5}{|c|}{Rata-rata} & 0,883 & 0,881 & 0,904 & 0,892 \\
+                % \hline
+            \end{tabular}
+        \end{table}
+
+        Pada Tabel \ref{tab:4.hasil-pembagian-k-fold-pada-dataset} ditunjukkan skema \textit{k-fold cross-validation} sejumlah 5 \textit{fold} untuk mengukur kinerja arsitetur \textit{deep learning} secara lebih akurat dan andal. Pada tiap iterasi (1–5), satu \textit{fold} digunakan untuk validasi (sel berwarna kuning), sementara empat kelompok lainnya dipakai untuk pelatihan. Total terdapat 1505 baris data pada dataset, sehingga dibagi menjadi 5 kelompok: empat kelompok dengan masing-masing berisi 301 data dengan total 1204 data untuk pelatihan dan satu kelompok dengan 301 data untuk validasi. Jumlah data pada setiap kelompok data tetap, ini terjadi karena tiap kelompok data menyimpan jumlah data yang sama. Dengan rancangan ini, setiap kelompok data tepat sekali menjadi validasi dan empat kali masuk pelatihan, memastikan tidak ada data yang sama muncul di train dan validasi secara bersamaan (\textit{no leakage}).
+
+    \subsection{Perancangan Model Klasifikasi}
+    \label{IV.Perancangan Model}
+        % \lipsum[1]
+        Pada subbab ini akan dijelaskan secara rinci mengenai proses perancangan model klasifikasi yang digunakan dalam penelitian. Arsitektur yang digunakan adalah arsitektur TextCNN sebagai model utama, kemudian dilanjutkan dengan pengembangan arsitektur melalui integrasi mekanisme Squeeze-and-Excitation (SE) dan Depthwise Separable Convolution pada model SEDepthwise TextCNN. Setiap bagian akan membahas struktur, komponen utama, serta alur inferensi model secara sistematis untuk memberikan gambaran menyeluruh terkait strategi ekstraksi fitur dan klasifikasi yang diimplementasikan pada tugas deteksi komentar \textit{cyberbullying}.
+
+        \subsubsection{TextCNN}
+        \label{IV.TextCNN}
+            \begin{lstlisting}[language=Python, caption={Kode model TextCNN}, label={code:4.kode_model_textcnn}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+class TextCNN(nn.Module):
+    def __init__(
+        self,
+        vocab_size,
+        in_channels=300,
+        num_classes=2,
+        conv_filters=100,
+        kernel_sizes=[3, 4, 5],
+        dropout_rate=0.5
+    ):
+        super(TextCNN, self).__init__()
+
+        self.embedding = nn.Embedding(vocab_size, in_channels)
+
+        self.convs = nn.ModuleList([
+            nn.Conv1d(in_channels, conv_filters, kernel_size=k)
+            for k in kernel_sizes
+        ])
+
+        self.dropout = nn.Dropout(dropout_rate)
+        self.fc = nn.Linear(conv_filters * len(kernel_sizes), num_classes)
+
+    def forward(self, x):
+        # x: (batch, seq_len)
+        x = self.embedding(x)          # (batch, seq_len, embed_dim)
+        x = x.permute(0, 2, 1)         # (batch, embed_dim, seq_len)
+
+        conv_outs = []
+        for conv in self.convs:
+            h = F.relu(conv(x))        # (batch, conv_filters, L')
+            h = torch.max(h, dim=2)[0]
+            conv_outs.append(h)
+
+        x = torch.cat(conv_outs, dim=1)
+        x = self.dropout(x)
+        return self.fc(x)
+            \end{lstlisting}
+
+            Arsitektur model TextCNN diinisialisasi pada Gambar \ref{fig:4.kode-model-textcnn} dengan membangun komponen ekstraksi fitur berbasis teks secara paralel. Lapisan \textit{embedding} dipersiapkan untuk memetakan indeks kata ke dalam ruang vektor kontinu berdimensi $in\_channels$. Inti dari model ini terletak pada penggunaan beberapa lapisan konvolusi satu dimensi (Conv1d) dengan ukuran kernel yang bervariasi ($3, 4, \text{ dan } 5$) yang disusun dalam \textit{ModuleList}. Pendekatan \textit{multi-kernel} ini bertujuan untuk menangkap informasi \textit{n-gram} dengan cakupan berbeda dalam satu langkah komputasi. Lapisan \textit{dropout} disiapkan sebagai mekanisme regularisasi, sementara bagian klasifikasi menggunakan satu lapisan \textit{linear} (\textit{fc}) yang berfungsi memetakan akumulasi fitur dari seluruh filter konvolusi ke ruang kelas target sesuai parameter $num\_classes$.\par
+            Fungsi \textit{forward} pada Gambar 4.y merealisasikan alur inferensi dari tingkat kata hingga prediksi klasifikasi. Data \textit{input} terlebih dahulu ditransformasikan melalui lapisan \textit{embedding}, yang kemudian diikuti oleh operasi permutasi dimensi (\textit{permute}) untuk menyelaraskan struktur tensor dengan kebutuhan input lapisan konvolusi 1D, yaitu menempatkan dimensi kanal sebelum dimensi sekuens. Setiap blok konvolusi mengekstraksi fitur lokal yang kemudian diproses melalui fungsi aktivasi \textit{ReLU} untuk memperkenalkan sifat non-linearitas. Operasi \textit{Global Max Pooling} (\textit{torch.max}) diterapkan pada setiap \textit{output} konvolusi untuk mereduksi dimensi temporal, sehingga hanya fitur paling dominan dari setiap filter yang diambil sebagai representasi tingkat kalimat. Fitur-fitur dari berbagai ukuran kernel tersebut kemudian digabungkan (\textit{concatenate}) menjadi satu vektor representasi global. Sebelum mencapai lapisan luaran, mekanisme \textit{dropout} diterapkan untuk mencegah \textit{overfitting}, diikuti oleh proyeksi akhir melalui lapisan \textit{fully connected} guna menghasilkan nilai logit klasifikasi.\par
+
+        \subsubsection{\textit{SEDepthwise} TextCNN}
+        \label{IV.Enhanced TextCNN}
+            \begin{lstlisting}[language=Python, caption={Kode model SEDepthwise TextCNN}, label={code:4.kode_model_sedepthwise_textcnn}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+class SEDepthwiseTextCNN(nn.Module):
+    def __init__(self, vocab_size, in_channels=300, num_classes=2, conv_filters=100, kernel_sizes=[3,4,5], dropout_rate=0.5):
+        super(SEDepthwiseTextCNN, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, in_channels, padding_idx=0)
+
+        # Depthwise + Pointwise convolution blocks
+        self.convs = nn.ModuleList([
+            nn.Sequential(
+                nn.Conv1d(in_channels, in_channels, kernel_size=ks, groups=in_channels, padding=0),  # depthwise
+                nn.Conv1d(in_channels, conv_filters, kernel_size=1),  # pointwise
+                nn.ReLU()
+            )
+            for ks in kernel_sizes
+        ])
+
+        self.dropout = nn.Dropout(dropout_rate)
+        self.se_block = SEBlock(conv_filters * len(kernel_sizes))
+        self.fc = nn.Linear(conv_filters * len(kernel_sizes), num_classes)
+
+    # Helper block untuk konvolusi + aktivasi + pooling
+    def conv_block(self, x, depthwise, pointwise):
+        x = depthwise(x)
+        x = F.relu(pointwise(x))
+        x = F.max_pool1d(x, kernel_size=x.size(2)).squeeze(2)
+        return x
+
+    def forward(self, x):
+        x = self.embedding(x)   # (batch, seq_len, in_channels)
+        x = x.permute(0, 2, 1)  # (batch, in_channels, seq_len)
+
+        conv_outputs = []
+        for conv in self.convs:
+            y = conv(x)
+            y = F.max_pool1d(y, kernel_size=y.size(2)).squeeze(2)
+            conv_outputs.append(y)
+
+        x_cat = torch.cat((conv_outputs), dim=1)    # (batch, conv_filters * 3)
+        x_cat = self.se_block(x_cat)
+        x_cat = self.dropout(x_cat)
+
+        return self.fc(x_cat)
+            \end{lstlisting}
+
+            Model \textit{SE-Depthwise TextCNN} pada Kode \ref{code:4.kode_model_sedepthwise_textcnn} dirancang sebagai pengembangan dari struktur \textit{convolutional neural network} konvensional dengan mengintegrasikan efisiensi parameter dan mekanisme atensi kanal. Inisialisasi model dimulai dengan lapisan \textit{embedding} yang dilengkapi \textit{padding\_idx=0} untuk menangani sekuens teks dengan panjang bervariasi. Berbeda dengan konvolusi standar, arsitektur ini menerapkan \textit{Depthwise Separable Convolution} melalui pasangan \textit{depthwise\_conv} dan \textit{pointwise\_conv}. Penggunaan parameter \textit{groups=in\_channels} pada \textit{depthwise convolution} memungkinkan ekstraksi fitur spasial pada tiap kanal secara independen, yang kemudian dikombinasikan secara linear oleh \textit{pointwise convolution} ($1 \times 1$). Strategi ini secara signifikan mereduksi beban komputasi tanpa mengorbankan kualitas representasi fitur. Selain itu, penggunaan \textit{dilation} pada blok kedua bertujuan untuk memperluas \textit{receptive field} tanpa menambah jumlah parameter.\par
+
+            \begin{lstlisting}[language=Python, caption={Kode se block}, label={code:4.kode_se_block}, basicstyle=\ttfamily\scriptsize, commentstyle=\color{green}, keywordstyle=\color{blue}, stringstyle=\color{red}, numberstyle=\tiny\color{gray}, numbers=left, breaklines=true, showstringspaces=false]
+            class SEBlock(nn.Module):
+                def __init__(self, channels, reduction=16):
+                    super(SEBlock, self).__init__()
+                    self.fc1 = nn.Linear(channels, channels // reduction)
+                    self.fc2 = nn.Linear(channels // reduction, channels)
+
+                def forward(self, x):
+                    w = F.relu(self.fc1(x))
+                    w = torch.sigmoid(self.fc2(w))
+
+                    return x * w
+            \end{lstlisting}
+
+            Mekanisme \textit{Squeeze-and-Excitation} (SE) \textit{Block} yang ada pada Kode \ref{code:4.kode_se_block} diintegrasikan setelah tahap penggabungan fitur (\textit{concatenation}) untuk memberikan bobot adaptif pada setiap kanal fitur. Secara umum, SE \textit{Block} bekerja dengan mengekstraksi informasi global dari tiap kanal melalui operasi \textit{squeeze}, yang kemudian diproses melalui struktur \textit{bottleneck} menggunakan dua lapisan \textit{fully connected} (\textit{fc1} dan \textit{fc2}). Lapisan pertama mereduksi dimensi kanal dengan rasio tertentu (\textit{reduction ratio}) untuk efisiensi, sementara lapisan kedua mengembalikan dimensi kanal ke ukuran semula. Hasil akhirnya adalah sekumpulan bobot (\textit{excitation}) yang merepresentasikan tingkat kepentingan relatif dari setiap fitur, yang kemudian digunakan untuk mengalibrasi ulang (\textit{re-weighting}) fitur masukan melalui perkalian elemen-per-elemen.\par
+            Fungsi \textit{forward} merealisasikan alur data yang dimulai dari transformasi \textit{embedding} dan permutasi dimensi tensor. Proses ekstraksi fitur dilakukan secara paralel melalui dua blok konvolusi utama yang masing-masing menerapkan \textit{depthwise-pointwise convolution}, aktivasi \textit{ReLU}, dan \textit{Global Max Pooling}. Hasil dari kedua blok tersebut digabungkan menggunakan \textit{torch.cat} dan dilewatkan menuju \textit{SE Block}. Di dalam blok ini, operasi \textit{torch.mean} digunakan untuk merangkum statistik global kanal, diikuti oleh aktivasi \textit{Sigmoid} untuk menghasilkan koefisien atensi antara 0 dan 1. Fitur yang telah dikalibrasi kemudian melewati lapisan \textit{dropout} untuk regularisasi dan diakhiri dengan lapisan \textit{linear} untuk memproyeksikan representasi final ke dalam ruang kelas prediksi.\par
+
+\section{Evaluasi Hasil}
+\label{IV.Evaluasi Hasil}
+    Pada subbab ini akan dijelaskan secara rinci bagaimana hasil pelatihan model menggunakan konfigurasi hyperparameter default dan konfigurasi hyperparameter studi ablasi.\par
+
+    \subsection{Evaluasi Model dengan \textit{Hyperparameter Default}}
+    \label{IV.Evaluasi Hyperparameter Default}
+    Pada subbab ini akan dipaparkan hasil evaluasi model klasifikasi komentar \textit{cyberbullying} menggunakan konfigurasi \textit{hyperparameter default} pada berbagai varian arsitektur, yaitu TextCNN ringan, sedang, berat, serta SEDepthwise TextCNN.
+    % Setiap model dievaluasi menggunakan skema \textit{stratified 5-fold cross-validation} untuk memastikan hasil yang objektif dan representatif terhadap distribusi kelas pada dataset. Selain itu, akan disajikan pula analisis performa berdasarkan metrik utama seperti akurasi, presisi, recall, dan f1-score, serta visualisasi kurva pembelajaran untuk menilai stabilitas dan konsistensi model selama proses pelatihan. Hasil evaluasi ini menjadi dasar perbandingan antar arsitektur dan acuan dalam penentuan konfigurasi optimal pada studi ablasi berikutnya.
+
+        \subsubsection{Evaluasi Model TextCNN Ringan}
+        \label{IV.Evaluasi Model TextCNN Ringan}
+            \begin{table}[H]
+                \centering
+                \caption{Konfigurasi \textit{hyperparameter} default pada model TextCNN Ringan}
+                \label{tab:4.hyperparameter-default-texcnn-ringan}
+                \begin{tabular}{|c|p{3cm}|p{3cm}|}
+                    \hline
+                    \textbf{No} & \textbf{\textit{Hyperparameter}} & \textbf{Nilai} \\
+                    \hline
+                    1 & \textit{optimizers} & AdamW \\ % default
+                    \hline
+                    2 & \textit{batch\_sizes} & 50 \\ % paper based
+                    \hline
+                    3 & \textit{learning\_rates} & 5e-3 \\ % default
+                    \hline
+                    4 & \textit{embedding\_dimension} & 100 \\ % paper based
+                    \hline
+                    5 & \textit{kernel\_sizes} & [3, 4] \\
+                    \hline
+                    6 & \textit{convolution\_filters} & 50 \\
+                    \hline
+                    7 & \textit{dropout\_rates} & 0.5 \\ % paper based
+                    \hline
+                \end{tabular}
+            \end{table}
+            Konfigurasi \textit{hyperparameter} pada Tabel \ref{tab:4.hyperparameter-default-texcnn-ringan} menunjukkan pengaturan dasar model TextCNN Ringan yang digunakan pada eksperimen ini. Model menggunakan optimizer AdamW untuk pembaruan bobot yang stabil, batch size sebesar 50, dan learning rate $5 \times 10^{-3}$ untuk efisiensi konvergensi. Dimensi embedding ditetapkan 100, sementara kernel size yang digunakan adalah $[3, 4]$ untuk mengekstraksi fitur dari berbagai n-gram. Setiap kernel memiliki 50 convolution filters, dan regularisasi dilakukan dengan dropout rate 0,5 untuk mengurangi risiko overfitting. Seluruh konfigurasi ini dipilih untuk menjaga keseimbangan antara kompleksitas model, kemampuan ekstraksi fitur, dan stabilitas pelatihan.
+            \begin{table}[H]
+                \centering
+                \caption{Hasil evaluasi model TextCNN ringan dengan \textit{hyperparameter default}}
+                \label{tab:4.hasil-evaluasi-textcnn-ringan}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+                    \hline
+                    \multirow{2}{*}{\textbf{Fold}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Confussion Metrix}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-9}
+                    &  \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} & \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    1 & 119 & 111 & 14 & 26 & 0,851 & 0,894 & 0,820 & 0,856 \\
+                    \hline
+                    2 & 137 & 108 & 17 & 8 & \textbf{0,907} & \textbf{0,889} & \textbf{0,944} & \textbf{0,916} \\
+                    \hline
+                    3 & 134 & 105 & 20 & 11 & 0,885 & 0,870 & 0,924 & 0,896 \\
+                    \hline
+                    4 & 137 & 108 & 17 & 8 & \textbf{0,907} & \textbf{0,889} & \textbf{0,944} & \textbf{0,916} \\
+                    \hline
+                    5 & 129 & 105 & 20 & 16 & 0,866 & 0,865 & 0,889 & 0,877 \\
+                    \hline
+                    \multicolumn{5}{|c|}{Rata-rata} & 0,883 & 0,881 & 0,904 & 0,892 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Tabel \ref{tab:4.hasil-evaluasi-textcnn-ringan} menampilkan ringkasan \textit{confusion matrix} dan metrik evaluasi utama untuk setiap \textit{fold} pada model \textit{TextCNN} ringan dengan \textit{hyperparameter default}. Kinerja model menunjukkan hasil yang sangat kompetitif dengan akurasi berkisar antara 0,851 hingga 0,907, dengan rerata 0,883. Rata-rata \textit{recall} (0,904) tercatat sedikit lebih tinggi dibandingkan dengan rata-rata \textit{precision} (0,881), yang menghasilkan rata-rata \textit{f1-score} sebesar 0,892. Pola ini mengindikasikan bahwa model memiliki kemampuan yang sangat baik dalam menangkap kelas positif dengan jumlah \textit{false negatives} (\textit{FN}) yang relatif rendah. Sebagai contoh, pada \textit{Fold} 2 dan \textit{Fold} 4, model mencapai performa puncak dengan akurasi 0,907 dan \textit{f1-score} 0,916, didukung oleh nilai \textit{FN} yang sangat minim (8). Sebaliknya, \textit{Fold} 1 memberikan hasil terendah dengan akurasi 0,851 karena jumlah \textit{FN} (26) dan \textit{FP} (14) yang lebih tinggi dibandingkan \textit{fold} lainnya. Variasi performa antar \textit{fold} ini dipengaruhi oleh karakteristik distribusi data pada mekanisme \textit{k-fold cross validation}. Secara keseluruhan, model \textit{TextCNN} ringan terbukti stabil dan efektif dalam melakukan klasifikasi dengan keseimbangan metrik yang tinggi.
+            \begin{figure}[H] % H digunakan agar posisi gambar tepat berada dibawah teks 
+                \centering
+                \includegraphics[width=0.6\textwidth]{figure/textcnn-light-f1-mean.png}
+                \caption{F1-Score Model TextCNN Ringan dengan \textit{Hyperparameter Default}}
+                \label{fig:4.textcnn-light-f1-mean}
+                {\footnotesize Sumber: dokumen pribadi}
+            \end{figure}
+            Kurva pada Gambar \ref{fig:4.textcnn-light-f1-mean} menunjukkan rata-rata \textit{f1-score} validasi selama proses pelatihan untuk kelompok \textit{model\_light}. Terlihat adanya pola peningkatan yang sangat signifikan di awal tahapan pelatihan, di mana nilai \textit{f1-score} melonjak tajam dari kisaran $\approx 0,60$ pada \textit{step} 0 menjadi $\approx 0,85$ pada \textit{step} 5. Setelah fase kenaikan awal yang agresif tersebut, kurva mulai \textit{converge} dan menunjukkan tren penguatan yang lebih stabil hingga mencapai puncaknya di sekitar $\approx 0,91$ pada akhir \textit{step}. Area bayangan di sekitar garis utama merepresentasikan variansi antar \textit{fold} yang cenderung menyempit seiring bertambahnya \textit{step}, menandakan konsistensi model yang semakin membaik selama proses pelatihan. Tidak ditemukan indikasi \textit{overfitting} yang berarti karena performa pada data validasi tetap terjaga pada level tinggi tanpa adanya penurunan sistematis hingga akhir pelatihan. Visualisasi kurva ini sangat selaras dengan hasil pada Tabel 4.8, di mana rata-rata \textit{f1-score} akhir berada pada angka 0,892, yang menegaskan stabilitas dan efektivitas pembelajaran model pada pengaturan \textit{hyperparameter default}.
+        \subsubsection{Evaluasi Model TextCNN Sedang}
+        \label{IV.Evaluasi Model TextCNN Sedang}
+            \begin{table}[H]
+                \centering
+                \caption{Konfigurasi \textit{hyperparameter} default pada model TextCNN Sedang}
+                \label{tab:4.hyperparameter-default-texcnn-sedang}
+                \begin{tabular}{|c|p{3cm}|p{3cm}|}
+                    \hline
+                    \textbf{No} & \textbf{\textit{Hyperparameter}} & \textbf{Nilai} \\
+                    \hline
+                    1 & \textit{optimizers} & AdamW \\ % default
+                    \hline
+                    2 & \textit{batch\_sizes} & 50 \\ % paper based
+                    \hline
+                    3 & \textit{learning\_rates} & 5e-3 \\ % default
+                    \hline
+                    4 & \textit{embedding\_dimension} & 300 \\ % paper based
+                    \hline
+                    5 & \textit{kernel\_sizes} & [3, 4, 5] \\
+                    \hline
+                    6 & \textit{convolution\_filters} & 100 \\
+                    \hline
+                    7 & \textit{dropout\_rates} & 0.5 \\ % paper based
+                    \hline
+                \end{tabular}
+            \end{table}
+            Konfigurasi \textit{hyperparameter} pada Tabel \ref{tab:4.hyperparameter-default-texcnn-sedang} menunjukkan pengaturan dasar model TextCNN Sedang yang digunakan pada eksperimen ini. Model menggunakan optimizer AdamW untuk pembaruan bobot yang stabil, batch size sebesar 50, dan learning rate $5 \times 10^{-3}$ untuk efisiensi konvergensi. Dimensi embedding ditetapkan 300, sementara kernel size yang digunakan adalah $[3, 4, 5]$ untuk mengekstraksi fitur dari berbagai n-gram. Setiap kernel memiliki 100 convolution filters, dan regularisasi dilakukan dengan dropout rate 0,5 untuk mengurangi risiko overfitting. Seluruh konfigurasi ini dipilih untuk menjaga keseimbangan antara kompleksitas model, kemampuan ekstraksi fitur, dan stabilitas pelatihan.
+            \begin{table}[H]
+                \centering
+                \caption{Hasil evaluasi model TextCNN sedang dengan \textit{hyperparameter default}}
+                \label{tab:4.hasil-evaluasi-textcnn-sedang}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+                    \hline
+                    \multirow{2}{*}{\textbf{Fold}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Confussion Metrix}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-9}
+                    &  \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} & \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    1 & 128 & 105 & 20 & 17 & \textbf{0,862} & 0,864 & \textbf{0,882} & \textbf{0,873} \\
+                    \hline
+                    2 & 122 & 107 & 18 & 23 & 0,848 & 0,871 & 0,841 & 0,856 \\
+                    \hline
+                    3 & 125 & 106 & 19 & 20 & 0,855 & 0,868 & 0,862 & 0,865 \\
+                    \hline
+                    4 & 117 & 115 & 10 & 28 & 0,859 & \textbf{0,921} & 0,806 & 0,860 \\
+                    \hline
+                    5 & 123 & 102 & 23 & 22 & 0,833 & 0,842 & 0,848 & 0,845 \\
+                    \hline
+                    \multicolumn{5}{|c|}{Rata-rata} & 0,851 & 0,873 & 0,847 & 0,859 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Tabel \ref{tab:4.hyperparameter-default-texcnn-sedang} menampilkan ringkasan \textit{confusion matrix} dan metrik evaluasi utama untuk setiap \textit{fold} pada model \textit{TextCNN} sedang dengan \textit{hyperparameter default}. Kinerja model menunjukkan stabilitas yang baik dengan akurasi berkisar antara 0,833 hingga 0,862, menghasilkan rata-rata akurasi sebesar 0,851. Rata-rata \textit{precision} tercatat sebesar 0,873, sedikit lebih tinggi dibandingkan rata-rata \textit{recall} yang berada pada angka 0,847, sehingga menghasilkan rata-rata \textit{f1-score} sebesar 0,859. Hasil ini mengindikasikan bahwa model memiliki kecenderungan untuk meminimalkan \textit{false positives}, yang terlihat jelas pada \textit{Fold} 4 dengan \textit{precision} tertinggi mencapai 0,921. Meskipun demikian, \textit{Fold} 1 memberikan keseimbangan performa terbaik dengan \textit{f1-score} tertinggi sebesar 0,873, didukung oleh nilai \textit{TP} sebanyak 128 dan \textit{TN} sebanyak 105. Variasi antar \textit{fold} yang relatif kecil menunjukkan bahwa model \textit{TextCNN} sedang cukup tangguh terhadap perbedaan distribusi data dalam \textit{k-fold cross validation}. Secara keseluruhan, model ini menunjukkan performa yang konsisten dan andal pada kategori ukuran sedang.
+            \begin{figure}[H] % H digunakan agar posisi gambar tepat berada dibawah teks 
+                \centering
+                \includegraphics[width=0.6\textwidth]{figure/textcnn-medium-f1-mean.png}
+                \caption{Grafik Rata-rata F1-Score Model TextCNN Sedang dengan \textit{Hyperparameter Default}}
+                \label{fig:4.textcnn-medium-f1-mean}
+                % {\footnotesize Sumber: dokumen pribadi}
+            \end{figure}
+            Kurva pada Gambar \ref{fig:4.textcnn-medium-f1-mean} menunjukkan rata-rata \textit{f1-score} validasi selama proses pelatihan untuk kelompok \textit{model\_medium}. Grafik menunjukkan proses pembelajaran yang sangat cepat di awal, di mana \textit{f1-score} meningkat tajam dari nilai awal $\approx 0,58$ hingga mencapai $\approx 0,85$ hanya dalam 2 \textit{step} pertama. Setelah lonjakan awal tersebut, kurva bergerak lebih stabil dan mulai \textit{converge} pada kisaran nilai $0,86-0,88$ hingga akhir pelatihan di \textit{step} 14. Area bayangan di sekitar kurva utama, yang merepresentasikan variansi antar \textit{fold}, terlihat cukup lebar pada tahap awal namun berangsur menyempit seiring dengan kemajuan \textit{step}, menandakan peningkatan konsistensi model. Tidak ditemukan gejala \textit{overfitting} yang signifikan karena tren performa pada data validasi tetap terjaga stabil tanpa adanya penurunan yang tajam menjelang akhir \textit{step}. Hasil visualisasi ini memperkuat temuan pada Tabel 4.10, di mana rata-rata \textit{f1-score} akhir sebesar 0,859 mencerminkan keberhasilan model dalam mencapai titik optimal pembelajaran pada konfigurasi \textit{hyperparameter} yang ditentukan.
+        \subsubsection{Evaluasi Model TextCNN Berat}
+        \label{IV.Evaluasi Model TextCNN Berat}
+            \begin{table}[H]
+                \centering
+                \caption{Konfigurasi \textit{hyperparameter} default pada model TextCNN Berat}
+                \label{tab:4.hyperparameter-default-texcnn-berat}
+                \begin{tabular}{|c|p{3cm}|p{3cm}|}
+                    \hline
+                    \textbf{No} & \textbf{\textit{Hyperparameter}} & \textbf{Nilai} \\
+                    \hline
+                    1 & \textit{optimizers} & AdamW \\ % default
+                    \hline
+                    2 & \textit{batch\_sizes} & 50 \\ % paper based
+                    \hline
+                    3 & \textit{learning\_rates} & 5e-3 \\ % default
+                    \hline
+                    4 & \textit{embedding\_dimension} & 600 \\ % paper based
+                    \hline
+                    5 & \textit{kernel\_sizes} & [3, 4, 5, 6] \\
+                    \hline
+                    6 & \textit{convolution\_filters} & 200 \\
+                    \hline
+                    7 & \textit{dropout\_rates} & 0.5 \\ % paper based
+                    \hline
+                \end{tabular}
+            \end{table}
+            Konfigurasi \textit{hyperparameter} pada Tabel \ref{tab:4.hyperparameter-default-texcnn-berat} menunjukkan pengaturan dasar model TextCNN Berat yang digunakan pada eksperimen ini. Model menggunakan optimizer AdamW untuk pembaruan bobot yang stabil, batch size sebesar 50, dan learning rate $5 \times 10^{-3}$ untuk efisiensi konvergensi. Dimensi embedding ditetapkan 600, sementara kernel size yang digunakan adalah $[3, 4, 5, 6]$ untuk mengekstraksi fitur dari berbagai n-gram. Setiap kernel memiliki 200 convolution filters, dan regularisasi dilakukan dengan dropout rate 0,5 untuk mengurangi risiko overfitting. Seluruh konfigurasi ini dipilih untuk menjaga keseimbangan antara kompleksitas model, kemampuan ekstraksi fitur, dan stabilitas pelatihan.
+            \begin{table}[H]
+                \centering
+                \caption{Hasil evaluasi model TextCNN berat dengan \textit{hyperparameter default}}
+                \label{tab:4.hasil-evaluasi-textcnn-berat}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+                    \hline
+                    \multirow{2}{*}{\textbf{Fold}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Confussion Metrix}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-9}
+                    &  \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} & \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    1 & 121 & 111 & 14 & 24 & 0,859 & 0,896 & 0,834 & 0,864 \\
+                    \hline
+                    2 & 118 & 96 & 29 & 27 & 0,792 & 0,802 & 0,813 & 0,808 \\
+                    \hline
+                    3 & 118 & 115 & 10 & 27 & \textbf{0,862} & \textbf{0,921} & 0,813 & 0,864 \\
+                    \hline
+                    4 & 124 & 109 & 16 & 21 & \textbf{0,862} & 0,885 & \textbf{0,855} & \textbf{0,870} \\
+                    \hline
+                    5 & 123 & 84 & 41 & 22 & 0,766 & 0,750 & 0,848 & 0,796 \\
+                    \hline
+                    \multicolumn{5}{|c|}{Rata-rata} & 0,828 & 0,850 & 0,832 & 0,840 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Tabel \ref{tab:4.hasil-evaluasi-textcnn-berat} menampilkan ringkasan \textit{confusion matrix} dan metrik evaluasi utama untuk setiap \textit{fold} pada model \textit{TextCNN} berat dengan \textit{hyperparameter default}. Kinerja model menunjukkan variansi yang cukup terlihat dengan akurasi berkisar antara 0,766 hingga 0,862, serta rerata akurasi sebesar 0,828. Rata-rata \textit{precision} tercatat sebesar 0,850, sedikit lebih tinggi dibandingkan rata-rata \textit{recall} sebesar 0,832, yang menghasilkan rata-rata \textit{f1-score} pada angka 0,840. Pola ini mengindikasikan bahwa model berat cenderung memiliki tingkat presisi yang baik namun mengalami fluktuasi dalam mengenali seluruh sampel positif di beberapa \textit{fold}. Sebagai contoh, pada \textit{Fold} 4, model mencapai performa terbaik dengan akurasi 0,862 dan \textit{f1-score} 0,870. Namun, pada \textit{Fold} 5, akurasi menurun menjadi 0,766 akibat tingginya jumlah \textit{false positives} (41) yang berdampak pada rendahnya \textit{precision} (0,750). Secara keseluruhan, meskipun memiliki arsitektur yang lebih kompleks, model \textit{TextCNN} berat menunjukkan performa yang sedikit di bawah varian model ringan dan sedang dalam kondisi \textit{default}.
+            \begin{figure}[H] % H digunakan agar posisi gambar tepat berada dibawah teks 
+                \centering
+                \includegraphics[width=0.6\textwidth]{figure/textcnn-weight-f1-mean.png}
+                \caption{Grafik Rata-rata F1-Score Model TextCNN Berat dengan \textit{Hyperparameter Default}}
+                \label{fig:4.textcnn-heavy-f1-mean}
+                {\footnotesize Sumber: dokumen pribadi}
+            \end{figure}
+            Kurva pada Gambar \ref{fig:4.textcnn-heavy-f1-mean} menunjukkan rata-rata \textit{f1-score} validasi selama proses pelatihan untuk kelompok \textit{model\_weight}. Terlihat pola peningkatan awal yang cukup tajam dari kisaran $\approx 0,68$ menuju $\approx 0,85$ pada \textit{step} 3, namun proses menuju konvergensi menunjukkan volatilitas yang lebih tinggi dibandingkan varian model lainnya. Hal ini ditandai dengan adanya fluktuasi yang signifikan, terutama penurunan pada \textit{step} 8 sebelum akhirnya kembali meningkat dan mencapai puncak di kisaran $\approx 0,89$ pada \textit{step} 14. Area bayangan di sekitar kurva utama terlihat cukup lebar di sepanjang proses pelatihan, yang mencerminkan variansi antar \textit{fold} yang besar akibat sensitivitas model terhadap distribusi data. Ketidakstabilan di pertengahan \textit{step} menunjukkan bahwa model berat mungkin memerlukan regularisasi yang lebih kuat atau penyesuaian \textit{learning rate} untuk mencapai stabilitas yang lebih baik. Secara keseluruhan, grafik ini selaras dengan temuan pada Tabel 4.12 yang menunjukkan rerata \textit{f1-score} akhir di angka 0,840 dengan tingkat variansi performa yang cukup terasa.
+        \subsubsection{Evaluasi Model SEDepthwise TextCNN}
+        \label{IV.Evaluasi Model SEDepthwise TextCNN}
+            \begin{table}[H]
+                \centering
+                \caption{Konfigurasi \textit{hyperparameter} default pada model SEDepthwise TextCNN}
+                \label{tab:4.hyperparameter-default-sedepthwise-textcnn}
+                \begin{tabular}{|c|p{3cm}|p{3cm}|}
+                    \hline
+                    \textbf{No} & \textbf{\textit{Hyperparameter}} & \textbf{Nilai} \\
+                    \hline
+                    1 & \textit{optimizers} & AdamW \\ % default
+                    \hline
+                    2 & \textit{batch\_sizes} & 50 \\ % paper based
+                    \hline
+                    3 & \textit{learning\_rates} & 5e-3 \\ % default
+                    \hline
+                    4 & \textit{embedding\_dimension} & 300 \\ % paper based
+                    \hline
+                    5 & \textit{kernel\_sizes} & [3, 4, 5] \\
+                    \hline
+                    6 & \textit{convolution\_filters} & 100 \\
+                    \hline
+                    7 & \textit{dropout\_rates} & 0.5 \\ % paper based
+                    \hline
+                \end{tabular}
+            \end{table}
+            Konfigurasi \textit{hyperparameter} pada Tabel \ref{tab:4.hyperparameter-default-sedepthwise-textcnn} menunjukkan pengaturan dasar model SEDepthwise TextCNN yang digunakan pada eksperimen ini. Model menggunakan optimizer AdamW untuk pembaruan bobot yang stabil, batch size sebesar 50, dan learning rate $5 \times 10^{-3}$ untuk efisiensi konvergensi. Dimensi embedding ditetapkan 100, sementara kernel size yang digunakan adalah $[3, 4, 5]$ untuk mengekstraksi fitur dari berbagai n-gram. Setiap kernel memiliki 64 convolution filters, dan regularisasi dilakukan dengan dropout rate 0,5 untuk mengurangi risiko overfitting. Seluruh konfigurasi ini dipilih untuk menjaga keseimbangan antara kompleksitas model, kemampuan ekstraksi fitur, dan stabilitas pelatihan.
+            \begin{table}[H]
+                \centering
+                \caption{Hasil evaluasi model SEDepthwise TextCNN dengan \textit{hyperparameter default}}
+                \label{tab:4.hasil-evaluasi-sedepthwise-textcnn}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+                    \hline
+                    \multirow{2}{*}{\textbf{Fold}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Confussion Metrix}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-9}
+                    &  \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} & \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    1 & 132 & 101 & 24 & 13 & 0,862 & 0,846 & 0,910 & 0,877 \\
+                    \hline
+                    2 & 131 & 113 & 12 & 14 & \textbf{0,903} & \textbf{0,916} & 0,903 & \textbf{0,909} \\
+                    \hline
+                    3 & 128 & 104 & 21 & 17 & 0,859 & 0,859 & 0,881 & 0,870 \\
+                    \hline
+                    4 & 138 & 102 & 23 & 7 & 0,888 & 0,857 & \textbf{0,951} & 0,901 \\
+                    \hline
+                    5 & 120 & 106 & 19 & 25 & 0,837 & 0,863 & 0,827 & 0,845 \\
+                    \hline
+                    % \multicolumn{5}{|c|}{Rata-rata} & 0,883 & 0,881 & 0,904 & 0,892 \\ @BEST
+                    % \multicolumn{5}{|c|}{Rata-rata} & 0,851 & 0,873 & 0,847 & 0,859 \\
+                    % \multicolumn{5}{|c|}{Rata-rata} & 0,828 & 0,850 & 0,832 & 0,840 \\
+                    \multicolumn{5}{|c|}{Rata-rata} & 0,869 & 0,868 & 0,894 & 0,880 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Tabel \ref{tab:4.hasil-evaluasi-sedepthwise-textcnn} menampilkan hasil evaluasi model \textit{SEDepthwise TextCNN} yang menunjukkan performa sangat baik dengan rerata akurasi 0,869 dan \textit{f1-score} sebesar 0,880. Model ini terbukti sangat efektif dalam menangkap sampel positif, terlihat dari nilai rerata \textit{recall} yang tinggi (0,894), dengan capaian tertinggi pada \textit{Fold} 4 sebesar 0,951. \textit{Fold} 2 memberikan hasil paling optimal secara keseluruhan dengan akurasi 0,903 dan \textit{f1-score} 0,909, yang membuktikan bahwa integrasi mekanisme \textit{Squeeze-and-Excitation} dan \textit{depthwise convolution} memberikan kontribusi positif pada akurasi klasifikasi.
+            \begin{figure}[H] % H digunakan agar posisi gambar tepat berada dibawah teks 
+                \centering
+                \includegraphics[width=0.6\textwidth]{figure/textcnn-sedepthwise-f1-mean.png}
+                \caption{Grafik rata-rata F1-score model SEDepthwise TextCNN dengan \textit{hyperparameter default}}
+                \label{fig:4.sedepthwise-textcnn-f1-mean}
+                {\footnotesize Sumber: dokumen pribadi}
+            \end{figure}
+            Kurva pada Gambar \ref{fig:4.sedepthwise-textcnn-f1-mean} untuk \textit{model\_sedepthwise} menunjukkan tren kenaikan yang konsisten dari nilai awal $\approx 0,4$ menuju $\approx 0,85$ pada \textit{step} 4. Setelah fase tersebut, model mencapai titik konvergensi yang sangat halus dengan fluktuasi minimal dan variansi antar \textit{fold} yang sangat rendah hingga akhir \textit{step} 18. Karakteristik kurva yang stabil dan presisi ini menegaskan bahwa arsitektur \textit{SEDepthwise} memiliki reliabilitas yang tinggi dan mampu melakukan generalisasi pola data secara lebih baik dibandingkan arsitektur \textit{TextCNN} standar.
+
+    \subsection{Perbandingan Evaluasi Model}
+    \label{IV.Perbandingan Evaluasi Model}
+        Perbandingan evaluasi antar \textit{fold} pada keempat model menunjukkan pola konsistensi yang menarik dalam konteks \textit{cross-validation}, di mana model \textit{TextCNN} Ringan dan \textit{SEDepthwise} menunjukkan stabilitas performa yang lebih tinggi dibandingkan varian lainnya. Variasi performa yang terjadi antar \textit{fold} dapat dijelaskan melalui perbedaan distribusi karakteristik fitur linguistik dalam \textit{subset} data, di mana penurunan akurasi pada \textit{fold} tertentu menandakan adanya sampel dengan tingkat ambiguitas sentimen yang lebih tinggi atau ketidakseimbangan kelas pada set validasi tersebut. Sebaliknya, peningkatan metrik pada \textit{fold} spesifik mengindikasikan bahwa \textit{validation set} tersebut memiliki karakteristik yang sangat representatif terhadap \textit{training set}, sehingga model dapat melakukan generalisasi fitur secara lebih efektif untuk menghasilkan prediksi yang akurat.
+        Secara khusus, \textit{Fold} 2 dan \textit{Fold} 4 menunjukkan performa puncak pada model-model dengan akurasi tinggi, di mana \textit{TextCNN} Ringan mencapai akurasi 0,907 dan \textit{SEDepthwise} mencapai akurasi 0,903 pada \textit{Fold} 2. Fenomena ini dapat dijelaskan melalui pembagian data menggunakan \textit{stratified k-fold} yang menghasilkan konfigurasi data dengan keseimbangan optimal antara representasi kelas sentimen dan variasi pola linguistik pada iterasi tersebut. \textit{Training set} pada iterasi ini mengandung sampel yang lebih kaya akan informasi sehingga model dapat membedakan fitur-fitur penting dengan tingkat kepercayaan (\textit{confidence}) yang lebih tinggi, sementara \textit{validation set} memberikan tantangan klasifikasi yang sesuai dengan kapasitas fitur yang telah dipelajari oleh model selama proses pelatihan.
+        Berdasarkan urutan prioritas \textit{f1-score}, \textit{recall}, dan \textit{precision}, model \textit{TextCNN} Ringan menempati urutan pertama sebagai model paling optimal dengan rerata \textit{f1-score} 0,892, \textit{recall} 0,904, dan \textit{precision} 0,881, diikuti berturut-turut oleh model \textit{SEDepthwise} (\textit{f1-score} 0,880), \textit{TextCNN} Sedang (0,859), dan \textit{TextCNN} Berat (0,840). Fakta bahwa model Ringan mengungguli model Berat menunjukkan adanya kecenderungan \textit{over-parameterization} pada arsitektur yang lebih kompleks, di mana jumlah parameter yang besar pada model Berat justru menurunkan efektivitas generalisasi pada dataset ulasan yang digunakan. Model \textit{SEDepthwise} memberikan performa yang sangat kompetitif dengan stabilitas pelatihan yang paling baik berkat mekanisme \textit{Squeeze-and-Excitation}, namun model Ringan tetap menjadi pilihan terbaik karena efisiensinya dalam mencapai nilai \textit{recall} dan \textit{f1-score} tertinggi secara konsisten.
+        Stabilitas performa yang terlihat pada seluruh varian menunjukkan bahwa penggunaan 5 \textit{fold cross-validation} sudah mencukupi untuk menghasilkan evaluasi yang andal (\textit{reliable}) tanpa perlu memperluas hingga 10 \textit{fold}. Rentang rerata akurasi yang berada pada kisaran 0,828 hingga 0,883 menunjukkan bahwa model telah mencapai titik performa yang stabil pada konfigurasi \textit{hyperparameter default} yang diberikan. Konsistensi tren performa antar \textit{fold} yang relatif minim variasinya membuktikan bahwa hasil perbandingan ini sudah cukup kuat untuk menarik kesimpulan mengenai efektivitas masing-masing arsitektur, sehingga penambahan jumlah \textit{fold} hanya akan meningkatkan beban komputasi tanpa memberikan peningkatan pemahaman yang signifikan terhadap kualitas model.
+
+    \subsection{Evaluasi Studi Ablasi}
+    \label{IV.Evaluasi Studi Ablasi}
+        Studi ablasi pada penelitian ini bertujuan untuk menganalisis kontribusi masing-masing \textit{hyperparameter} terhadap kinerja model TextCNN Ringan dalam tugas analisis sentimen \textit{cyberbullying}. \textit{Hyperparameter} yang dievaluasi meliputi \textit{optimizer}, \textit{batch size}, \textit{learning rate}, \textit{embedding dimension}, \textit{kernel size}, \textit{convolution filters}, dan \textit{dropout rate}. Pemilihan \textit{hyperparameter} tersebut didasarkan pada pengaruh langsungnya terhadap proses ekstraksi fitur teks, stabilitas pelatihan, kemampuan generalisasi model, serta efisiensi komputasi pada arsitektur \textit{TextCNN ringan}.\par
+        Seluruh eksperimen dilakukan untuk semua fold sejumlah 5 fold data, yang kemudian diambil nilai rerata dari \textit{accuracy, precission, recall,} dan \textit{f1-score} untuk generalisasi model terhadap semua fold. Untuk menjaga konsistensi dan keadilan evaluasi, pada setiap percobaan hanya satu \textit{hyperparameter} yang diubah sementara \textit{hyperparameter} lainnya dipertahankan tetap. Setiap variasi konfigurasi dibandingkan dengan model \textit{baseline} menggunakan \textit{confusion matrix} dengan fokus pada metrik akurasi. Tujuan dari analisis ini adalah untuk mengidentifikasi \textit{hyperparameter} yang paling berpengaruh terhadap performa model, menilai sensitivitas \textit{TextCNN ringan} terhadap perubahan parameter, serta menentukan konfigurasi optimal untuk eksperimen lanjutan dan implementasi akhir.\par
+
+        \subsubsection{\textit{Optimizer}}
+        \label{IV.Optimizer}
+            \begin{table}[H]
+                \centering
+                \caption{Hasil studi ablasi \textit{optimizer}}
+                \label{tab:4.hasil-studi-ablasi-optimizer}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+                    \hline
+                    \multirow{2}{*}{\textbf{\textit{Optimizer}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-5}
+                    &  \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    AdamW & 0,883 & 0,881 & 0,904 & 0,892 \\
+                    \hline
+                    % 1 & 132 & 114 & 11 & 13 & 0,911 & 0,923 & 0,910 & 0,916  \\
+                    % 2 & 136 & 108 & 17 & 9 & 0,903 & 0,888 & 0,937 & 0,912 \\
+                    % 3 & 138 & 105 & 20 & 7 & 0,9 & 0,873 & 0,951 & 0,910 \\
+                    % 4 & 136 & 109 & 16 & 9 & 0,907 & 0,894 & 0,937 & 0,915 \\
+                    % 5 & 128 & 106 & 19 & 17 & 0,866 & 0,870 & 0,882 & 0,876 \\
+                    Muon & \textbf{0,897} & \textbf{0,889} & \textbf{0,923} & \textbf{0,905} \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Berdasarkan evaluasi \textit{optimizer} yang terlihat pada Tabel \ref{tab:4.hasil-studi-ablasi-optimizer}, \textit{Muon} memberikan kinerja terbaik dengan \textit{Acc} 0,897, \textit{Pre} 0,889, \textit{Rec} 0,923, dan \textit{F1} 0,905; hasil ini menunjukkan keunggulan \textit{Muon} dalam mencapai titik konvergensi yang lebih optimal dengan nilai \textit{recall} tertinggi, yang berarti model mampu menangkap lebih banyak sampel positif secara akurat. \textit{AdamW} berada di posisi kedua dengan \textit{Acc} 0,883 dan \textit{F1} 0,892, di mana meskipun memiliki nilai \textit{recall} yang tinggi (0,904), metrik keseluruhannya masih berada di bawah capaian \textit{Muon}. Perbedaan performa ini mengindikasikan bahwa penggunaan \textit{Muon} memberikan peningkatan efisiensi pembelajaran pada arsitektur \textit{TextCNN}, menghasilkan keseimbangan metrik yang lebih superior dibandingkan penggunaan \textit{AdamW} pada konfigurasi yang sama. Berdasarkan data tersebut, urutan prioritas \textit{optimizer} yang berfokus pada \textit{f1-score} dan \textit{recall} adalah \textit{Muon} (0,905), kemudian diikuti oleh \textit{AdamW} (0,892). Dengan demikian, \textit{Muon} adalah pilihan terbaik untuk mendapatkan hasil klasifikasi yang paling maksimal, sementara \textit{AdamW} tetap merupakan alternatif yang sangat stabil dan andal untuk digunakan.
+ 
+        \subsubsection{\textit{Batch Size}}
+        \label{IV.Batch Size}
+            \begin{table}[H]
+                \centering
+                \caption{Hasil studi ablasi \textit{batch size}}
+                \label{tab:4.hasil-studi-ablasi-batch-size}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+                    \hline
+                    \multirow{2}{*}{\makecell{\textbf{\textit{Batch}}\\\textbf{\textit{Size}}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-5}
+                    &  \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    % 1 & 104 & 121 & 4 & 41 & 0,833 & 0,962 & 0,717 & 0,822 \\
+                    % 2 & 135 & 111 & 14 & 10 & 0,911 & 0,906 & 0,931 & 0,918 \\
+                    % 3 & 129 & 108 & 17 & 16 & 0,877 & 0,883 & 0,889 & 0,886 \\
+                    % 4 & 120 & 108 & 17 & 25 & 0,844 & 0,875 & 0,827 & 0,851 \\
+                    % 5 & 134 & 100 & 25 & 11 & 0,866 & 0,842 & 0,924 & 0,881 \\
+                    25 & 0,866 & 0,893 & 0,857 & 0,871 \\
+                    \hline
+                    50 & 0,883 & 0,881 & \textbf{0,904} & \textbf{0,892} \\
+                    \hline
+                    % 1 & 128 & 109 & 16 & 17 & 0,877 & 0,888 & 0,882 & 0,885 \\
+                    % 2 & 133 & 108 & 17 & 12 & 0,892 & 0,886 & 0,917 & 0,901 \\
+                    % 3 & 131 & 113 & 12 & 14 & 0,903 & 0,916 & 0,903 & 0,909 \\
+                    % 4 & 133 & 109 & 16 & 12 & 0,896 & 0,892 & 0,917 & 0,904 \\
+                    % 5 & 121 & 111 & 14 & 24 & 0,859 & 0,896 & 0,834 & 0,864 \\
+                    100 & \textbf{0,885} & \textbf{0,895} & 0,890 & \textbf{0,892} \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Berdasarkan evaluasi \textit{batch size} yang terlihat pada Tabel \ref{tab:4.hasil-studi-ablasi-batch-size}, konfigurasi \textit{batch size} 50 dan 100 memberikan \textit{f1-score} tertinggi yang sama yaitu 0,892; namun, \textit{batch size} 50 menjadi pilihan yang lebih unggul karena memiliki nilai \textit{recall} tertinggi (0,904) dibandingkan \textit{batch size} 100 (0,890), sehingga lebih banyak sampel positif yang berhasil diidentifikasi. \textit{Batch size} 100 berada di posisi yang sangat kompetitif dengan akurasi tertinggi (0,885) dan presisi tertinggi (0,895), yang berarti memberikan tingkat kepastian prediksi sedikit lebih baik meskipun \textit{recall}-nya lebih rendah dari \textit{batch size} 50. Konfigurasi \textit{batch size} 25 menghasilkan metrik terendah secara keseluruhan (\textit{Acc} 0,866; \textit{F1} 0,871), menandakan proses pembelajaran yang kurang optimal pada ukuran \textit{batch} yang terlalu kecil. Berdasarkan data tersebut, urutan prioritas konfigurasi adalah \textit{batch size} 50, diikuti oleh \textit{batch size} 100, dan \textit{batch size} 25 sebagai opsi terakhir; sehingga \textit{batch size} 50 direkomendasikan untuk mendapatkan keseimbangan \textit{f1-score} dan \textit{recall} yang paling optimal.
+ 
+        \subsubsection{\textit{Learning Rate}}
+        \label{IV.Learning Rate}
+            \begin{table}[H]
+                \centering
+                \caption{Hasil studi ablasi \textit{learning rate}}
+                \label{tab:4.hasil-studi-ablasi-learning-rate}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+                    \hline
+                    \multirow{2}{*}{\makecell{\textbf{\textit{Learning}}\\\textbf{\textit{Rate}}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-5}
+                    &  \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    % 1 & 122 & 114 & 11 & 23 & 0,874 & 0,917 & 0,841 & 0,877 \\
+                    % 2 & 118 & 107 & 18 & 27 & 0,833 & 0,867 & 0,813 & 0,839 \\
+                    % 3 & 124 & 102 & 23 & 21 & 0,837 & 0,843 & 0,855 & 0,849 \\
+                    % 4  & 114 & 101 & 24 & 31 & 0,796 & 0,826 & 0,786 & 0,805 \\
+                    % 5 & 105 & 104 & 21 & 40 & 0,774 & 0,833 & 0,724 & 0,774 \\
+                    5e-2 & 0,822 & 0,857 & 0,803 & 0,828 \\
+                    \hline
+                    5e-3 & 0,883 & \textbf{0,881} & 0,904 & 0,892 \\
+                    \hline
+                    % 1 & 135 & 104 & 21 & 10 & 0,885 & 0,865 & 0,931 & 0,897 \\
+                    % 2 & 139 & 106 & 19 & 6 & 0,907 & 0,879 & 0,958 & 0,917 \\
+                    % 3 & 136 & 110 & 15 & 9 & 0,911 & 0,900 & 0,937 & 918 \\
+                    % 4 & 136 & 107 & 18 & 9 & 0,90 & 0,883 & 0,937 & 0,909 \\
+                    % 5 & 124 & 108 & 17 & 21 & 0,859 & 0,879 & 0,855 & 0,867 \\
+                    5e-4 & \textbf{0,892} & \textbf{0,881} & \textbf{0,923} & \textbf{0,901} \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Data studi ablasi \textit{learning rate} pada Tabel \ref{tab:4.hasil-studi-ablasi-learning-rate} mengonfirmasi bahwa nilai \textit{5e-4} memberikan hasil paling optimal dengan \textit{Acc} 0,892, \textit{Rec} 0,923, dan \textit{F1} 0,901, yang menandakan bahwa laju pembelajaran yang lebih kecil memungkinkan model melakukan penyesuaian bobot secara lebih presisi. \textit{Learning rate 5e-3} menempati posisi kedua (\textit{Acc} 0,883; \textit{F1} 0,892), sementara nilai \textit{5e-2} menghasilkan kinerja terendah (\textit{Acc} 0,822; \textit{F1} 0,828) karena laju pembelajaran yang terlalu agresif sering kali melompati titik \textit{minimum loss} yang diinginkan. Berdasarkan prioritas \textit{f1-score} dan \textit{recall}, urutan efektivitasnya adalah \textit{5e-4} (0,901), kemudian \textit{5e-3} (0,892), dan terakhir \textit{5e-2} (0,828), sehingga \textit{5e-4} menjadi parameter standar yang paling disarankan untuk model ini.
+
+        \subsubsection{\textit{Embedding Dimension}}
+        \label{IV.Embedding Dimension}
+            \begin{table}[H]
+                \centering
+                \caption{Hasil studi ablasi \textit{embedding dimension}}
+                \label{tab:4.hasil-studi-ablasi-embedding-dimension}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+                    \hline
+                    \multirow{2}{*}{\makecell{\textbf{\textit{Embedding}}\\\textbf{\textit{Dimension}}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-5}
+                    &  \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    % 1 & 119 & 105 & 20 & 26 & 0,829 & 0,856 & 0,820 & 0,838 \\
+                    % 2 & 132 & 110 & 15 & 13 & 0,896 & 0,897 & 0,910 & 0,904 \\
+                    % 3 & 135 & 104 & 21 & 10 & 0,885 & 0,865 & 0,931 & 0,897 \\
+                    % 4 & 121 & 111 & 14 & 24 & 0,859 & 0,896 & 0,834 & 0,864 \\
+                    % 5 & 127 & 108 & 17 & 18 & 0,870 & 0,881 & 0,875 & 0,878 \\
+                    50 & 0,867 & 0,879 & 0,874 & 0,876 \\
+                    \hline
+                    100 & \textbf{0,883} & 0,881 & \textbf{0,904} & \textbf{0,892} \\
+                    \hline
+                    % 1 & 129 & 110 & 15 & 16 & 0,885 & 0,895 & 0,889 & 0,892 \\
+                    % 2 & 133 & 110 & 15 & 12 & 0,90 & 0,898 & 0,917 & 0,907 \\
+                    % 3 & 135 & 109 & 16 & 10 & 0,903 & 0,894 & 0,931 & 0,912 \\
+                    % 4 & 128 & 109 & 16 & 17 & 0,877 & 0,888 & 0,882 & 0,885 \\
+                    % 5 & 127 & 101 & 24 & 18 & 0,844 & 0,841 & 0,875 & 0,858 \\
+                    200 & 0,881 & \textbf{0,883} & 0,898 & 0,890 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Hasil studi ablasi dimensi \textit{embedding} pada Tabel \ref{tab:4.hasil-studi-ablasi-embedding-dimension} menunjukkan bahwa penggunaan dimensi 100 memberikan performa terbaik dengan \textit{Acc} 0,883, \textit{Rec} 0,904, dan \textit{F1} 0,892; nilai ini terbukti paling efektif dalam merepresentasikan fitur semantik dari data teks. Penggunaan dimensi 200 berada di posisi kedua (\textit{Acc} 0,881; \textit{F1} 0,890), sementara penggunaan dimensi 50 memberikan hasil terendah (\textit{Acc} 0,867; \textit{F1} 0,876) karena keterbatasan kapasitas representasi vektor kata. Berdasarkan prioritas metrik, urutan konfigurasinya adalah dimensi 100 (0,892), diikuti oleh dimensi 200 (0,890), dan dimensi 50 (0,876), sehingga konfigurasi embedding dimension 100 dipilih sebagai \textit{hyperparameter} yang paling efisien dan optimal.
+        \subsubsection{\textit{Kernel Size}}
+        \label{IV.Kernel Size}
+            \begin{table}[H]
+                \centering
+                \caption{Hasil studi ablasi \textit{kernel size}}
+                \label{tab:4.hasil-studi-ablasi-kernel-size}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+                    \hline
+                    \multirow{2}{*}{\makecell{\textbf{\textit{Kernel}}\\\textbf{\textit{Size}}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-5}
+                    &  \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    % 1 & 130 & 105 & 20 & 15 & 0,870 & 0,866 & 0,896 & 0,881 \\
+                    % 2 & 137 & 102 & 23 & 8 & 0,885 & 0,856 & 0,944 & 0,898 \\
+                    % 3 & 133 & 104 & 21 & 12 & 0,877 & 0,863 & 0,917 & 0,889 \\
+                    % 4 & 126 & 110 & 15 & 19 & 0,881 & 0,906 & 0,868 & 0,887 \\
+                    % 5 & 126 & 110 & 15 & 19 & 0,874 & 0,893 & 0,868 & 0,881 \\
+                    [3] & 0,877 & 0,876 & 0,898 & 0,887 \\
+                    \hline
+                    [3, 4] & \textbf{0,883} & \textbf{0,881} & \textbf{0,904} & \textbf{0,892} \\
+                    \hline
+                    % 1 & 126 & 108 & 17 & 19 & 0,866 & 0,881 & 0,868 & 0,875 \\
+                    % 2 & 133 & 107 & 18 & 12 & 0,888 & 0,880 & 0,917 & 0,898 \\
+                    % 3 & 132 & 108 & 17 & 13 & 0,888 & 0,885 & 0,910 & 0,897 \\
+                    % 4 & 132 & 106 & 19 & 13 & 0,881 & 0,874 & 0,910 & 0,891 \\
+                    % 5 & 126 & 107 & 18 & 19 & 0,862 & 0,875 & 0,868 & 0,871 \\
+                    [3, 4, 5] & 0,877 & 0,879 & 0,894 & 0,886 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Evaluasi \textit{kernel size} pada Tabel \ref{tab:4.hasil-studi-ablasi-kernel-size} menunjukkan bahwa penggunaan kombinasi \textit{kernel} [3, 4] memberikan hasil paling optimal dengan \textit{Acc} 0,883, \textit{Rec} 0,904, dan \textit{F1} 0,892; kombinasi ini terbukti paling efektif dalam menangkap variasi \textit{n-gram} yang relevan pada dataset ulasan. Penggunaan \textit{kernel} tunggal [3] berada di posisi kedua (\textit{F1} 0,887), sementara penggunaan tiga \textit{kernel} [3, 4, 5] memberikan hasil terendah (\textit{F1} 0,886) yang mengindikasikan adanya redundansi fitur pada \textit{kernel} berukuran lebih besar. Berdasarkan urutan prioritas \textit{f1-score} dan \textit{recall}, urutan konfigurasinya adalah [3, 4] (0,892), kemudian [3] (0,887), dan terakhir [3, 4, 5] (0,886), sehingga ukuran \textit{kernel} [3, 4] ditetapkan sebagai konfigurasi terbaik untuk model ini.
+
+        \subsubsection{\textit{Convolution Filters}}
+        \label{IV.Convolution Filters}
+            \begin{table}[H]
+                \centering
+                \caption{Hasil studi ablasi \textit{convolution filters}}
+                \label{tab:4.hasil-studi-ablasi-convolution-filters}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+                    \hline
+                    \multirow{2}{*}{\makecell{\textbf{\textit{Conv}}\\\textbf{\textit{Filters}}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-5}
+                    &  \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    % 1 & 129 & 99 & 26 & 16 & 0,844 & 0,832 & 0,889 & 0,86 \\
+                    % 2 & 134 & 109 & 16 & 11 & 0,9 & 0,893 & 0,924 & 0,908 \\
+                    % 3 & 136 & 102 & 23 & 9 & 0,881 & 0,855 & 0,937 & 0,894 \\
+                    % 4 & 128 & 105 & 20 & 17 & 0,862 & 0,864 & 0,882 & 0,873 \\
+                    % 5 & 117 & 107 & 18 & 28 & 0,829 & 0,866 & 0,806 & 0,835 \\
+                    25 & 0,863 & 0,862 & 0,887 & 0,874 \\
+                    \hline
+                    50 & \textbf{0,883} & \textbf{0,881} & \textbf{0,904} & \textbf{0,892} \\
+                    \hline
+                    % 1 & 122 & 103 & 22 & 23 & 0,833 & 0,847 & 0,841 & 0,844 \\
+                    % 2 & 135 & 107 & 18 & 10 & 0,896 & 0,882 & 0,931 & 0,906 \\
+                    % 3 & 135 & 105 & 20 & 10 & 0,888 & 0,870 & 0,931 & 0,9 \\
+                    % 4 & 135 & 89 & 36 & 10 & 0,829 & 0,789 & 0,931 & 0,854 \\
+                    % 5 & 120 & 104 & 21 & 25 & 0,829 & 0,851 & 0,827 & 0,839 \\
+                    100 & 0,855 & 0,847 & 0,892 & 0,868 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Evaluasi \textit{convolution filters} pada Tabel \ref{tab:4.hasil-studi-ablasi-convolution-filters} menunjukkan bahwa penggunaan 50 \textit{filters} tetap menjadi konfigurasi paling optimal dengan \textit{Acc} 0,883, \textit{Rec} 0,904, dan \textit{F1} 0,892, yang menegaskan bahwa jumlah filter ini memberikan kapasitas representasi fitur yang paling seimbang untuk model tersebut. Penggunaan 25 \textit{filters} memberikan hasil yang lebih baik dalam hal \textit{f1-score} (0,874) dibandingkan penggunaan 100 \textit{filters} (0,868), meskipun penggunaan 100 \textit{filters} memiliki nilai \textit{recall} yang sedikit lebih tinggi (0,892) daripada 25 \textit{filters} (0,887). Berdasarkan urutan prioritas \textit{f1-score} dan \textit{recall}, urutan efektivitasnya adalah 50 \textit{filters} (0,892), kemudian 25 \textit{filters} (0,874), dan terakhir 100 \textit{filters} (0,868), sehingga 50 \textit{filters} direkomendasikan sebagai parameter standar untuk meminimalkan \textit{loss} informasi tanpa mengorbankan performa klasifikasi.
+ 
+        \subsubsection{\textit{Dropout Rate}}
+        \label{IV.Dropout Rate}
+            \begin{table}[H]
+                \centering
+                \caption{Hasil studi ablasi \textit{dropout rate}}
+                \label{tab:4.hasil-studi-ablasi-dropout-rate}
+                \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|p{0.8cm}|}
+                    \hline
+                    \multirow{2}{*}{\makecell{\textbf{\textit{Dropout}}\\\textbf{\textit{Rate}}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                    \cline{2-5}
+                    &  \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                    \hline
+                    % 1 & 130 & 110 & 15 & 15 & 0,888 & 0,896 & 0,896 & 0,896 \\
+                    % 2 & 135 & 105 & 20 & 10 & 0,888 & 0,870 & 0,931 & 0,9 \\
+                    % 3 & 133 & 103 & 22 & 12 & 0,874 & 0,858 & 0,917 & 0,886 \\
+                    % 4 & 133 & 114 & 11 & 12 & 0,914 & 0,923 & 0,917 & 0,920 \\
+                    % 5 & 122 & 100 & 25 & 23 & 0,822 & 0,829 & 0,841 & 0,835 \\
+                    0,4 & 0,877 & 0,875 & 0,900 & 0,887 \\
+                    \hline
+                    0,5 & \textbf{0,883} & \textbf{0,881} & \textbf{0,904} & \textbf{0,892} \\
+                    \hline
+                    % 1 & 124 & 105 & 20 & 21 & 0,848 & 0,861 & 0,855 & 0,858 \\
+                    % 2 & 129 & 115 & 10 & 16 & 0,903 & 0,928 & 0,889 & 0,908 \\
+                    % 3 & 128 & 108 & 17 & 17 & 0,874 & 0,882 & 0,882 & 0,882 \\
+                    % 4 & 130 & 108 & 17 & 15 & 0,881 & 0,884 & 0,896 & 0,890 \\
+                    % 5 & 127 & 96 & 29 & 18 & 0,825 & 0,814 & 0,875 & 0,843 \\
+                    0,6 & 0,866 & 0,873 & 0,879 & 0,876 \\
+                    \hline
+                \end{tabular}
+            \end{table}
+            Berdasarkan evaluasi \textit{dropout rate} pada Tabel \ref{tab:4.hasil-studi-ablasi-dropout-rate}, penggunaan nilai 0,5 memberikan performa paling optimal dengan \textit{Acc} 0,883, \textit{Rec} 0,904, dan \textit{F1} 0,892; hal ini menunjukkan bahwa tingkat \textit{dropout} tersebut memberikan keseimbangan regulasi yang tepat untuk mencegah \textit{overfitting} tanpa mengorbankan kapasitas pembelajaran model secara berlebihan. Nilai \textit{dropout} 0,4 berada di posisi kedua dengan \textit{F1} 0,887, sementara penggunaan nilai 0,6 menghasilkan metrik terendah (\textit{Acc} 0,866; \textit{F1} 0,876) karena tingkat regulasi yang terlalu tinggi cenderung menghambat model dalam mengekstraksi fitur-fitur linguistik penting secara mendalam. Berdasarkan urutan prioritas \textit{f1-score} dan \textit{recall}, urutan efektivitasnya adalah \textit{dropout} 0,5 (0,892), diikuti oleh 0,4 (0,887), dan terakhir 0,6 (0,876), sehingga konfigurasi \textit{dropout} 0,5 dipilih sebagai \textit{hyperparameter} regulasi yang paling stabil untuk arsitektur ini.
+    
+\section{Perbandingan Hasil \textit{Hyperparameter} Default dengan \textit{hyperparameter} Studi Ablasi}
+    \label{IV.Perbandingan Hasil Hyperparameter Default dengan Hyperparameter Studi Ablasi}
+        \begin{table}[H]
+            \centering
+            \caption{Perbandingan Konfigurasi \textit{hyperparameter Default} dan hasil Studi Ablasi}
+            \label{tab:4.hyperparameter-default}
+            \begin{tabular}{|c|p{3cm}|p{2cm}|p{2cm}|}
+                \hline
+                \textbf{No} & \textbf{\textit{Hyperparameter}} & \textbf{Default} & \textbf{Studi Ablasi} \\
+                \hline
+                1 & \textit{optimizers} & AdamW & \textbf{Muon} \\
+                \hline
+                2 & \textit{batch\_sizes} & 50 & 50 \\
+                \hline
+                3 & \textit{learning\_rates} & 5e-3 & \textbf{5e-4} \\
+                \hline
+                4 & \textit{embedding\_dimension} & 100 & 100 \\
+                \hline
+                5 & \textit{kernel\_sizes} & [3, 4] & [3, 4] \\
+                \hline
+                6 & \textit{convolution\_filters} & 50 & 50 \\
+                \hline
+                7 & \textit{dropout\_rates} & 0.5 & 0.5 \\
+                \hline
+            \end{tabular}
+        \end{table}
+
+        \begin{table}[H]
+            \centering
+            \caption{Hasil evaluasi dengan \textit{hyperparameter} default dan hasil studi ablasi}
+            \label{tab:4.hasil-evaluasi-hyperparameter-default-dan-hasil-studi-ablasi}
+            \begin{tabular}{|c|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+                \hline
+                \multirow{2}{*}{\textbf{Fold}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Confussion Metrix}}} & \multicolumn{4}{c|}{\textbf{Hasil \textit{Evaluation Metrix}}} \\
+                \cline{2-9}
+                &  \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} & \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                \hline
+                1 &  &  &  &  &  &  &  &  \\
+                \hline
+                2 &  &  &  &  &  &  &  &  \\
+                \hline
+                3 &  &  &  &  &  &  &  &  \\
+                \hline
+                4 &  &  &  &  &  &  &  &  \\
+                \hline
+                5 &  &  &  &  &  &  &  &  \\
+                \hline
+                \multicolumn{5}{|c|}{Rata-rata} &  &  &  &  \\
+                \hline
+            \end{tabular}
+        \end{table}
+
+        \begin{table}[H]
+            \centering
+            \caption{Perbandingan Hasil evaluasi konfigurasi \textit{hyperparameter} default dan studi ablasi}
+            \label{tab:4.perbandingan-hasil-evaluasi-hyperparameter-default-dan-studi-ablasi}
+            \begin{tabular}{|c|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+                \hline
+                \multirow{2}{*}{\textbf{Konfigurasi \textit{Hyperparameter}}} & \multicolumn{4}{c|}{\textbf{Rerata Metrik Evaluasi}} \\
+                \cline{2-5}
+                & \textbf{Acc} & \textbf{Pre} & \textbf{Rec} & \textbf{F1} \\
+                \hline
+                Default &  &  &  &  \\
+                \hline
+                Studi Ablasi &  &  &  &  \\
+                \hline
+            \end{tabular}
+        \end{table}
+    
 % \section{Penggunaan Dataset} \label{IV.Penggunaan}
 % Dataset yang digunakan pada penelitian ini merupakan dataset PURE. 
 % \lipsum[1-2] % Menampilkan paragraf 1 sampai 2 dari lorem ipsum

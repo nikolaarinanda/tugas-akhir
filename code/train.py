@@ -303,6 +303,7 @@ def get_gpu_memory():
 
 def main():
     args = parse_args()
+    # args, unknown = argparse.ArgumentParser().parse_known_args()
     set_seed(args.seed)
     
     # Cek wandb status

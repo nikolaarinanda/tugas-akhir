@@ -1,0 +1,49 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.13.7",
+  "startedAt": "2026-01-15T14:38:22.558767Z",
+  "args": [
+    "--use_wandb",
+    "--batch_size",
+    "50",
+    "--lr",
+    "5e-3",
+    "--tokenizer",
+    "AdamW",
+    "--embed_dim",
+    "100",
+    "--kernel_size",
+    "3",
+    "--conv_filters",
+    "50",
+    "--dropout",
+    "0.5",
+    "--wandb_group",
+    "LightTextCNN kernel_size ablation",
+    "--wandb_note",
+    "LightTextCNN kernel_size ablation"
+  ],
+  "program": "C:\\Users\\nikol\\OneDrive\\Tugas Akhir\\code\\merge.py",
+  "codePath": "code\\merge.py",
+  "codePathLocal": "merge.py",
+  "git": {
+    "remote": "https://github.com/nikolaarinanda/tugas-akhir.git",
+    "commit": "3ace9b4ee4f034258b8903472667a69ccc049d7d"
+  },
+  "email": "nikolaarinanda01@gmail.com",
+  "root": "C:\\Users\\nikol\\OneDrive\\Tugas Akhir\\code",
+  "host": "Nikola",
+  "executable": "C:\\Users\\nikol\\miniconda3\\envs\\ta\\python.exe",
+  "cpu_count": 6,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "510263627776",
+      "used": "484499808256"
+    }
+  },
+  "memory": {
+    "total": "25131765760"
+  },
+  "writerId": "tmjd5hq2uclzbsjf1sun3q92iy7wk7wm"
+}

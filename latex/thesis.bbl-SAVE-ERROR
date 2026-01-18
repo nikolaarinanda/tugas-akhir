@@ -35,8 +35,8 @@
       \strng{authornamehash}{8b1e92e65d086faf0bf1c3c51f7d6e2f}
       \strng{authorfullhash}{8b1e92e65d086faf0bf1c3c51f7d6e2f}
       \strng{authorfullhashraw}{8b1e92e65d086faf0bf1c3c51f7d6e2f}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Circle Archive}
@@ -76,8 +76,8 @@
       \strng{authornamehash}{ddd59b1f933d87189c73cd9f09662b21}
       \strng{authorfullhash}{7f1ef5a240dc6e6b0bd08c75e8990de0}
       \strng{authorfullhashraw}{7f1ef5a240dc6e6b0bd08c75e8990de0}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Jurnal common}
@@ -112,8 +112,8 @@
       \strng{authornamehash}{132cfdd1db188dc6da8b3b6d32707003}
       \strng{authorfullhash}{132cfdd1db188dc6da8b3b6d32707003}
       \strng{authorfullhashraw}{132cfdd1db188dc6da8b3b6d32707003}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Frontiers in Sociology}
@@ -138,8 +138,8 @@
       \strng{authornamehash}{bc1a2ffbeac1224c04dd83d1436c79cd}
       \strng{authorfullhash}{bc1a2ffbeac1224c04dd83d1436c79cd}
       \strng{authorfullhashraw}{bc1a2ffbeac1224c04dd83d1436c79cd}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Diakses: 11 Agustus 2025}
@@ -183,8 +183,8 @@
       \strng{authornamehash}{f45d03d310bf0ac337dfc497029f1f88}
       \strng{authorfullhash}{628c0581a5b75a87fd14cf1c893529f1}
       \strng{authorfullhashraw}{628c0581a5b75a87fd14cf1c893529f1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Jurnal Informatika dan Teknik Elektro Terapan}
@@ -234,8 +234,8 @@
       \strng{authornamehash}{61d6030d9c2668cc612905206eb675b8}
       \strng{authorfullhash}{11da7be68bfcd7c7585b5c30862ef0a1}
       \strng{authorfullhashraw}{11da7be68bfcd7c7585b5c30862ef0a1}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2023 IEEE 8th International Conference on Recent Advances and Innovations in Engineering (ICRAIE)}
@@ -287,8 +287,8 @@
       \strng{authornamehash}{b8cc6af2ea9b52a466ccc108125f533e}
       \strng{authorfullhash}{da6f63975f095fc5625ebf3df2668c5f}
       \strng{authorfullhashraw}{da6f63975f095fc5625ebf3df2668c5f}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Procedia computer science}
@@ -352,47 +352,6 @@
       \field{title}{Convolutional neural networks for sentence classification}
       \field{year}{2014}
     \endentry
-    \entry{isa2022indobert}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=edf78c7bfb83da9d27ec0c120d3d7b09}{%
-           family={Isa},
-           familyi={I\bibinitperiod},
-           given={Sani\bibnamedelima Muhamad},
-           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=ec7238c4a883b26815058af1f9372671}{%
-           family={Nico},
-           familyi={N\bibinitperiod},
-           given={Gary},
-           giveni={G\bibinitperiod}}}%
-        {{hash=12ad287f45e14e7143b5ac67fcdf3cbf}{%
-           family={Permana},
-           familyi={P\bibinitperiod},
-           given={Mikhael},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {ICIC Express Letters Office}%
-      }
-      \strng{namehash}{4c0473870e2898e1dff714e44eff7cef}
-      \strng{fullhash}{11fd833c9e79e05c4457b4d6e5894957}
-      \strng{fullhashraw}{11fd833c9e79e05c4457b4d6e5894957}
-      \strng{bibnamehash}{11fd833c9e79e05c4457b4d6e5894957}
-      \strng{authorbibnamehash}{11fd833c9e79e05c4457b4d6e5894957}
-      \strng{authornamehash}{4c0473870e2898e1dff714e44eff7cef}
-      \strng{authorfullhash}{11fd833c9e79e05c4457b4d6e5894957}
-      \strng{authorfullhashraw}{11fd833c9e79e05c4457b4d6e5894957}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{ICIC Express Letters}
-      \field{number}{3}
-      \field{title}{Indobert for indonesian fake news detection}
-      \field{volume}{16}
-      \field{year}{2022}
-      \field{pages}{289\bibrangedash 297}
-      \range{pages}{9}
-    \endentry
     \entry{nugraha2023analisis}{article}{}{}
       \name{author}{2}{}{%
         {{hash=b04c00b1d39301884e0ba527fe3dde1c}{%
@@ -426,43 +385,121 @@
       \field{pages}{153\bibrangedash 164}
       \range{pages}{12}
     \endentry
-    \entry{luqyana2018analisis}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=7e9376ee4b23b847f68defc861225da8}{%
-           family={Luqyana},
-           familyi={L\bibinitperiod},
-           given={Wanda\bibnamedelima Athira},
-           giveni={W\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=5bb11aca0a0e22359bdcd12a86049f85}{%
-           family={Cholissodin},
-           familyi={C\bibinitperiod},
-           given={Imam},
-           giveni={I\bibinitperiod}}}%
-        {{hash=ab86146a4204a8b7e6c6d3e9305d5d46}{%
-           family={Perdana},
-           familyi={P\bibinitperiod},
-           given={Rizal\bibnamedelima Setya},
-           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+    \entry{abdullah2025sentiment}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=24c535eff1bd91bdb2662eb4d10eb5a4}{%
+           family={Abdullah},
+           familyi={A\bibinitperiod},
+           given={Athallah\bibnamedelima Zacky},
+           giveni={A\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
+        {{hash=5a65636f434a044d025b1b9794912911}{%
+           family={Setiawan},
+           familyi={S\bibinitperiod},
+           given={Erwin\bibnamedelima Budi},
+           giveni={E\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
       }
-      \strng{namehash}{a93768d80536ba1173f647e514780739}
-      \strng{fullhash}{06c3f36a2f3b9a64ab91b559b028d4dd}
-      \strng{fullhashraw}{06c3f36a2f3b9a64ab91b559b028d4dd}
-      \strng{bibnamehash}{06c3f36a2f3b9a64ab91b559b028d4dd}
-      \strng{authorbibnamehash}{06c3f36a2f3b9a64ab91b559b028d4dd}
-      \strng{authornamehash}{a93768d80536ba1173f647e514780739}
-      \strng{authorfullhash}{06c3f36a2f3b9a64ab91b559b028d4dd}
-      \strng{authorfullhashraw}{06c3f36a2f3b9a64ab91b559b028d4dd}
+      \strng{namehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{fullhash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{fullhashraw}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{bibnamehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authorbibnamehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authornamehash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authorfullhash}{13a50bdaa931653852f54e7af797f4c9}
+      \strng{authorfullhashraw}{13a50bdaa931653852f54e7af797f4c9}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Jurnal Pengembangan Teknologi Informasi dan Ilmu Komputer}
-      \field{number}{11}
-      \field{title}{Analisis sentimen cyberbullying pada komentar instagram dengan metode klasifikasi support vector machine}
-      \field{volume}{2}
-      \field{year}{2018}
-      \field{pages}{4704\bibrangedash 4713}
-      \range{pages}{10}
+      \field{journaltitle}{INTENSIF: Jurnal Ilmiah Penelitian dan Penerapan Teknologi Sistem Informasi}
+      \field{number}{1}
+      \field{title}{Sentiment Analysis Accuracy for 2024 Indonesian Election Tweets Using CNN-LSTM With Genetic Algorithm Optimization}
+      \field{volume}{9}
+      \field{year}{2025}
+      \field{pages}{1\bibrangedash 14}
+      \range{pages}{14}
+    \endentry
+    \entry{ardiyansa2025klasifikasi}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=931ff2245636c5c5b1739f50eff3c96a}{%
+           family={Ardiyansa},
+           familyi={A\bibinitperiod},
+           given={Safrizal\bibnamedelima Ardana},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=a212ea8f709992d077f9a88a9f8947f3}{%
+           family={Guci},
+           familyi={G\bibinitperiod},
+           given={Abdi\bibnamedelima Negara},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=7ad5165a54d969e70e6a22ab16375ccf}{%
+           family={Febryan},
+           familyi={F\bibinitperiod},
+           given={Jemmy},
+           giveni={J\bibinitperiod}}}%
+        {{hash=50e4dcebfeb5316a1f3021bb4695279b}{%
+           family={Alhusari},
+           familyi={A\bibinitperiod},
+           given={Dian},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0849b8bca32ca8dd898e005e16d3f7c7}{%
+           family={Fajri},
+           familyi={F\bibinitperiod},
+           given={Haidar\bibnamedelima Ahmad},
+           giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{fullhash}{015f98397e3f24e8cbeb05c704ca8aca}
+      \strng{fullhashraw}{015f98397e3f24e8cbeb05c704ca8aca}
+      \strng{bibnamehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{authorbibnamehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{authornamehash}{7a9f47d0b3a30128c342dc26e7e99041}
+      \strng{authorfullhash}{015f98397e3f24e8cbeb05c704ca8aca}
+      \strng{authorfullhashraw}{015f98397e3f24e8cbeb05c704ca8aca}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Indonesian Journal of Computer Science}
+      \field{number}{3}
+      \field{title}{Klasifikasi Sentimen Tweet dengan Arsitektur Hybrid Transformers-CNN pada Platform Twitter}
+      \field{volume}{14}
+      \field{year}{2025}
+    \endentry
+    \entry{chen2025analysis}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=db092e7668e04a5d8c3290bab58025f4}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Shuaiyu},
+           giveni={S\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=d12cf52b776a7f1d49d649f51c245f30}{%
+           family={Marwan\bibnamedelima Omar},
+           familyi={M\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Omer\bibnamedelimb Burak\bibnamedelima Istanbullu},
+           giveni={O\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim I\bibinitperiod},
+           suffix={Anil\bibnamedelima Fernando},
+           suffixi={A\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{fullhash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{fullhashraw}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{bibnamehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authorbibnamehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authornamehash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authorfullhash}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{authorfullhashraw}{db092e7668e04a5d8c3290bab58025f4}
+      \strng{editorbibnamehash}{d12cf52b776a7f1d49d649f51c245f30}
+      \strng{editornamehash}{d12cf52b776a7f1d49d649f51c245f30}
+      \strng{editorfullhash}{d12cf52b776a7f1d49d649f51c245f30}
+      \strng{editorfullhashraw}{d12cf52b776a7f1d49d649f51c245f30}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{CONF-CIAP 2025: Proceedings of the 4th International Conference on Computing Innovation and Applied Physics}
+      \field{title}{Sentiment Analysis Techniques for Deep Learning Classification and Comparison}
+      \field{year}{2025}
     \endentry
     \entry{qolbya2023empati}{article}{}{}
       \name{author}{3}{}{%
@@ -490,8 +527,8 @@
       \strng{authornamehash}{97e23e315b425f0bd22d918699327fb2}
       \strng{authorfullhash}{54d585679a943a9043e264e3f3c6754c}
       \strng{authorfullhashraw}{54d585679a943a9043e264e3f3c6754c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Flourishing Journal}
@@ -646,6 +683,40 @@
       \field{pages}{1\bibrangedash 6}
       \range{pages}{6}
     \endentry
+    \entry{karimi2021aeda}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=feb28f5284ddda61890abac59f5ef118}{%
+           family={Karimi},
+           familyi={K\bibinitperiod},
+           given={Akbar},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bab04c7ddd4b4c004e602805b6f4e703}{%
+           family={Rossi},
+           familyi={R\bibinitperiod},
+           given={Leonardo},
+           giveni={L\bibinitperiod}}}%
+        {{hash=9cb102a73a27c79802f8b450dddd8752}{%
+           family={Prati},
+           familyi={P\bibinitperiod},
+           given={Andrea},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d333188daaf4c5ea2bf8e2a9131ff96b}
+      \strng{fullhash}{8fca75d53251acf6af2425983b48524a}
+      \strng{fullhashraw}{8fca75d53251acf6af2425983b48524a}
+      \strng{bibnamehash}{8fca75d53251acf6af2425983b48524a}
+      \strng{authorbibnamehash}{8fca75d53251acf6af2425983b48524a}
+      \strng{authornamehash}{d333188daaf4c5ea2bf8e2a9131ff96b}
+      \strng{authorfullhash}{8fca75d53251acf6af2425983b48524a}
+      \strng{authorfullhashraw}{8fca75d53251acf6af2425983b48524a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2108.13230}
+      \field{title}{AEDA: An easier data augmentation technique for text classification}
+      \field{year}{2021}
+    \endentry
     \entry{wei2019eda}{article}{}{}
       \name{author}{2}{}{%
         {{hash=61331a11b490f3d927555985facd25b3}{%
@@ -667,58 +738,51 @@
       \strng{authornamehash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
       \strng{authorfullhash}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
       \strng{authorfullhashraw}{7c7d8e6cfe7d52c8e9f59e665dfde2ae}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:1901.11196}
       \field{title}{EDA: Easy data augmentation techniques for boosting performance on text classification tasks}
       \field{year}{2019}
     \endentry
-    \entry{mikolov2013distributed}{article}{}{}
-      \name{author}{5}{}{%
-        {{hash=a2d359b12ca2fadf0b40136a73f021bb}{%
-           family={Mikolov},
-           familyi={M\bibinitperiod},
-           given={Tomas},
-           giveni={T\bibinitperiod}}}%
-        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
-           family={Sutskever},
+    \entry{widodo2022stratified}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=c95d7efb03390a9a633147b7541ae0d1}{%
+           family={Widodo},
+           familyi={W\bibinitperiod},
+           given={Slamet},
+           giveni={S\bibinitperiod}}}%
+        {{hash=efe9d87f6ec99056d01b90d046e0afac}{%
+           family={Brawijaya},
+           familyi={B\bibinitperiod},
+           given={Herlambang},
+           giveni={H\bibinitperiod}}}%
+        {{hash=00665f0ff640a1ee809cc25fcf5fda81}{%
+           family={Samudi},
            familyi={S\bibinitperiod},
-           given={Ilya},
-           giveni={I\bibinitperiod}}}%
-        {{hash=ee3f7d7b96add98106db907e189d6c13}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Kai},
-           giveni={K\bibinitperiod}}}%
-        {{hash=84d9f354fa0b45dae996f27dad2c6607}{%
-           family={Corrado},
-           familyi={C\bibinitperiod},
-           given={Greg\bibnamedelima S},
-           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=62f954323339abeba6c6a240e9d2855b}{%
-           family={Dean},
-           familyi={D\bibinitperiod},
-           given={Jeff},
-           giveni={J\bibinitperiod}}}%
+           given={Samudi},
+           giveni={S\bibinitperiod}}}%
       }
-      \strng{namehash}{d4849f6d57e38d9b9846cfb360e45131}
-      \strng{fullhash}{fde8281f0504852db8650bb0736061b6}
-      \strng{fullhashraw}{fde8281f0504852db8650bb0736061b6}
-      \strng{bibnamehash}{d4849f6d57e38d9b9846cfb360e45131}
-      \strng{authorbibnamehash}{d4849f6d57e38d9b9846cfb360e45131}
-      \strng{authornamehash}{d4849f6d57e38d9b9846cfb360e45131}
-      \strng{authorfullhash}{fde8281f0504852db8650bb0736061b6}
-      \strng{authorfullhashraw}{fde8281f0504852db8650bb0736061b6}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \strng{namehash}{1218fac75d6801dec26ee36f751e80ed}
+      \strng{fullhash}{2132b8fec3ae308c7bad10b4ee738625}
+      \strng{fullhashraw}{2132b8fec3ae308c7bad10b4ee738625}
+      \strng{bibnamehash}{2132b8fec3ae308c7bad10b4ee738625}
+      \strng{authorbibnamehash}{2132b8fec3ae308c7bad10b4ee738625}
+      \strng{authornamehash}{1218fac75d6801dec26ee36f751e80ed}
+      \strng{authorfullhash}{2132b8fec3ae308c7bad10b4ee738625}
+      \strng{authorfullhashraw}{2132b8fec3ae308c7bad10b4ee738625}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Advances in neural information processing systems}
-      \field{title}{Distributed representations of words and phrases and their compositionality}
-      \field{volume}{26}
-      \field{year}{2013}
+      \field{journaltitle}{Sinkron: jurnal dan penelitian teknik informatika}
+      \field{number}{4}
+      \field{title}{Stratified K-fold cross validation optimization on machine learning for prediction}
+      \field{volume}{6}
+      \field{year}{2022}
+      \field{pages}{2407\bibrangedash 2414}
+      \range{pages}{8}
     \endentry
     \entry{goodfellow2016deep}{book}{}{}
       \name{author}{4}{}{%
@@ -754,8 +818,8 @@
       \strng{authornamehash}{d17e6557c5836d2d978179999ea1037f}
       \strng{authorfullhash}{d84b0b9d19401c079b1a67dd4962d9e0}
       \strng{authorfullhashraw}{d84b0b9d19401c079b1a67dd4962d9e0}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{number}{2}

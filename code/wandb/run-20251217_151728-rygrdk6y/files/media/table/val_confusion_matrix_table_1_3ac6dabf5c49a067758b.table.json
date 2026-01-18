@@ -1,0 +1,1 @@
+{"columns": ["Actual", "Predicted", "nPredictions"], "data": [["fall", "fall", 103.0], ["fall", "not_fall", 22.0], ["not_fall", "fall", 76.0], ["not_fall", "not_fall", 69.0]]}

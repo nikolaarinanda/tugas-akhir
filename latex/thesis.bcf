@@ -2389,23 +2389,33 @@
     <bcf:citekey order="15" intorder="1">abdullah2025sentiment</bcf:citekey>
     <bcf:citekey order="16" intorder="1">ardiyansa2025klasifikasi</bcf:citekey>
     <bcf:citekey order="17" intorder="1">chen2025analysis</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">qolbya2023empati</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">sari2019literasi</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">wearesocial2025</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">rosiana2023analisis</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">liao2018some</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">pambudi2021effect</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">wang2019convolutional</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">wei2019eda</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">mikolov2013distributed</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">goodfellow2016deep</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">collobert2011natural</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">liao2017cnn</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">collobert2011natural</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">kim2014convolutional</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">prameswari2023cyberbullying</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">nugraha2023analisis</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">abdullah2025sentiment</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">ardiyansa2025klasifikasi</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">chen2025analysis</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">qolbya2023empati</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">sari2019literasi</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">wearesocial2025</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">rosiana2023analisis</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">liao2018some</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">pambudi2021effect</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">wang2019convolutional</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">karimi2021aeda</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">wei2019eda</bcf:citekey>
     <bcf:citekey order="32" intorder="1">prameswari2023cyberbullying</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">prameswari2023cyberbullying</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">prameswari2023cyberbullying</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">widodo2022stratified</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">goodfellow2016deep</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">collobert2011natural</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">liao2017cnn</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">collobert2011natural</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">kim2014convolutional</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">prameswari2023cyberbullying</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">prameswari2023cyberbullying</bcf:citekey>
+    <bcf:citekey order="41" intorder="1">prameswari2023cyberbullying</bcf:citekey>
+    <bcf:citekey order="42" intorder="1">karimi2021aeda</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">wei2019eda</bcf:citekey>
+    <bcf:citekey order="44" intorder="1">prameswari2023cyberbullying</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

@@ -1,0 +1,1 @@
+{"columns": ["Actual", "Predicted", "nPredictions"], "data": [["cyberbullying", "cyberbullying", 108.0], ["cyberbullying", "non_cyberbullying", 17.0], ["non_cyberbullying", "cyberbullying", 14.0], ["non_cyberbullying", "non_cyberbullying", 131.0]]}

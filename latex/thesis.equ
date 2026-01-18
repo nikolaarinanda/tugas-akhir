@@ -1,6 +1,13 @@
-\contentsline {myequations}{\numberline {Rumus~2.1} \textit {Convolution Operation} }{17}{equation.2.1}%
-\contentsline {myequations}{\numberline {Rumus~2.2} \textit {Softmax Function} }{18}{equation.2.2}%
-\contentsline {myequations}{\numberline {Rumus~2.3} \textit {Accuracy Formula} }{23}{equation.2.3}%
-\contentsline {myequations}{\numberline {Rumus~2.4} \textit {Precision Formula} }{24}{equation.2.4}%
-\contentsline {myequations}{\numberline {Rumus~2.5} \textit {Recall Formula} }{24}{equation.2.5}%
-\contentsline {myequations}{\numberline {Rumus~2.6} \textit {F1-Score Formula} }{25}{equation.2.6}%
+\contentsline {myequations}{\numberline {Rumus~2.1} \textit {Augmentation formula} }{15}{equation.2.1}%
+\contentsline {myequations}{\numberline {Rumus~2.2} \textit {Embedding formula} }{18}{equation.2.2}%
+\contentsline {myequations}{\numberline {Rumus~2.3} \textit {Permute formula} }{18}{equation.2.3}%
+\contentsline {myequations}{\numberline {Rumus~2.4} \textit {1D Convolution formula} }{19}{equation.2.4}%
+\contentsline {myequations}{\numberline {Rumus~2.5} \textit {ReLu formula} }{20}{equation.2.5}%
+\contentsline {myequations}{\numberline {Rumus~2.6} \textit { 1D Local Max Pooling Formula} }{20}{equation.2.6}%
+\contentsline {myequations}{\numberline {Rumus~2.7} \textit { 1D Global Max Pooling Formula} }{21}{equation.2.7}%
+\contentsline {myequations}{\numberline {Rumus~2.8} \textit {Concatenate formula} }{21}{equation.2.8}%
+\contentsline {myequations}{\numberline {Rumus~2.9} \textit {Softmax function} }{21}{equation.2.9}%
+\contentsline {myequations}{\numberline {Rumus~2.10} \textit {Accuracy Formula} }{23}{equation.2.10}%
+\contentsline {myequations}{\numberline {Rumus~2.11} \textit {Precision Formula} }{24}{equation.2.11}%
+\contentsline {myequations}{\numberline {Rumus~2.12} \textit {Recall Formula} }{24}{equation.2.12}%
+\contentsline {myequations}{\numberline {Rumus~2.13} \textit {F1-Score Formula} }{25}{equation.2.13}%

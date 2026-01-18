@@ -90,12 +90,14 @@
 \usepackage{titlesec}       % Package Format judul
 \usepackage{parskip}
 \usepackage{ragged2e}		% Alignment
+\usepackage{makecell}     % Untuk membuat tabel dengan cell yang bisa di-break
 \usepackage{multirow}		% Untuk bisa merge cell di tabel
 \usepackage{tikz}			% Untuk menggambar kotak pas foto
 \usepackage{setspace}		% Spacing paragraph
 \usepackage{fancyhdr}		% Agar nomor halaman di pojok kanan atas
 \usepackage{caption} 		% Caption gambar & tabel
-\usepackage{comment}
+\usepackage{comment}    % Untuk komentar blok
+% \usepackage{siunitx}    % Untuk satuan (SI Unit)
 
 % \captionsetup[figure]{font=footnotesize} % Mengatur caption gambar ke 10pt (footnotesize)
 \captionsetup[figure]{font=small} % Mengatur caption gambar ke 10pt (footnotesize)
@@ -105,6 +107,10 @@
 \captionsetup[table]{labelsep=space}
 \captionsetup[equation]{font=footnotesize}
 \captionsetup[lstlisting]{font=footnotesize, labelsep=space}
+
+% \sisetup{
+%   output-decimal-marker = {,}
+% }
 
 % Setting supaya nomor halaman pertama dengan "chapter"
 % berada di kanan atas
@@ -163,6 +169,7 @@
 
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{colortbl}
 \usepackage{geometry}
 
 
