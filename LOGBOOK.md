@@ -79,3 +79,21 @@
 
 - Mencoba Augmentasi AEDA dan menghapus augmentasi frasa serta sinonim
 - Membuat arsitektur model modifikasi
+
+# 2025-11-12 to 2026-01-08
+
+- Menyesuaikan nilai default dari hyperparameter model-model yg digunakan
+- Melakukan eksperimen dan menyicil laporan bab 4 dan 5
+
+# 2026-01-08 to 2026-01-29
+
+- Mengubah screenshot code jadi code listing di laporan
+- Mengirim report run WandB ke Pak Martin
+- Tambahkan link Wandb di Catatan Bimbingan Tasys
+- Merubah flatten dimensions dari yang 3D parameter jadi 2D
+- Menyicil laporan bab 4 dan 5
+
+# 2026-01-29 to x
+
+- Perbaikan laporan bab 4 dan 5
+- Deploy model final hasil ablasi di projects huggingface
